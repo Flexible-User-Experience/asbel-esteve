@@ -7,17 +7,9 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class FilmRepositoryTest extends WebTestCase
 {
-//    /**
-//     * Set up tests
-//     */
-//    public function setUp()
-//    {
-//        $this->loadFixtures(array(
-//            'AppBundle\DataFixtures\ORM\Categories',
-//            'AppBundle\DataFixtures\ORM\Posts',
-//        ));
-//    }
-
+    /**
+     * Main test
+     */
     public function testEnabled()
     {
         $enabledFilms = $this->getContainer()->get('doctrine')->getRepository('AppBundle:Film')->findAllEnabledSortedByTitle();
