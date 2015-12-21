@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             // Sensio
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Vendors
-            new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 //            new Vich\UploaderBundle\VichUploaderBundle(),
@@ -35,6 +34,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Cypress\GitElephantBundle\CypressGitElephantBundle();
             $bundles[] = new Liip\FunctionalTestBundle\LiipFunctionalTestBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
         }
 
         return $bundles;
