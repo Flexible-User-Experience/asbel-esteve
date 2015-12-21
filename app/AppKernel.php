@@ -16,9 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             // Doctrine
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             // Sensio
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Vendors
+            new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 //            new Vich\UploaderBundle\VichUploaderBundle(),
