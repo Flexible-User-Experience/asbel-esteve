@@ -41,8 +41,11 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-assetic:
-    use_controller: true
-
 #swiftmailer:
 #    delivery_address: me@example.com
+
+cypress_git_elephant:
+    enable_profiler: false
+    profiler_repository_path: "%kernel.root_dir%/../"
+    repositories:
+        "PasaRepas": "%kernel.root_dir%/../"
