@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Film
@@ -52,6 +53,14 @@ class Film extends AbstractBase
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $urlVimeo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\Range(min=3, max=12)
+     */
+    private $bootstrapColumns;
 
     /**
      *

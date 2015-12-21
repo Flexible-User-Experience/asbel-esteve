@@ -5,4 +5,5 @@ AppBundle\Entity\Film:
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
     urlVimeo: <url()>
+    bootstrapColumns: <numberBetween(3, 12)>
     enabled: <boolean(70)>
