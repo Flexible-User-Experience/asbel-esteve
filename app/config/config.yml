@@ -58,3 +58,32 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     spool:     { type: memory }
+
+# Stof Doctrine Extensions
+stof_doctrine_extensions:
+    default_locale:       "%locale%"
+    translation_fallback: true
+    orm:
+        default:
+            softdeleteable: true
+            timestampable:  true
+            sluggable:      true
+            translatable:   false
+            sortable:       false
+            tree:           false
+
+# Liip Imagine
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    filter_sets:
+        cache: ~
+        60x60:
+            quality: 95
+            filters:
+                thumbnail: { size: [60, 60], mode: outbound }
+
+# Vich Uploader
+#vich_uploader:
+#    db_driver: orm
