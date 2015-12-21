@@ -22,7 +22,7 @@ class DefaultControllerTest extends WebTestCase
     public function testSuccessfulUrls($url)
     {
         $client = static::makeClient();
-        $client->request('GET', '/');
+        $client->request('GET', $url);
         $this->assertStatusCode(200, $client);
     }
 
@@ -47,7 +47,7 @@ class DefaultControllerTest extends WebTestCase
     public function testNotFoundUrls()
     {
         $client = static::makeClient();
-        $client->request('GET', '/bad-request-error');
+        $client->request('GET', '/not-found-url');
         $this->assertStatusCode(404, $client);
     }
 }

@@ -9,3 +9,9 @@ services:
         arguments: [ '@request_stack' ]
         tags:
             - { name: knp_menu.menu, alias: main }
+    app.frontend_bottom_menu:
+        class: Knp\Menu\MenuItem
+        factory: [ '@app.frontend_menu_builder', createBottomMenu ]
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: knp_menu.menu, alias: bottom }

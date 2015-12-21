@@ -14,6 +14,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class DefaultController extends Controller
 {
+    const ROUTE_HOMEPAGE = 'homepage';
+    const ROUTE_FILMS = 'films';
+    const ROUTE_ARTWORK = 'artwork';
+    const ROUTE_NEWS = 'news';
+
     /**
      * @Route("/", name="homepage")
      */
