@@ -41,13 +41,6 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-twig:
-    globals:
-        google_analytics_enabled: false
-
-assetic:
-    use_controller: true
-
 #swiftmailer:
 #    delivery_address: me@example.com
 
