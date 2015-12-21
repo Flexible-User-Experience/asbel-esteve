@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class AbstractBase
+ * Abstract base class
  *
  * @category Entity
  * @package  AppBundle\Entity

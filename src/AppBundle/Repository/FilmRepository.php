@@ -2,8 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
 /**
  * Class FilmRepository
  *
@@ -11,6 +9,6 @@ use Doctrine\ORM\EntityRepository;
  * @package  AppBundle\Repository
  * @author   David Romaní <david@flux.cat>
  */
-class FilmRepository extends EntityRepository
+class FilmRepository extends AbstractBaseRepository
 {
 }
