@@ -17,8 +17,32 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function homepageAction()
     {
-        return $this->render('Frontend/index.html.twig');
+        return $this->render('Frontend/homepage.html.twig');
+    }
+
+    /**
+     * @Route("/films", name="films")
+     */
+    public function filmsAction()
+    {
+        return $this->render('Frontend/films.html.twig');
+    }
+
+    /**
+     * @Route("/artwork", name="artwork")
+     */
+    public function artworkAction()
+    {
+        return $this->render('Frontend/artwork.html.twig');
+    }
+
+    /**
+     * @Route("/news", name="news")
+     */
+    public function newsAction()
+    {
+        return $this->render('Frontend/news.html.twig');
     }
 }

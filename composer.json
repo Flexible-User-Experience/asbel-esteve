@@ -25,6 +25,7 @@
         "genemu/form-bundle": "^2.2.0",
         "hautelook/alice-bundle": "^1.0",
         "incenteev/composer-parameter-handler": "~2.0",
+        "knplabs/knp-menu-bundle": "^2.0",
         "liip/functional-test-bundle": "^1.0",
         "liip/imagine-bundle": "^1.0",
         "php": ">=5.3.9",

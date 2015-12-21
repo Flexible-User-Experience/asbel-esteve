@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             // Sensio
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Vendors
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 //            new Vich\UploaderBundle\VichUploaderBundle(),
