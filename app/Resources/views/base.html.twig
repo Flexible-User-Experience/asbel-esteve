@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="author" content="www.flux.cat" />
-        <title>{% block title %}{{ 'frontend.head.title' | trans | title }}{% endblock %}</title>
+        <title>{% block title %}{{ 'frontend.head.title' | trans }}{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets filter="cssrewrite,less" '@mycss' %}
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
@@ -13,7 +13,21 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block top %}{% endblock %}
+        {% block top %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-xs-12">
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                    </div>
+                    <div class="col-sm-3 col-xs-12">
+                        {{ 'frontend.top.right.l1' | trans }}<br>
+                        {{ 'frontend.top.right.l2' | trans }}<br>
+                        {{ 'frontend.top.right.l3' | trans }}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block bottom %}
             <footer>
