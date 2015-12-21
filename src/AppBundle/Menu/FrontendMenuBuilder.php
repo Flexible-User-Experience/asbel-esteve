@@ -51,7 +51,7 @@ class FrontendMenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->addChild(
-            'homepage',
+            'go home',
             array(
                 'route'   => 'homepage',
                 'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_HOMEPAGE,
