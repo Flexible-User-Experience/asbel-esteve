@@ -50,38 +50,34 @@ class FrontendMenuBuilder
     public function createBottomMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
-        $menu
-            ->addChild(
-                'homepage',
-                array(
-                    'route'   => 'homepage',
-                    'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_HOMEPAGE,
-                )
-            );
-        $menu
-            ->addChild(
-                'films',
-                array(
-                    'route'   => 'films',
-                    'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_FILMS,
-                )
-            );
-        $menu
-            ->addChild(
-                'artwork',
-                array(
-                    'route'   => 'artwork',
-                    'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_ARTWORK,
-                )
-            );
-        $menu
-            ->addChild(
-                'words, interviews, screenings and news',
-                array(
-                    'route'   => 'news',
-                    'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_NEWS,
-                )
-            );
+        $menu->addChild(
+            'homepage',
+            array(
+                'route'   => 'homepage',
+                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_HOMEPAGE,
+            )
+        );
+        $menu->addChild(
+            'films',
+            array(
+                'route'   => 'films',
+                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_FILMS,
+            )
+        );
+        $menu->addChild(
+            'artwork',
+            array(
+                'route'   => 'artwork',
+                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_ARTWORK,
+            )
+        );
+        $menu->addChild(
+            'words, interviews, screenings and news',
+            array(
+                'route'   => 'news',
+                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_NEWS,
+            )
+        );
 
         return $menu;
     }

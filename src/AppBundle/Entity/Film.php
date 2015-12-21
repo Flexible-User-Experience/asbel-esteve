@@ -189,4 +189,28 @@ class Film extends AbstractBase
     {
         return $this->urlVimeo;
     }
+
+    /**
+     * Get BootstrapColumns
+     *
+     * @return int
+     */
+    public function getBootstrapColumns()
+    {
+        return $this->bootstrapColumns;
+    }
+
+    /**
+     * Set BootstrapColumns
+     *
+     * @param int $bootstrapColumns
+     *
+     * @return $this
+     */
+    public function setBootstrapColumns($bootstrapColumns)
+    {
+        $this->bootstrapColumns = $bootstrapColumns;
+
+        return $this;
+    }
 }

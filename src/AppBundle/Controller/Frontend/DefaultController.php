@@ -24,7 +24,9 @@ class DefaultController extends Controller
      */
     public function homepageAction()
     {
-        return $this->render('Frontend/homepage.html.twig');
+        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDesc();
+
+        return $this->render('Frontend/homepage.html.twig', [ 'items' => $items ]);
     }
 
     /**
