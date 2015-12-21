@@ -1,0 +1,8 @@
+## Films
+AppBundle\Entity\Film:
+  film{1..100}:
+    title: <sentence()>
+    year: <numberBetween(1990, 2015)>
+    description: <paragraph()>
+    urlVimeo: <url()>
+    enabled: <boolean(70)>

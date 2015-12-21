@@ -44,6 +44,10 @@ monolog:
 #swiftmailer:
 #    delivery_address: me@example.com
 
+doctrine:
+    dbal:
+        path: "%database_path%"
+
 cypress_git_elephant:
     enable_profiler: false
     profiler_repository_path: "%kernel.root_dir%/../"

@@ -3,69 +3,63 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Film
+ * Class Film
+ *
+ * @category Entity
+ * @package  AppBundle\Entity
+ * @author   David Romaní <david@flux.cat>
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FilmRepository")
  */
-class Film
+class Film extends AbstractBase
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="year", type="integer")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Gedmo\Slug(fields={"title"})
      */
-    private $year;
+    private $slug;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="enabled", type="boolean")
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $enabled;
+    private $year = 2000;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(type="text", length=4000, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_vimeo", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $urlVimeo;
 
-
     /**
-     * Get id
      *
-     * @return integer
+     *
+     * Methods
+     *
+     *
      */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set title
@@ -92,6 +86,30 @@ class Film
     }
 
     /**
+     * Get Slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set Slug
+     *
+     * @param string $slug
+     *
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
      * Set year
      *
      * @param integer $year
@@ -113,30 +131,6 @@ class Film
     public function getYear()
     {
         return $this->year;
-    }
-
-    /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return Film
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 
     /**
@@ -187,4 +181,3 @@ class Film
         return $this->urlVimeo;
     }
 }
-
