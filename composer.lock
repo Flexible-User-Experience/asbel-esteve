@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25a1e11837ee3980d90a568a50492678",
-    "content-hash": "3e8bf73205bdb90208e3f74cceb38143",
+    "hash": "49c43fe0d12807d0e70b9e18434a8506",
+    "content-hash": "e8c9086ddb00486195e391bae57f088c",
     "packages": [
         {
             "name": "apoutchika/loremipsum-bundle",
