@@ -5,6 +5,13 @@ namespace AppBundle\Tests\Repository;
 use AppBundle\Entity\Film;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
+/**
+ * Class FilmRepositoryTest
+ *
+ * @category Test
+ * @package  AppBundle\Tests\Repository
+ * @author   David Romaní <david@flux.cat>
+ */
 class FilmRepositoryTest extends WebTestCase
 {
     /**

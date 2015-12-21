@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * Abstract base class
@@ -17,13 +18,51 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return ArrayCollection
      */
-    public function findAllEnabledSortedByTitle()
+    public function findAllEnabled()
     {
-        return $this->createQueryBuilder('t')
-            ->where('t.enabled = :enabled')
-            ->setParameter('enabled', true)
+        return $this->createEnabledQuery()
             ->orderBy('t.title', 'ASC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabledSortedByTitle()
+    {
+        return $this->createEnabledQuery()
+            ->orderBy('t.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabledSortedByCreatedDateDesc()
+    {
+        return $this->createEnabledQuery()
+            ->orderBy('t.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    private function createEnabledQuery()
+    {
+        return $this->createBaseQuery()
+            ->where('t.enabled = :enabled')
+            ->setParameter('enabled', true);
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    private function createBaseQuery()
+    {
+        return $this->createQueryBuilder('t');
     }
 }

@@ -34,6 +34,28 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
 
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    #bundles:        [ ]
+    java:           "%assetic_path_java%"
+    node:           "%assetic_path_node%"
+    filters:
+        cssrewrite: ~
+        less:
+            node:       "%assetic_path_node%"
+            node_paths: [ "%assetic_path_node_modules%" ]
+    assets:
+        mycss:
+            inputs:
+                - "@AppBundle/Resources/public/css/main.less"
+#                - "@AppBundle/Resources/public/css/icomoon.less"
+        myjs:
+            inputs:
+                - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
+
 # Doctrine Configuration
 doctrine:
     dbal:

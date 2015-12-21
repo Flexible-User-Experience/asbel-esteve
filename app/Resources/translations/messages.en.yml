@@ -1,0 +1,8 @@
+frontend:
+  head:
+    title: Asbel Esteve
+  top:
+    right:
+      l1: this is
+      l2: Asbel Esteve's
+      l3: personal website
