@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\TitleTrait;
+use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,22 +26,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Film extends AbstractBase
 {
+    use TitleTrait;
+    use SlugTrait;
     use DescriptionTrait;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"title"})
-     */
-    private $slug;
 
     /**
      * @var integer
@@ -96,6 +86,14 @@ class Film extends AbstractBase
     private $bootstrapColumns = 3;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="films")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $categories;
+
+    /**
      *
      *
      * Methods
@@ -104,51 +102,11 @@ class Film extends AbstractBase
      */
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Film
+     * Film constructor
      */
-    public function setTitle($title)
+    public function __construct()
     {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set Slug
-     *
-     * @param string $slug
-     *
-     * @return Film
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get Slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -198,6 +156,7 @@ class Film extends AbstractBase
     {
         return $this->urlVimeo;
     }
+
     /**
      * Set imageFile
      *
@@ -320,5 +279,54 @@ class Film extends AbstractBase
     public function getBootstrapColumns()
     {
         return $this->bootstrapColumns;
+    }
+
+    /**
+     * Set categories
+     *
+     * @param ArrayCollection $categories
+     *
+     * @return Film
+     */
+    public function setCategories(ArrayCollection $categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return ArrayCollection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add category
+     *
+     * @param Category $category
+     *
+     * @return Film
+     */
+    public function addCategory(Category $category)
+    {
+        $category->addFilm($this);
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
     }
 }

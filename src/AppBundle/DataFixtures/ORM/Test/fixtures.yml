@@ -10,6 +10,14 @@ AppBundle\Entity\ContactMessage:
     updatedAt: <dateTimeThisMonth()>
     enabled: true
 
+# Categories
+AppBundle\Entity\Category:
+  category{1..5}:
+    title: <current()> <word()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
 ## Films
 AppBundle\Entity\Film:
   film{1..10}:
@@ -20,6 +28,7 @@ AppBundle\Entity\Film:
     metaKeywords: <word()>
     metaDescription: <sentence()>
     bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1, @category2, @category3 ]
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
