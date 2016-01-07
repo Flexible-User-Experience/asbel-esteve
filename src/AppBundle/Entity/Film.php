@@ -5,13 +5,12 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Traits\TitleTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
+use AppBundle\Entity\Traits\ImageTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Film
@@ -29,6 +28,7 @@ class Film extends AbstractBase
     use TitleTrait;
     use SlugTrait;
     use DescriptionTrait;
+    use ImageTrait;
 
     /**
      * @var integer
@@ -44,25 +44,6 @@ class Film extends AbstractBase
      * @Assert\Url(checkDNS=true)
      */
     private $urlVimeo;
-
-    /**
-     * @var File
-     *
-     * @Vich\UploadableField(mapping="uploads", fileNameProperty="imageName")
-     * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
-     * )
-     * @Assert\Image(minWidth = 1200)
-     */
-    private $imageFile;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageName;
 
     /**
      * @var string
@@ -95,6 +76,13 @@ class Film extends AbstractBase
     private $categories;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FilmImage", mappedBy="film")
+     */
+    private $images;
+
+    /**
      *
      *
      * Methods
@@ -108,6 +96,7 @@ class Film extends AbstractBase
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -158,58 +147,6 @@ class Film extends AbstractBase
         return $this->urlVimeo;
     }
 
-    /**
-     * Set imageFile
-     *
-     * @param File|UploadedFile $imageFile
-     *
-     * @return Film
-     */
-    public function setImageFile(File $imageFile = null)
-    {
-        $this->imageFile = $imageFile;
-        if ($imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get imageFile
-     *
-     * @return File|UploadedFile
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * Set imageName
-     *
-     * @param string $imageName
-     *
-     * @return Film
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
-    /**
-     * Get imageName
-     *
-     * @return string
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
     /**
      * Set MetaKeywords
      *
@@ -331,6 +268,59 @@ class Film extends AbstractBase
         $this->categories->removeElement($category);
     }
 
+    /**
+     * Set images
+     *
+     * @param ArrayCollection $images
+     *
+     * @return Film
+     */
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add image
+     *
+     * @param FilmImage $image
+     *
+     * @return Film
+     */
+    public function addFilmImage(FilmImage $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param FilmImage $image
+     */
+    public function removeFilmImage(FilmImage $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->id ? '#' . $this->getId() . ' · ' . $this->getTitle() :  '---';
