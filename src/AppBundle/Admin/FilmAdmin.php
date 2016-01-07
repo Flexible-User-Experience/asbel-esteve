@@ -215,7 +215,7 @@ class FilmAdmin extends AbstractBaseAdmin
         $listMapper
             ->add(
                 'image',
-                'date',
+                null,
                 array(
                     'label'    => 'backend.admin.image',
                     'template' => '::Admin/Cells/list__cell_image_field.html.twig'

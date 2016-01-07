@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\ImageTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Category
@@ -14,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FilmImageRepository")
+ * @Vich\Uploadable
  */
 class FilmImage extends AbstractBase
 {
