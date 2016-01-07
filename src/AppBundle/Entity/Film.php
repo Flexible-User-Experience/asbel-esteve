@@ -78,7 +78,8 @@ class Film extends AbstractBase
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="FilmImage", mappedBy="film")
+     * @ORM\OneToMany(targetEntity="FilmImage", mappedBy="film", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $images;
 
@@ -299,7 +300,7 @@ class Film extends AbstractBase
      *
      * @return Film
      */
-    public function addFilmImage(FilmImage $image)
+    public function addImage(FilmImage $image)
     {
         $this->images[] = $image;
 
@@ -311,7 +312,7 @@ class Film extends AbstractBase
      *
      * @param FilmImage $image
      */
-    public function removeFilmImage(FilmImage $image)
+    public function removeImage(FilmImage $image)
     {
         $this->images->removeElement($image);
     }

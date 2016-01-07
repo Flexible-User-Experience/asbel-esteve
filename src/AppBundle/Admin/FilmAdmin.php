@@ -139,6 +139,28 @@ class FilmAdmin extends AbstractBaseAdmin
                 )
             )
             ->end();
+        if ($this->id($this->getSubject())) { // is edit mode, disable on new subjects
+            $formMapper
+                ->with('backend.admin.images', $this->getFormMdSuccessBoxArray(12))
+                ->add(
+                    'images',
+                    'sonata_type_collection',
+                    array(
+                        'label'              => ' ',
+                        'required'           => false,
+                        'cascade_validation' => true,
+                    ),
+                    array(
+                        'edit'     => 'inline',
+                        'inline'   => 'table',
+                        'sortable' => 'position',
+                    )
+                )
+                ->end();
+            $formMapper->setHelps(
+                array('images' => 'up to 10MB with format PNG, JPG or GIF. min. width 1200px.')
+            );
+        }
     }
 
     /**

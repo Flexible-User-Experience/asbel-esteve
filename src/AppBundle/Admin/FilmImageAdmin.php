@@ -33,12 +33,22 @@ class FilmImageAdmin extends AbstractBaseAdmin
         $formMapper
             ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
             ->add(
+                'film',
+                null,
+                array(
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
+                )
+            )
+            ->add(
                 'imageFile',
                 'file',
                 array(
-                    'label'    => 'backend.admin.image',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
-                    'required' => false,
+                    'label'       => 'backend.admin.image',
+                    'help'        => $this->getImageHelperFormMapperWithThumbnail(),
+                    'sonata_help' => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required'    => false,
                 )
             )
             ->add(
@@ -72,6 +82,11 @@ class FilmImageAdmin extends AbstractBaseAdmin
                     'label'    => 'backend.admin.image',
                     'template' => '::Admin/Cells/list__cell_image_field.html.twig'
                 )
+            )
+            ->add(
+                'film',
+                null,
+                array()
             )
             ->add(
                 'position',

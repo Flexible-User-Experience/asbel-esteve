@@ -13,6 +13,7 @@ backend:
         content: Content
         date: Date
         image: Main Image
+        images: Secondary Images
         vimeo: URL Vimeo
         bootstrapcolumns: Homepage columns
         bootstrapcolumnshelp: min. 3, max. 12
