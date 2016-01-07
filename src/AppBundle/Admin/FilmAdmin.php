@@ -2,12 +2,12 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Repository\CategoryRepository;
 use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
  * Class FilmAdmin
@@ -62,17 +62,80 @@ class FilmAdmin extends AbstractBaseAdmin
         $formMapper
             ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
             ->add(
-                'title',
+                'imageFile',
+                'file',
+                array(
+                    'label'    => 'backend.admin.image',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required' => false,
+                )
+            )
+            ->add(
+                'year',
                 null,
                 array()
             )
+            ->add(
+                'urlVimeo',
+                null,
+                array(
+                    'label' => 'backend.admin.vimeo',
+                )
+            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(6))
+            ->add(
+                'categories',
+                null,
+                array(
+                    'query_builder' => function (CategoryRepository $repository) {
+                        return $repository->getAllSortedByTitleQB();
+                    },
+                )
+            )
+            ->add(
+                'metaKeywords',
+                null,
+                array(
+                    'label' => 'backend.admin.metakeywords',
+                    'help'  => 'backend.admin.metakeywordshelp',
+                )
+            )
+            ->add(
+                'metaDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.metadescription',
+                )
+            )
+            ->add(
+                'bootstrapColumns',
+                null,
+                array(
+                    'label' => 'backend.admin.bootstrapcolumns',
+                    'help'  => 'backend.admin.bootstrapcolumnshelp',
+                )
+            )
             ->add(
                 'enabled',
                 'checkbox',
                 array(
                     'required' => false,
+                )
+            )
+            ->end()
+            ->with('backend.admin.content', $this->getFormMdSuccessBoxArray(12))
+            ->add(
+                'title',
+                null,
+                array()
+            )
+            ->add(
+                'description',
+                'ckeditor',
+                array(
+                    'config_name' => 'my_config',
+                    'required'    => true,
                 )
             )
             ->end();
@@ -90,9 +153,51 @@ class FilmAdmin extends AbstractBaseAdmin
                 array()
             )
             ->add(
+                'categories',
+                null,
+                array(
+                    'label' => 'backend.admin.categories',
+                )
+            )
+            ->add(
                 'year',
                 null,
                 array()
+            )
+            ->add(
+                'description',
+                null,
+                array(
+                    'label' => 'backend.admin.description',
+                )
+            )
+            ->add(
+                'urlVimeo',
+                null,
+                array(
+                    'label' => 'backend.admin.vimeo',
+                )
+            )
+            ->add(
+                'metaKeywords',
+                null,
+                array(
+                    'label' => 'backend.admin.metakeywords',
+                )
+            )
+            ->add(
+                'metaDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.metadescription',
+                )
+            )
+            ->add(
+                'bootstrapColumns',
+                null,
+                array(
+                    'label' => 'backend.admin.bootstrapcolumns',
+                )
             )
             ->add(
                 'enabled',

@@ -10,10 +10,14 @@ backend:
     admin:
         general: General
         controls: Controls
+        content: Content
         date: Date
         image: Main Image
+        vimeo: URL Vimeo
+        bootstrapcolumns: Homepage columns
+        bootstrapcolumnshelp: min. 3, max. 12
         metakeywords: Meta Keywords
-        metakeywordshelp: Comma separated values
+        metakeywordshelp: comma separated values
         metadescription: Meta Description
         answer: Answer
         answer_action: Answer

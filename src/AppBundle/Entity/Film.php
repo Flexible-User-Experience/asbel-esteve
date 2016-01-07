@@ -41,6 +41,7 @@ class Film extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS=true)
      */
     private $urlVimeo;
 
