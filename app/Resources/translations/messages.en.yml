@@ -14,6 +14,7 @@ backend:
         metakeywords: Meta Keywords
         metakeywordshelp: Comma separated values
         metadescription: Meta Description
+        answer: Answer
         answer_action: Answer
         films_amount: Linked films
         categories_amount: Linked categories

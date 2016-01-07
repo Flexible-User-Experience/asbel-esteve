@@ -153,4 +153,14 @@ class ContactMessage extends AbstractBase
     {
         return $this->answered;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getCreatedAt()->format('d/m/Y') . ' · ' . $this->getEmail() : '---';
+    }
 }

@@ -1,5 +1,10 @@
 services:
 # Sonata Admins
+    admin.contact:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Contact Messages", group: "Web" }
     admin.category:
         class: AppBundle\Admin\CategoryAdmin
         arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
