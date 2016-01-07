@@ -3,11 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
-parameters:
-    locale: en
-
 framework:
-    translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: [ "%locale%" ] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -16,7 +13,7 @@ framework:
     csrf_protection: ~
     validation:      { enable_annotations: true }
     templating:
-        engines: ['twig']
+        engines: ["twig"]
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -29,16 +26,19 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form_themes:      [ 'bootstrap_3_layout.html.twig' ]
+    form_themes:
+        - "bootstrap_3_layout.html.twig"
+        - "SonataCoreBundle:Form:datepicker.html.twig"
     globals:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
+        main_brand_title:         "Asbel Esteve"
+        admin_tag_version:        "v0.0.2"
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    #bundles:        [ ]
     java:           "%assetic_path_java%"
     node:           "%assetic_path_node%"
     filters:
@@ -66,6 +66,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -81,10 +83,16 @@ swiftmailer:
     auth_mode:  login
     spool:     { type: memory }
 
+# CKEditor
+ivory_ck_editor:
+    inline: false
+    configs:
+        my_config:
+            toolbar: standard
+
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
     default_locale:       "%locale%"
-    translation_fallback: true
     orm:
         default:
             softdeleteable: true
@@ -133,3 +141,91 @@ vich_uploader:
         uploads:
             uri_prefix:         /uploads
             upload_destination: %kernel.root_dir%/../web/uploads
+
+# FOS User
+fos_user:
+    db_driver:      orm
+    firewall_name:  admin
+    user_class:     AppBundle\Entity\User
+    group:
+        group_class:   AppBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+# Sonata configs
+sonata_admin:
+    title: "Pas a Repàs"
+    title_logo: "/bundles/app/images/backend-favicon.png"
+    options:
+        html5_validate: true
+        confirm_exit:   true
+        use_select2:    true
+        pager_links:    10
+    persist_filters: true
+    security:
+        handler: sonata.admin.security.handler.role
+    templates:
+        layout:    "::Admin/layout.html.twig"
+    dashboard:
+        groups:
+            Web:
+                icon: "<i class='fa fa-chrome'></i>"
+            Facturació:
+                icon: "<i class='fa fa-file-text'></i>"
+            Administrador:
+                icon: "<i class='fa fa-cog'></i>"
+        blocks:
+            -
+                position: top
+                type: sonata.block.service.text
+                class: col-md-12
+                settings:
+                    content: >
+                        <h1 style="margin-top:0">CMS v2.0</h1>
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Web ]
+            -
+                position: top
+                type: admin.block.messages
+                class: col-md-6
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Facturació ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Administrador ]
+            -
+                position: bottom
+                type: sonata.block.service.text
+                class: col-md-12
+                settings:
+                    content: >
+                        <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fa fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda CMS v2" style="color:#000">suport@flux.cat</a></p></div>
+
+sonata_block:
+    default_contexts: [ cms ]
+    blocks:
+        sonata.user.block.menu:         ~
+        sonata.block.service.text:      ~
+        sonata.admin.block.admin_list:  ~
+        admin.block.messages:           ~
+
+sonata_doctrine_orm_admin:
+    templates:
+        form:
+            - "::Admin/Forms/custom_checkbox_form_template_hack.html.twig"
+
+sonata_user:
+    security_acl: true
+    manager_type: orm

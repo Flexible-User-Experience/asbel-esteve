@@ -1,5 +1,5 @@
 services:
-    # Menu
+# Menus
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
         arguments: [ '@knp_menu.factory' ]
@@ -15,3 +15,8 @@ services:
         arguments: [ '@request_stack' ]
         tags:
             - { name: knp_menu.menu, alias: bottom }
+# Twig
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
