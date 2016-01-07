@@ -3,7 +3,7 @@
 namespace AppBundle\Tests\Repository;
 
 use AppBundle\Entity\Film;
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use AppBundle\Tests\AbstractBaseTest;
 
 /**
  * Class FilmRepositoryTest
@@ -12,12 +12,12 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
  * @package  AppBundle\Tests\Repository
  * @author   David Romaní <david@flux.cat>
  */
-class FilmRepositoryTest extends WebTestCase
+class FilmRepositoryTest extends AbstractBaseTest
 {
     /**
      * Main test
      */
-    public function testEnabled()
+    public function testMain()
     {
         $enabledFilms = $this->getContainer()->get('doctrine')->getRepository('AppBundle:Film')->findAllEnabledSortedByTitle();
         $allFilms = $this->getContainer()->get('doctrine')->getRepository('AppBundle:Film')->findAll();

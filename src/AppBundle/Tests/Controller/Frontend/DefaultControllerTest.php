@@ -14,6 +14,14 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 class DefaultControllerTest extends WebTestCase
 {
     /**
+     * Set up test
+     */
+    public function setUp()
+    {
+        $this->runCommand('hautelook_alice:doctrine:fixtures:load');
+    }
+
+    /**
      * Test HTTP request is successful
      *
      * @dataProvider provideSuccessfulUrls
