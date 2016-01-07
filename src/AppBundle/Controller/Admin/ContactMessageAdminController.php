@@ -3,7 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\ContactMessage;
-//use AppBundle\Form\Type\ContactMessageAnswerType;
+use AppBundle\Form\Type\ContactMessageAnswerType;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,37 +82,37 @@ class ContactMessageAdminController extends Controller
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
-        /** @var Contact $object */
+        /** @var ContactMessage $object */
         $object = $this->admin->getObject($id);
 
         if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
 
-        $form = $this->createForm(ContactAnswerType::class, $object);
+        $form = $this->createForm(ContactMessageAnswerType::class, $object);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // send notification email
-            $mailer = $this->get('app.mailer');
-            $mailer->sendEmail(
-                $this->container->getParameter('mailer_destination'),
-                $object->getEmail(),
-                'Resposta formulari de contacte Pas A Repàs',
-                $this->renderView(':Admin/Contact:email.html.twig', array('object' => $object))
-            );
-            // persist new contact message record
-            $object->setAnswered(true);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($object);
-            $em->flush();
-            // add view flash message
-            $this->addFlash('notice', 'frontend.index.main.sent');
+//            // send notification email
+//            $mailer = $this->get('app.mailer');
+//            $mailer->sendEmail(
+//                $this->container->getParameter('mailer_destination'),
+//                $object->getEmail(),
+//                'Resposta formulari de contacte Pas A Repàs',
+//                $this->renderView(':Admin/Contact:email.html.twig', array('object' => $object))
+//            );
+//            // persist new contact message record
+//            $object->setAnswered(true);
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($object);
+//            $em->flush();
+//            // add view flash message
+//            $this->addFlash('notice', 'frontend.index.main.sent');
 
             return $this->redirectToRoute('admin_app_contact_list');
         }
 
         return $this->render(
-            '::Admin/Contact/answer_form.html.twig',
+            '::Admin/ContactMessage/answer_form.html.twig',
             array(
                 'action' => 'answer',
                 'object' => $object,

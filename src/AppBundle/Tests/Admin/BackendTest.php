@@ -59,10 +59,10 @@ class BackendTest extends AbstractBaseTest
             array('/admin/web/film/create'),
             array('/admin/web/film/1/edit'),
             array('/admin/web/film/1/delete'),
-            array('/admin/user/list'),
-            array('/admin/user/create'),
-            array('/admin/user/1/edit'),
-            array('/admin/user/1/delete'),
+            array('/admin/users/list'),
+            array('/admin/users/create'),
+            array('/admin/users/1/edit'),
+            array('/admin/users/1/delete'),
         );
     }
 
@@ -94,8 +94,8 @@ class BackendTest extends AbstractBaseTest
             array('/admin/web/message/batch'),
             array('/admin/web/category/batch'),
             array('/admin/web/film/batch'),
-            array('/admin/user/show'),
-            array('/admin/user/batch'),
+            array('/admin/users/show'),
+            array('/admin/users/batch'),
         );
     }
 }
