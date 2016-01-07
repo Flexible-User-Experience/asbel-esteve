@@ -21,14 +21,14 @@ class Film extends AbstractBase
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
@@ -36,7 +36,7 @@ class Film extends AbstractBase
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $year = 2000;
 
@@ -57,10 +57,10 @@ class Film extends AbstractBase
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      * @Assert\Range(min=3, max=12)
      */
-    private $bootstrapColumns;
+    private $bootstrapColumns = 3;
 
     /**
      *
@@ -95,6 +95,20 @@ class Film extends AbstractBase
     }
 
     /**
+     * Set Slug
+     *
+     * @param string $slug
+     *
+     * @return Film
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
      * Get Slug
      *
      * @return string
@@ -102,20 +116,6 @@ class Film extends AbstractBase
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set Slug
-     *
-     * @param string $slug
-     *
-     * @return $this
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     /**
@@ -191,6 +191,20 @@ class Film extends AbstractBase
     }
 
     /**
+     * Set BootstrapColumns
+     *
+     * @param int $bootstrapColumns
+     *
+     * @return Film
+     */
+    public function setBootstrapColumns($bootstrapColumns)
+    {
+        $this->bootstrapColumns = $bootstrapColumns;
+
+        return $this;
+    }
+
+    /**
      * Get BootstrapColumns
      *
      * @return int
@@ -198,19 +212,5 @@ class Film extends AbstractBase
     public function getBootstrapColumns()
     {
         return $this->bootstrapColumns;
-    }
-
-    /**
-     * Set BootstrapColumns
-     *
-     * @param int $bootstrapColumns
-     *
-     * @return $this
-     */
-    public function setBootstrapColumns($bootstrapColumns)
-    {
-        $this->bootstrapColumns = $bootstrapColumns;
-
-        return $this;
     }
 }
