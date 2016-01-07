@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-//            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
             // App
             new AppBundle\AppBundle(),
         );
