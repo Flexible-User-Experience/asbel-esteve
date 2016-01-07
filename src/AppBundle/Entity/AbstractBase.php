@@ -188,4 +188,14 @@ abstract class AbstractBase
     {
         return $this->enabled;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getId() . ' · ' . $this->getCreatedAt()->format('d/m/Y') : '---';
+    }
 }

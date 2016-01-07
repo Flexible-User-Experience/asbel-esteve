@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\DescriptionTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Film extends AbstractBase
 {
+    use DescriptionTrait;
+
     /**
      * @var string
      *
@@ -39,13 +42,6 @@ class Film extends AbstractBase
      * @ORM\Column(type="integer")
      */
     private $year = 2000;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text", length=4000, nullable=true)
-     */
-    private $description;
 
     /**
      * @var string
@@ -140,30 +136,6 @@ class Film extends AbstractBase
     public function getYear()
     {
         return $this->year;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Film
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**

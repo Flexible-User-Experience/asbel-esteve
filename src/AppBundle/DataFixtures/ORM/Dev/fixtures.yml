@@ -1,9 +1,23 @@
+# Contact messages
+AppBundle\Entity\ContactMessage:
+  contact{1..20}:
+    email: <safeEmail()>
+    message: <paragraph()>
+    description: <paragraph()>
+    checked: <boolean(70)>
+    answered: <boolean(30)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
 ## Films
 AppBundle\Entity\Film:
-  film{1..100}:
+  film{1..50}:
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
     urlVimeo: <url()>
     bootstrapColumns: <numberBetween(3, 12)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
