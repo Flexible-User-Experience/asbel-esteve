@@ -10,16 +10,16 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
- * Class CategoryAdmin
+ * Class FilmAdmin
  *
  * @category Admin
  * @package  AppBundle\Admin
  * @author   David Romaní <david@flux.cat>
  */
-class CategoryAdmin extends AbstractBaseAdmin
+class FilmAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Category';
-    protected $baseRoutePattern = 'web/category';
+    protected $classnameLabel = 'Film';
+    protected $baseRoutePattern = 'web/film';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
         '_sort_order' => 'asc',
@@ -48,8 +48,8 @@ class CategoryAdmin extends AbstractBaseAdmin
         /** @var QueryBuilder $query */
         $query = parent::createQuery($context);
         $query
-            ->select($query->getRootAliases()[0] . ', f')
-            ->leftJoin($query->getRootAliases()[0] . '.films', 'f');
+            ->select($query->getRootAliases()[0] . ', c')
+            ->leftJoin($query->getRootAliases()[0] . '.categories', 'c');
 
         return $query;
     }
@@ -90,38 +90,7 @@ class CategoryAdmin extends AbstractBaseAdmin
                 array()
             )
             ->add(
-                'films',
-                null,
-                array()
-            )
-            ->add(
-                'enabled',
-                null,
-                array()
-            );
-    }
-
-    /**
-     * @param ShowMapper $showMapper
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add(
-                'createdAt',
-                'date',
-                array(
-                    'label'  => 'backend.admin.date',
-                    'format' => 'd/m/Y H:i',
-                )
-            )
-            ->add(
-                'title',
-                null,
-                array()
-            )
-            ->add(
-                'films',
+                'year',
                 null,
                 array()
             )
@@ -140,6 +109,21 @@ class CategoryAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
+                'image',
+                'date',
+                array(
+                    'label'    => 'backend.admin.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                )
+            )
+            ->add(
+                'year',
+                null,
+                array(
+                    'editable' => true,
+                )
+            )
+            ->add(
                 'title',
                 null,
                 array(
@@ -150,8 +134,8 @@ class CategoryAdmin extends AbstractBaseAdmin
                 'count',
                 null,
                 array(
-                    'label'    => 'backend.admin.films_amount',
-                    'template' => '::Admin/Cells/list__cell_films_amount_field.html.twig',
+                    'label'    => 'backend.admin.categories_amount',
+                    'template' => '::Admin/Cells/list__cell_categories_amount_field.html.twig',
                 )
             )
             ->add(

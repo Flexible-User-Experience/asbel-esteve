@@ -183,6 +183,12 @@ sonata_admin:
                         <h1 style="margin-top:0">Content Management System</h1>
             -
                 position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Web ]
+            -
+                position: top
                 type: admin.block.messages
                 class: col-md-6
             -
@@ -191,12 +197,6 @@ sonata_admin:
                 class: col-md-6
                 settings:
                     groups: [ Admin ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Web ]
             -
                 position: bottom
                 type: sonata.block.service.text

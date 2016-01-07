@@ -11,6 +11,7 @@ backend:
         general: General
         controls: Controls
         date: Date
+        image: Main Image
         metakeywords: Meta Keywords
         metakeywordshelp: Comma separated values
         metadescription: Meta Description

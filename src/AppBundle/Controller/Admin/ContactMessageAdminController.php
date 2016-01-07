@@ -92,13 +92,13 @@ class ContactMessageAdminController extends Controller
         $form = $this->createForm(ContactMessageAnswerType::class, $object);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-//            // send notification email
+//            // TODO send notification email
 //            $mailer = $this->get('app.mailer');
 //            $mailer->sendEmail(
 //                $this->container->getParameter('mailer_destination'),
 //                $object->getEmail(),
 //                'Resposta formulari de contacte Pas A Repàs',
-//                $this->renderView(':Admin/Contact:email.html.twig', array('object' => $object))
+//                $this->renderView('::Admin/Contact:email.html.twig', array('object' => $object))
 //            );
 //            // persist new contact message record
 //            $object->setAnswered(true);
