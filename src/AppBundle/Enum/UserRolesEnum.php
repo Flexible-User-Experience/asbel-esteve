@@ -22,10 +22,10 @@ class UserRolesEnum
     public static function getEnumArray()
     {
         return array(
-            self::ROLE_USER => 'usuari',
+            self::ROLE_USER => 'user',
             self::ROLE_CMS => 'editor',
-            self::ROLE_ADMIN => 'administrador',
-            self::ROLE_SUPER_ADMIN => 'super administrador',
+            self::ROLE_ADMIN => 'admin',
+            self::ROLE_SUPER_ADMIN => 'super admin',
         );
     }
 }

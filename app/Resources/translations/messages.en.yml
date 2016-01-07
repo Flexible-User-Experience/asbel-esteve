@@ -6,3 +6,17 @@ frontend:
       l1: this is
       l2: Asbel Esteve's
       l3: personal website
+backend:
+    admin:
+        general: General
+        controls: Controls
+        metakeywords: Meta Keywords
+        metakeywordshelp: Comma separated values
+        metadescription: Meta Description
+        answer_action: Answer
+        films_amount: Linked films
+        categories_amount: Linked categories
+        block:
+            title: Notifications
+            text: pending messages
+            notext: you have no pending messages

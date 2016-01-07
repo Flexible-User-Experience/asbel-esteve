@@ -24,8 +24,8 @@ class UserAdmin extends ParentUserAdmin
      */
     protected $userManager;
 
-    protected $classnameLabel = 'Usuari';
-    protected $baseRoutePattern = 'administrador/usuari';
+    protected $classnameLabel = 'User';
+    protected $baseRoutePattern = 'users';
     protected $datagridValues = array(
         '_sort_by'    => 'username',
         '_sort_order' => 'asc',
@@ -69,38 +69,33 @@ class UserAdmin extends ParentUserAdmin
     {
         /** @var object $formMapper */
         $formMapper
-            ->with('Dades generals', array('class' => 'col-md-6'))
+            ->with('backend.admin.general', array('class' => 'col-md-6'))
             ->add(
                 'firstname',
                 null,
                 array(
-                    'label'    => 'Nom',
                     'required' => false,
                 )
             )
             ->add(
                 'username',
                 null,
-                array(
-                    'label' => 'Nom d\'usuari',
-                )
+                array()
             )
             ->add('email', null, array())
             ->add(
                 'plainPassword',
                 'text',
                 array(
-                    'label'    => 'Constrasenya',
                     'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
                 )
             )
             ->end()
-            ->with('Administració', array('class' => 'col-md-6'))
+            ->with('backend.admin.controls', array('class' => 'col-md-6'))
             ->add(
                 'roles',
                 'choice',
                 array(
-                    'label'    => 'Rols',
                     'choices'  => UserRolesEnum::getEnumArray(),
                     'multiple' => true,
                     'expanded' => true
@@ -125,26 +120,21 @@ class UserAdmin extends ParentUserAdmin
             ->add(
                 'username',
                 null,
-                array(
-                    'label' => 'Nom d\'usuari',
-                )
+                array()
             )
             ->add('email')
-            ->add(
-                'roles',
-                'doctrine_orm_string',
-                array(
-                    'label' => 'Rols',
-                    'choice',
-                    array('choices' => UserRolesEnum::getEnumArray()),
-                )
-            )
+//            ->add(
+//                'roles',
+//                'doctrine_orm_string',
+//                array(
+//                    'choice',
+//                    array('choices' => UserRolesEnum::getEnumArray()),
+//                )
+//            )
             ->add(
                 'enabled',
                 null,
-                array(
-                    'label' => 'Actiu',
-                )
+                array()
             );
     }
 
@@ -159,7 +149,6 @@ class UserAdmin extends ParentUserAdmin
                 'username',
                 null,
                 array(
-                    'label'    => 'Nom d\'usuari',
                     'editable' => true,
                 )
             )
@@ -174,7 +163,6 @@ class UserAdmin extends ParentUserAdmin
                 'roles',
                 null,
                 array(
-                    'label'    => 'Rols',
                     'template' => '::Admin/Cells/list__cell_user_roles.html.twig',
                 )
             )
@@ -182,7 +170,6 @@ class UserAdmin extends ParentUserAdmin
                 'enabled',
                 null,
                 array(
-                    'label'    => 'Actiu',
                     'editable' => true,
                 )
             )
@@ -194,7 +181,6 @@ class UserAdmin extends ParentUserAdmin
                         'edit'   => array(),
                         'delete' => array(),
                     ),
-                    'label'   => 'Accions',
                 )
             );
     }

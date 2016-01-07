@@ -7,16 +7,16 @@
                 {% for role in object.roles %}
                     {% if role == 'ROLE_USER' %}
                         {% set status = 'info' %}
-                        {% set text = 'usuari' %}
+                        {% set text = 'user' %}
                     {% elseif role == 'ROLE_CMS' %}
                         {% set status = 'warning' %}
                         {% set text = 'editor' %}
                     {% elseif role == 'ROLE_ADMIN' %}
                         {% set status = 'primary' %}
-                        {% set text = 'administrador' %}
+                        {% set text = 'admin' %}
                     {% elseif role == 'ROLE_SUPER_ADMIN' %}
                         {% set status = 'danger' %}
-                        {% set text = 'super administrador' %}
+                        {% set text = 'super admin' %}
                     {% else %}
                         {% set status = 'success' %}
                         {% set text = '---' %}
