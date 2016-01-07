@@ -1,4 +1,5 @@
 parameters:
+    locale:            en
     database_driver:   pdo_sqlite
     database_host:     127.0.0.1
     database_port:     ~
@@ -10,9 +11,15 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
+    mailer_destination: dummy@dummy.com
+    mailer_delivery_dev: ~
     secret:            ThisTokenIsNotSoSecretChangeIt
     google_analytics_enabled:   false
     google_analytics_account:   "UA-xxxxxxxx-x"
     assetic_path_java:         /usr/bin/java
     assetic_path_node:         /usr/bin/nodejs
     assetic_path_node_modules: /home/<user>/node_modules
+    private_admin_test_user: ~
+    private_admin_test_pass: ~
+    private_editor_test_user: ~
+    private_editor_test_pass: ~

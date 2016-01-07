@@ -1,3 +1,23 @@
+# Contact messages
+AppBundle\Entity\ContactMessage:
+  contact{1..5}:
+    email: <safeEmail()>
+    message: <paragraph()>
+    description: <paragraph()>
+    checked: <boolean(70)>
+    answered: <boolean(30)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Categories
+AppBundle\Entity\Category:
+  category{1..5}:
+    title: <current()> <word()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
 ## Films
 AppBundle\Entity\Film:
   film{1..10}:
@@ -5,5 +25,40 @@ AppBundle\Entity\Film:
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
     urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
     bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1, @category2, @category3 ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
+
+## Image Films
+AppBundle\Entity\FilmImage:
+  filmimage{1..5}:
+    film: @film<current()>
+    position: <numberBetween(1, 5)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
+## Users
+AppBundle\Entity\User:
+    admin:
+        username: <{private_admin_test_user}>
+        plainPassword: <{private_admin_test_pass}>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_SUPER_ADMIN
+    editor:
+        username: <{private_editor_test_user}>
+        plainPassword: <{private_editor_test_pass}>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_CMS

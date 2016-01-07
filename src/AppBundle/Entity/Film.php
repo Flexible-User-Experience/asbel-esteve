@@ -2,8 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\TitleTrait;
+use AppBundle\Entity\Traits\SlugTrait;
+use AppBundle\Entity\Traits\DescriptionTrait;
+use AppBundle\Entity\Traits\ImageTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,52 +21,67 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FilmRepository")
+ * @Vich\Uploadable
  */
 class Film extends AbstractBase
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Gedmo\Slug(fields={"title"})
-     */
-    private $slug;
+    use TitleTrait;
+    use SlugTrait;
+    use DescriptionTrait;
+    use ImageTrait;
 
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $year = 2000;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", length=4000, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS=true)
      */
-    private $description;
+    private $urlVimeo;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $urlVimeo;
+    private $metaKeywords;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $metaDescription;
 
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      * @Assert\Range(min=3, max=12)
      */
-    private $bootstrapColumns;
+    private $bootstrapColumns = 3;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="films")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $categories;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FilmImage", mappedBy="film", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    private $images;
 
     /**
      *
@@ -71,51 +92,12 @@ class Film extends AbstractBase
      */
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Film
+     * Film constructor
      */
-    public function setTitle($title)
+    public function __construct()
     {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Get Slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set Slug
-     *
-     * @param string $slug
-     *
-     * @return $this
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
+        $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -143,30 +125,6 @@ class Film extends AbstractBase
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Film
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set urlVimeo
      *
      * @param string $urlVimeo
@@ -191,6 +149,68 @@ class Film extends AbstractBase
     }
 
     /**
+     * Set MetaKeywords
+     *
+     * @param string $metaKeywords
+     *
+     * @return Film
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    /**
+     * Get MetaKeywords
+     *
+     * @return string
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * Set MetaDescription
+     *
+     * @param string $metaDescription
+     *
+     * @return Film
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get MetaDescription
+     *
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Set BootstrapColumns
+     *
+     * @param int $bootstrapColumns
+     *
+     * @return Film
+     */
+    public function setBootstrapColumns($bootstrapColumns)
+    {
+        $this->bootstrapColumns = $bootstrapColumns;
+
+        return $this;
+    }
+
+    /**
      * Get BootstrapColumns
      *
      * @return int
@@ -201,16 +221,109 @@ class Film extends AbstractBase
     }
 
     /**
-     * Set BootstrapColumns
+     * Set categories
      *
-     * @param int $bootstrapColumns
+     * @param ArrayCollection $categories
      *
-     * @return $this
+     * @return Film
      */
-    public function setBootstrapColumns($bootstrapColumns)
+    public function setCategories(ArrayCollection $categories)
     {
-        $this->bootstrapColumns = $bootstrapColumns;
+        $this->categories = $categories;
 
         return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return ArrayCollection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add category
+     *
+     * @param Category $category
+     *
+     * @return Film
+     */
+    public function addCategory(Category $category)
+    {
+        $category->addFilm($this);
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Set images
+     *
+     * @param ArrayCollection $images
+     *
+     * @return Film
+     */
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add image
+     *
+     * @param FilmImage $image
+     *
+     * @return Film
+     */
+    public function addImage(FilmImage $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param FilmImage $image
+     */
+    public function removeImage(FilmImage $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? '#' . $this->getId() . ' · ' . $this->getTitle() :  '---';
     }
 }

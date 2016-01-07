@@ -1,9 +1,106 @@
+# Contact messages
+AppBundle\Entity\ContactMessage:
+  contact{1..20}:
+    email: <safeEmail()>
+    message: <paragraph()>
+    description: <paragraph()>
+    checked: <boolean(70)>
+    answered: <boolean(30)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Categories
+AppBundle\Entity\Category:
+  category{1..10}:
+    title: <current()> <word()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
 ## Films
 AppBundle\Entity\Film:
-  film{1..100}:
+  film{1..10}:
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
     urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
     bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1, @category2, @category3 ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
+  film{11..25}:
+    title: <sentence()>
+    year: <numberBetween(1990, 2015)>
+    description: <paragraph()>
+    urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
+    bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1 ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+  film{26..59}:
+    title: <sentence()>
+    year: <numberBetween(1990, 2015)>
+    description: <paragraph()>
+    urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
+    bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
+## Image Films
+AppBundle\Entity\FilmImage:
+  filmimage{1..10}:
+    film: @film<current()>
+    position: <numberBetween(1, 5)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+
+## Users
+AppBundle\Entity\User:
+    admin:
+        username: <{private_admin_test_user}>
+        plainPassword: <{private_admin_test_pass}>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_SUPER_ADMIN
+    editor:
+        username: <{private_editor_test_user}>
+        plainPassword: <{private_editor_test_pass}>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_CMS
+    cms{1..4}:
+        username: <username()>
+        plainPassword: <password()>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_CMS
+    manager{1..2}:
+        username: <username()>
+        plainPassword: <password()>
+        email: <safeEmail()>
+        firstname: <name()>
+        lastname: <lastname()>
+        enabled: true
+        roles:
+            - ROLE_ADMIN

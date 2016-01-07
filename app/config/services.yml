@@ -1,5 +1,37 @@
 services:
-    # Menu
+# Sonata Admins
+    admin.contact:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Contact Messages", group: "Web" }
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Categories", group: "Web" }
+    admin.film:
+        class: AppBundle\Admin\FilmAdmin
+        arguments: [ ~, AppBundle\Entity\Film, AppBundle:Admin\FilmAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Films", group: "Web" }
+    admin.filmimage:
+        class: AppBundle\Admin\FilmImageAdmin
+        arguments: [ ~, AppBundle\Entity\FilmImage, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Image Films", group: "Web", show_in_dashboard: true }
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Users", group: "Admin" }
+# Sonata Blocks
+    admin.block.messages:
+        class: AppBundle\Admin\Block\PendingMessagesBlock
+        tags:
+            - { name: sonata.block }
+        arguments: [ "sonata.admin.block.messages", "@templating", "@doctrine.orm.entity_manager" ]
+# Menus
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
         arguments: [ '@knp_menu.factory' ]
@@ -15,3 +47,8 @@ services:
         arguments: [ '@request_stack' ]
         tags:
             - { name: knp_menu.menu, alias: bottom }
+# Twig
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }

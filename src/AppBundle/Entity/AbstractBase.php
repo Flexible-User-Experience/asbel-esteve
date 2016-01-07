@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Abstract base class
+ * Abstract entities base class
  *
  * @category Entity
  * @package  AppBundle\Entity
@@ -26,7 +26,7 @@ abstract class AbstractBase
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
@@ -49,11 +49,11 @@ abstract class AbstractBase
     /**
      * @var boolean
      *
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     protected $enabled = true;
 
-    /*
+    /**
      *
      *
      * Methods
@@ -166,16 +166,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Get Enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
      * Set Enabled
      *
      * @param boolean $enabled
@@ -187,5 +177,25 @@ abstract class AbstractBase
         $this->enabled = $enabled;
 
         return $this;
+    }
+
+    /**
+     * Get Enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getId() . ' · ' . $this->getCreatedAt()->format('d/m/Y') : '---';
     }
 }
