@@ -155,7 +155,7 @@ fos_user:
 
 # Sonata configs
 sonata_admin:
-    title: "Pas a Repàs"
+    title: "Asbel Esteve"
     title_logo: "/bundles/app/images/backend-favicon.png"
     options:
         html5_validate: true
@@ -171,8 +171,6 @@ sonata_admin:
         groups:
             Web:
                 icon: "<i class='fa fa-chrome'></i>"
-            Facturació:
-                icon: "<i class='fa fa-file-text'></i>"
             Administrador:
                 icon: "<i class='fa fa-cog'></i>"
         blocks:
@@ -182,7 +180,7 @@ sonata_admin:
                 class: col-md-12
                 settings:
                     content: >
-                        <h1 style="margin-top:0">CMS v2.0</h1>
+                        <h1 style="margin-top:0">Gestor de continguts</h1>
             -
                 position: top
                 type: sonata.admin.block.admin_list
@@ -198,12 +196,6 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Facturació ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
                     groups: [ Administrador ]
             -
                 position: bottom
@@ -211,7 +203,7 @@ sonata_admin:
                 class: col-md-12
                 settings:
                     content: >
-                        <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fa fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda CMS v2" style="color:#000">suport@flux.cat</a></p></div>
+                        <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fa fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda Asbel Esteve CMS" style="color:#000">suport@flux.cat</a></p></div>
 
 sonata_block:
     default_contexts: [ cms ]

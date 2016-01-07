@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Tests\Controller\Frontend;
+namespace AppBundle\Tests\Controller;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use AppBundle\Tests\AbstractBaseTest;
 
 /**
  * Class DefaultControllerTest
@@ -11,16 +11,8 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
  * @package  AppBundle\Tests\Controller\Frontend
  * @author   David Romaní <david@flux.cat>
  */
-class DefaultControllerTest extends WebTestCase
+class FrontendTest extends AbstractBaseTest
 {
-    /**
-     * Set up test
-     */
-    public function setUp()
-    {
-        $this->runCommand('hautelook_alice:doctrine:fixtures:load');
-    }
-
     /**
      * Test HTTP request is successful
      *

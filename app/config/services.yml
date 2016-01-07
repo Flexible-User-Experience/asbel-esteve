@@ -1,4 +1,10 @@
 services:
+# Sonata Admins
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Usuaris", group: "Administrador" }
 # Menus
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
