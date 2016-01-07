@@ -10,6 +10,7 @@ backend:
     admin:
         general: General
         controls: Controls
+        date: Date
         metakeywords: Meta Keywords
         metakeywordshelp: Comma separated values
         metadescription: Meta Description

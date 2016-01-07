@@ -1,10 +1,15 @@
 services:
 # Sonata Admins
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Categories", group: "Web" }
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Usuaris", group: "Administrador" }
+            - { name: sonata.admin, manager_type: orm, label: "Users", group: "Admin" }
 # Sonata Blocks
     admin.block.messages:
         class: AppBundle\Admin\Block\PendingMessagesBlock

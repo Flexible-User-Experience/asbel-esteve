@@ -65,7 +65,7 @@ class Category extends AbstractBase
      *
      * @return ArrayCollection
      */
-    public function getPosts()
+    public function getFilms()
     {
         return $this->films;
     }
