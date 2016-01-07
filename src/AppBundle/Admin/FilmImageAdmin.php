@@ -2,12 +2,8 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Repository\CategoryRepository;
-use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
  * Class FilmImageAdmin
@@ -36,7 +32,8 @@ class FilmImageAdmin extends AbstractBaseAdmin
                 'film',
                 null,
                 array(
-                    'attr' => array(
+                    'required' => true,
+                    'attr'     => array(
                         'hidden' => true,
                     ),
                 )
@@ -46,9 +43,9 @@ class FilmImageAdmin extends AbstractBaseAdmin
                 'file',
                 array(
                     'label'       => 'backend.admin.image',
+                    'required'    => false,
                     'help'        => $this->getImageHelperFormMapperWithThumbnail(),
                     'sonata_help' => $this->getImageHelperFormMapperWithThumbnail(),
-                    'required'    => false,
                 )
             )
             ->add(
