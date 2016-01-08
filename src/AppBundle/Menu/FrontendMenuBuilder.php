@@ -2,7 +2,7 @@
 
 namespace AppBundle\Menu;
 
-use AppBundle\Controller\Frontend\DefaultController;
+use AppBundle\Controller\Frontend\WebController;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -54,28 +54,28 @@ class FrontendMenuBuilder
             'go home',
             array(
                 'route'   => 'homepage',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_HOMEPAGE,
+                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
         );
         $menu->addChild(
             'films',
             array(
                 'route'   => 'films',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_FILMS,
+                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
             )
         );
         $menu->addChild(
             'artwork',
             array(
                 'route'   => 'artwork',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_ARTWORK,
+                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_ARTWORK,
             )
         );
         $menu->addChild(
             'words, interviews, screenings and news',
             array(
                 'route'   => 'news',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == DefaultController::ROUTE_NEWS,
+                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_NEWS,
             )
         );
 
