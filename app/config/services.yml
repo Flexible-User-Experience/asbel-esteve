@@ -14,7 +14,7 @@ services:
         class: AppBundle\Admin\FilmAdmin
         arguments: [ ~, AppBundle\Entity\Film, AppBundle:Admin\FilmAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Films", group: "Web" }
+            - { name: sonata.admin, manager_type: orm, label: "Content", group: "Web" }
     admin.filmimage:
         class: AppBundle\Admin\FilmImageAdmin
         arguments: [ ~, AppBundle\Entity\FilmImage, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
