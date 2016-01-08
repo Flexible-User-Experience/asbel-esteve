@@ -21,3 +21,14 @@
         {% endfor %}
     </div>
 {% endblock %}
+
+{% block bottom %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

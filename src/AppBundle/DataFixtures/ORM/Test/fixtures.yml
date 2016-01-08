@@ -42,6 +42,12 @@ AppBundle\Entity\FilmImage:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
 
+## Pages
+AppBundle\Entity\Page:
+  page1:
+    title: words, interviews, screeings and news
+    description: <paragraph()>
+
 ## Users
 AppBundle\Entity\User:
     admin:

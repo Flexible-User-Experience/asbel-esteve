@@ -44,7 +44,7 @@ class ContactMessageType extends AbstractType
                 'submit',
                 array(
                     'attr'  => array(
-                        'class' => 'btn-violet',
+                        'class' => 'btn-primary',
                     ),
                 )
             );

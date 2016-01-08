@@ -14,12 +14,17 @@ services:
         class: AppBundle\Admin\FilmAdmin
         arguments: [ ~, AppBundle\Entity\Film, AppBundle:Admin\FilmAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Films", group: "Web" }
+            - { name: sonata.admin, manager_type: orm, label: "Content", group: "Web" }
     admin.filmimage:
         class: AppBundle\Admin\FilmImageAdmin
         arguments: [ ~, AppBundle\Entity\FilmImage, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Image Films", group: "Web", show_in_dashboard: false }
+    admin.page:
+        class: AppBundle\Admin\PageAdmin
+        arguments: [ ~, AppBundle\Entity\Page, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Page", group: "Web" }
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]

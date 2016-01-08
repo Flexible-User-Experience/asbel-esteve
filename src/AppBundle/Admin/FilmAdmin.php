@@ -18,8 +18,8 @@ use Sonata\AdminBundle\Route\RouteCollection;
  */
 class FilmAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Film';
-    protected $baseRoutePattern = 'web/film';
+    protected $classnameLabel = 'Content';
+    protected $baseRoutePattern = 'web/content';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
         '_sort_order' => 'asc',
