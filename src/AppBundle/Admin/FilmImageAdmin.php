@@ -32,7 +32,6 @@ class FilmImageAdmin extends AbstractBaseAdmin
                 'film',
                 null,
                 array(
-                    'required' => true,
                     'attr'     => array(
                         'hidden' => true,
                     ),
