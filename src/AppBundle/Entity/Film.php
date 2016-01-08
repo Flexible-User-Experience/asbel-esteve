@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class Film
@@ -29,6 +30,18 @@ class Film extends AbstractBase
     use SlugTrait;
     use DescriptionTrait;
     use ImageTrait;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="main", fileNameProperty="imageName")
+     * @Assert\File(
+     *     maxSize = "10M",
+     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     * )
+     * @Assert\Image(minWidth = 1200)
+     */
+    private $imageFile;
 
     /**
      * @var integer
