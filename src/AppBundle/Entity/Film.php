@@ -257,6 +257,7 @@ class Film extends AbstractBase
      */
     public function addImage(FilmImage $image)
     {
+        $image->setFilm($this);
         $this->images[] = $image;
 
         return $this;

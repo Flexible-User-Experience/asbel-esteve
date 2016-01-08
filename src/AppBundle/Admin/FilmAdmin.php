@@ -48,8 +48,9 @@ class FilmAdmin extends AbstractBaseAdmin
         /** @var QueryBuilder $query */
         $query = parent::createQuery($context);
         $query
-            ->select($query->getRootAliases()[0] . ', c')
-            ->leftJoin($query->getRootAliases()[0] . '.categories', 'c');
+            ->select($query->getRootAliases()[0] . ', c, i')
+            ->leftJoin($query->getRootAliases()[0] . '.categories', 'c')
+            ->leftJoin($query->getRootAliases()[0] . '.images', 'i');
 
         return $query;
     }
@@ -146,8 +147,6 @@ class FilmAdmin extends AbstractBaseAdmin
                     'images',
                     'sonata_type_collection',
                     array(
-                        'label'              => ' ',
-                        'required'           => false,
                         'cascade_validation' => true,
                     ),
                     array(
