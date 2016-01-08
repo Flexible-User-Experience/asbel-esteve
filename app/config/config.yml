@@ -145,9 +145,11 @@ vich_uploader:
         main:
             uri_prefix:         /uploads/main
             upload_destination: %kernel.root_dir%/../web/uploads/main
+            namer:              vich_uploader.namer_origname
         secondary:
             uri_prefix:         /uploads/secondary
             upload_destination: %kernel.root_dir%/../web/uploads/secondary
+            namer:              vich_uploader.namer_origname
 
 # FOS User
 fos_user:
