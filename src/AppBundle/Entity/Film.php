@@ -6,6 +6,8 @@ use AppBundle\Entity\Traits\TitleTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\ImageTrait;
+use AppBundle\Entity\Traits\MetaKeywordsTrait;
+use AppBundle\Entity\Traits\MetaDescriptionTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -30,6 +32,8 @@ class Film extends AbstractBase
     use SlugTrait;
     use DescriptionTrait;
     use ImageTrait;
+    use MetaKeywordsTrait;
+    use MetaDescriptionTrait;
 
     /**
      * @var File
@@ -57,20 +61,6 @@ class Film extends AbstractBase
      * @Assert\Url(checkDNS=true)
      */
     private $urlVimeo;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $metaKeywords;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $metaDescription;
 
     /**
      * @var integer
@@ -159,54 +149,6 @@ class Film extends AbstractBase
     public function getUrlVimeo()
     {
         return $this->urlVimeo;
-    }
-
-    /**
-     * Set MetaKeywords
-     *
-     * @param string $metaKeywords
-     *
-     * @return Film
-     */
-    public function setMetaKeywords($metaKeywords)
-    {
-        $this->metaKeywords = $metaKeywords;
-
-        return $this;
-    }
-
-    /**
-     * Get MetaKeywords
-     *
-     * @return string
-     */
-    public function getMetaKeywords()
-    {
-        return $this->metaKeywords;
-    }
-
-    /**
-     * Set MetaDescription
-     *
-     * @param string $metaDescription
-     *
-     * @return Film
-     */
-    public function setMetaDescription($metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get MetaDescription
-     *
-     * @return string
-     */
-    public function getMetaDescription()
-    {
-        return $this->metaDescription;
     }
 
     /**

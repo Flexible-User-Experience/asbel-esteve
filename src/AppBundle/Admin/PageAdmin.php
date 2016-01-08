@@ -44,7 +44,7 @@ class PageAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'title',
                 null,
@@ -59,12 +59,20 @@ class PageAdmin extends AbstractBaseAdmin
                 )
             )
             ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(6))
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
-                'enabled',
-                'checkbox',
+                'metaKeywords',
+                null,
                 array(
-                    'required' => false,
+                    'label' => 'backend.admin.metakeywords',
+                    'help'  => 'backend.admin.metakeywordshelp',
+                )
+            )
+            ->add(
+                'metaDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.metadescription',
                 )
             )
             ->end();
