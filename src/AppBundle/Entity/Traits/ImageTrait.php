@@ -18,18 +18,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 Trait ImageTrait
 {
     /**
-     * @var File
-     *
-     * @Vich\UploadableField(mapping="uploads", fileNameProperty="imageName")
-     * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
-     * )
-     * @Assert\Image(minWidth = 1200)
-     */
-    private $imageFile;
-
-    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)

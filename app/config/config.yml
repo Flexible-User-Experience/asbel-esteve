@@ -33,7 +33,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v0.0.06"
+        admin_tag_version:        "v0.0.07"
 
 # Assetic Configuration
 assetic:
@@ -142,9 +142,12 @@ liip_imagine:
 vich_uploader:
     db_driver: orm
     mappings:
-        uploads:
-            uri_prefix:         /uploads
-            upload_destination: %kernel.root_dir%/../web/uploads
+        main:
+            uri_prefix:         /uploads/main
+            upload_destination: %kernel.root_dir%/../web/uploads/main
+        secondary:
+            uri_prefix:         /uploads/secondary
+            upload_destination: %kernel.root_dir%/../web/uploads/secondary
 
 # FOS User
 fos_user:

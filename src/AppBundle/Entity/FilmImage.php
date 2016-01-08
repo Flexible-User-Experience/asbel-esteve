@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Traits\ImageTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Category
@@ -20,6 +22,18 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class FilmImage extends AbstractBase
 {
     use ImageTrait;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="secondary", fileNameProperty="imageName")
+     * @Assert\File(
+     *     maxSize = "10M",
+     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     * )
+     * @Assert\Image(minWidth = 1200)
+     */
+    private $imageFile;
 
     /**
      * @var integer
