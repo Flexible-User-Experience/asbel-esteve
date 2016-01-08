@@ -27,6 +27,12 @@ security:
             - ROLE_ADMIN_FILMIMAGE_EDIT
             - ROLE_ADMIN_FILMIMAGE_DELETE
             - ROLE_ADMIN_FILMIMAGE_EXPORT
+            - ROLE_ADMIN_PAGE_LIST
+            - ROLE_ADMIN_PAGE_VIEW
+            - ROLE_ADMIN_PAGE_CREATE
+            - ROLE_ADMIN_PAGE_EDIT
+            - ROLE_ADMIN_PAGE_DELETE
+            - ROLE_ADMIN_PAGE_EXPORT
         ROLE_SONATA_MANAGER:
             - ROLE_ADMIN_USER_LIST
             - ROLE_ADMIN_USER_VIEW
