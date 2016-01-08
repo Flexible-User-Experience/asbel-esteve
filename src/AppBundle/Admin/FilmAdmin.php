@@ -147,6 +147,8 @@ class FilmAdmin extends AbstractBaseAdmin
                     'images',
                     'sonata_type_collection',
                     array(
+                        'label'              => ' ',
+                        'required'           => false,
                         'cascade_validation' => true,
                     ),
                     array(
