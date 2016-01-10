@@ -52,6 +52,10 @@ services:
         arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: bottom }
+# Messaging
+    app.courier:
+        class: AppBundle\Service\CourierService
+        arguments: [ "@swiftmailer.mailer" ]
 # Twig
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
