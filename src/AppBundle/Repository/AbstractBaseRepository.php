@@ -21,7 +21,7 @@ abstract class AbstractBaseRepository extends EntityRepository
     public function findAllSortedByTitle()
     {
         return $this
-            ->findAllEnabledQB()
+            ->findAllSortedByTitleQB()
             ->getQuery()
             ->getResult();
     }

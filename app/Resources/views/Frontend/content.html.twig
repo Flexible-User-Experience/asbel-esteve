@@ -4,9 +4,9 @@
     <div class="row">
         <div class="{% if content.images | length == 0 %}col-xs-12{% else %}col-xs-8{% endif %}">
             {% if content.imageName %}
-                <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('700x200') }}" alt="{{ content.title }} thumbnail">
+                <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ content.title }} thumbnail">
             {% endif %}
-            <span>{{ content.urlVimeo }}</span>
+            <span><a target="_blank" href="{{ content.urlVimeo }}">{{ content.urlVimeo }}</a></span>
             <h2>{{ content.title }}</h2>
             <h4>{{ content.categories | join(', ') }}</h4>
             <h4>{{ content.year }}</h4>
