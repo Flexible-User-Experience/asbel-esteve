@@ -40,6 +40,15 @@
                             {{ knp_menu_render('bottom') }}
                         </div>
                         <div class="col-sm-5 col-xs-12">
+                            {% block bottom_contact_form %}
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            {{ form(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endblock %}
                         </div>
                         <div class="col-sm-3 col-xs-12">
                             <ul class="list-unstyled">
