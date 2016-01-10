@@ -22,7 +22,7 @@ services:
             - { name: sonata.admin, manager_type: orm, label: "Image Films", group: "Web", show_in_dashboard: false }
     admin.page:
         class: AppBundle\Admin\PageAdmin
-        arguments: [ ~, AppBundle\Entity\Page, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\Page, AppBundle:Admin\PageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Page", group: "Web" }
     admin.user:

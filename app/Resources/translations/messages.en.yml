@@ -6,6 +6,8 @@ frontend:
       l1: this is
       l2: Asbel Esteve's
       l3: personal website
+  form:
+    title: contact and newsletter
 backend:
     admin:
         general: General

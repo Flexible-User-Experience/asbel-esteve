@@ -2,12 +2,9 @@
 
 namespace AppBundle\Admin;
 
-use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
  * Class PageAdmin
@@ -32,8 +29,8 @@ class PageAdmin extends AbstractBaseAdmin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        parent::configureRoutes($collection);
         $collection
+            ->remove('batch')
             ->remove('create')
             ->remove('delete');
     }
@@ -97,6 +94,7 @@ class PageAdmin extends AbstractBaseAdmin
                 'actions',
                 array(
                     'actions' => array(
+                        'show' => array(),
                         'edit' => array(),
                     ),
                 )
