@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Service;
+
 use AppBundle\Entity\ContactMessage;
 
 /**
@@ -46,7 +47,26 @@ class NotificationService
             $contactMessage->getEmail(),
             $this->amd,
             'www.asbelesteve.com contact form recived',
-            'TO DO...'
+            $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send a contact form notification to web user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendUserNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $contactMessage->getEmail(),
+            'www.asbelesteve.com contact form sended',
+            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
         );
     }
 }
