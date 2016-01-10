@@ -56,6 +56,9 @@ services:
     app.courier:
         class: AppBundle\Service\CourierService
         arguments: [ "@swiftmailer.mailer" ]
+    app.notification:
+        class: AppBundle\Service\NotificationService
+        arguments: [ "@app.courier", "@twig", "%mailer_destination%" ]
 # Twig
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
