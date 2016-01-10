@@ -31,7 +31,7 @@ class WebController extends Controller
      */
     public function homepageAction(Request $request)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDesc();
+        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDescWithJoin();
         /** @var ContactMessage $contact */
         $contact = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contact);

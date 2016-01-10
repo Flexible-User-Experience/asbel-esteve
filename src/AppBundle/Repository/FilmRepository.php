@@ -14,6 +14,25 @@ use Doctrine\ORM\QueryBuilder;
  */
 class FilmRepository extends AbstractBaseRepository
 {
+    public function findAllEnabledSortedByCreatedDateDescWithJoin()
+    {
+        return $this
+            ->findAllEnabledSortedByCreatedDateDescWithJoinQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllEnabledSortedByCreatedDateDescWithJoinQB()
+    {
+        return $this
+            ->createQueryBuilder('f')
+            ->select('f, c')
+            ->join('f.categories', 'c')
+            ->where('f.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('f.createdAt', 'DESC');
+    }
+
     /**
      * @param $slug
      *
@@ -35,13 +54,8 @@ class FilmRepository extends AbstractBaseRepository
     public function findEnabledSortedByCreatedDateDescOfCategorySlugQB($slug)
     {
         return $this
-            ->createQueryBuilder('f')
-            ->select('f, c')
-            ->join('f.categories', 'c')
-            ->where('f.enabled = :enabled')
+            ->findAllEnabledSortedByCreatedDateDescWithJoinQB()
             ->andWhere('c.slug = :slug')
-            ->setParameter('enabled', true)
-            ->setParameter('slug', $slug)
-            ->orderBy('f.createdAt', 'DESC');
+            ->setParameter('slug', $slug);
     }
 }
