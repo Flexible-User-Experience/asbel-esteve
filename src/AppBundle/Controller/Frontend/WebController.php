@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Page;
 use AppBundle\Form\Type\ContactMessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,10 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class WebController extends Controller
 {
-    const ROUTE_HOMEPAGE = 'homepage';
-    const ROUTE_FILMS = 'films';
-    const ROUTE_ARTWORK = 'artwork';
-    const ROUTE_NEWS = 'news';
+    const ROUTE_HOMEPAGE    = 'app_homepage';
+    const ROUTE_CATEGORY    = 'app_category';
+    const ROUTE_STATIC_PAGE = 'app_static_page';
 
     /**
      * @Route("/", name="app_homepage")
@@ -85,10 +85,35 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/news", name="news")
+     * @Route("/page/{slug}/", name="app_static_page")
+     *
+     * @param Request $request
+     * @param         $slug
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newsAction()
+    public function staticPageAction(Request $request, $slug)
     {
-        return $this->render('Frontend/news.html.twig');
+        /** @var Page $page */
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($slug);
+        if (!$page) {
+            throw $this->createNotFoundException('Unable to find Page entity.');
+        }
+
+        /** @var ContactMessage $contact */
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactMessageType::class, $contact);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // persist new contact message record
+            $contact->setDescription('');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            // add view flash message
+            $this->addFlash('notice', 'frontend.index.main.sent');
+        }
+
+        return $this->render('Frontend/static_page.html.twig', [ 'page' => $page, 'form' => $form->createView()]);
     }
 }

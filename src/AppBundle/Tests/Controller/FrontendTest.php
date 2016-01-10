@@ -37,7 +37,7 @@ class FrontendTest extends AbstractBaseTest
             array('/'),
             array('/category/films/'),
             array('/category/artwork/'),
-            array('/news'),
+            array('/page/words-interviews-screeings-and-news/'),
         );
     }
 

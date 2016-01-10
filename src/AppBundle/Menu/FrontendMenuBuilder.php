@@ -76,7 +76,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'go home',
             array(
-                'route'   => 'app_homepage',
+                'route'   => WebController::ROUTE_HOMEPAGE,
                 'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
         );
@@ -85,22 +85,30 @@ class FrontendMenuBuilder
             $menu->addChild(
                 $category->getSlug(),
                 array(
-                    'label'            => $category->getTitle(),
-                    'route'            => 'app_category',
+                    'label'           => $category->getTitle(),
+                    'route'           => WebController::ROUTE_CATEGORY,
                     'routeParameters' => array(
                         'slug' => $category->getSlug(),
                     ),
-//                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
+                    'current'         => $requestStack->getCurrentRequest()->get(
+                            '_route'
+                        ) == WebController::ROUTE_CATEGORY,
                 )
             );
         }
         /** @var Page $page */
         foreach ($this->pages as $page) {
             $menu->addChild(
-                $page->getTitle(),
+                $page->getSlug(),
                 array(
-                    'route' => 'news',
-//                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
+                    'label'           => $page->getTitle(),
+                    'route'           => WebController::ROUTE_STATIC_PAGE,
+                    'routeParameters' => array(
+                        'slug' => $page->getSlug(),
+                    ),
+                    'current'         => $requestStack->getCurrentRequest()->get(
+                            '_route'
+                        ) == WebController::ROUTE_STATIC_PAGE,
                 )
             );
         }
