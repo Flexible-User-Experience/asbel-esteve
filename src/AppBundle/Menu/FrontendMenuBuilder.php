@@ -4,6 +4,7 @@ namespace AppBundle\Menu;
 
 use AppBundle\Controller\Frontend\WebController;
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Page;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
@@ -30,9 +31,14 @@ class FrontendMenuBuilder
     private $em;
 
     /**
-     * @var ArrayCollection all enabled sorted by title categories
+     * @var ArrayCollection all categories enabled sorted by title
      */
     private $categories;
+
+    /**
+     * @var ArrayCollection all static pages sorted by title
+     */
+    private $pages;
 
     /**
      * @param FactoryInterface   $factory
@@ -43,6 +49,7 @@ class FrontendMenuBuilder
         $this->factory = $factory;
         $this->em = $em;
         $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
+        $this->pages = $this->em->getRepository('AppBundle:Page')->findAllSortedByTitle();
     }
 
     /**
@@ -53,7 +60,7 @@ class FrontendMenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->createBottomMenu($requestStack);
-        $menu->removeChild('homepage');
+        $menu->removeChild($menu->getFirstChild()->getName());
 
         return $menu;
     }
@@ -83,14 +90,16 @@ class FrontendMenuBuilder
                 )
             );
         }
-
-        $menu->addChild(
-            'words, interviews, screenings and news',
-            array(
-                'route'   => 'news',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_NEWS,
-            )
-        );
+        /** @var Page $page */
+        foreach ($this->pages as $page) {
+            $menu->addChild(
+                $page->getTitle(),
+                array(
+                    'route'   => 'news',
+//                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
+                )
+            );
+        }
 
         return $menu;
     }
