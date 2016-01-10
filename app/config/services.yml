@@ -39,7 +39,7 @@ services:
 # Menus
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
-        arguments: [ "@knp_menu.factory", "@doctrine.orm.entity_manager" ]
+        arguments: [ "@knp_menu.factory", "@doctrine.orm.entity_manager", "@security.authorization_checker" ]
     app.frontend_main_menu:
         class: Knp\Menu\MenuItem
         factory: [ "@app.frontend_menu_builder", createMainMenu ]

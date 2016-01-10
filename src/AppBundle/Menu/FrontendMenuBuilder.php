@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  * Class FrontendMenuBuilder
@@ -31,6 +32,11 @@ class FrontendMenuBuilder
     private $em;
 
     /**
+     * @var AuthorizationChecker
+     */
+    private $ac;
+
+    /**
      * @var ArrayCollection all categories enabled sorted by title
      */
     private $categories;
@@ -41,13 +47,15 @@ class FrontendMenuBuilder
     private $pages;
 
     /**
-     * @param FactoryInterface $factory
-     * @param EntityManager    $em
+     * @param FactoryInterface     $factory
+     * @param EntityManager        $em
+     * @param AuthorizationChecker $ac
      */
-    public function __construct(FactoryInterface $factory, EntityManager $em)
+    public function __construct(FactoryInterface $factory, EntityManager $em, AuthorizationChecker $ac)
     {
         $this->factory = $factory;
         $this->em = $em;
+        $this->ac = $ac;
         $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
         $this->pages = $this->em->getRepository('AppBundle:Page')->findAllSortedByTitle();
     }
@@ -60,7 +68,7 @@ class FrontendMenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->createBottomMenu($requestStack);
-        $menu->removeChild($menu->getFirstChild()->getName());
+        $menu->removeChild(WebController::ROUTE_HOMEPAGE);
 
         return $menu;
     }
@@ -73,9 +81,16 @@ class FrontendMenuBuilder
     public function createBottomMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
+        if ($this->ac->isGranted('ROLE_CMS')) {
+            $menu->addChild('admin', array(
+                'label' => '[ go admin dashboard ]',
+                'route' => 'sonata_admin_dashboard',
+            ));
+        }
         $menu->addChild(
-            'go home',
+            WebController::ROUTE_HOMEPAGE,
             array(
+                'label'   => 'go home',
                 'route'   => WebController::ROUTE_HOMEPAGE,
                 'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
