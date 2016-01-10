@@ -104,7 +104,6 @@ class BackendTest extends AbstractBaseTest
             array('/admin/web/film-image/batch'),
             array('/admin/web/page/create'),
             array('/admin/web/page/batch'),
-            array('/admin/web/page/1/show'),
             array('/admin/web/page/1/delete'),
             array('/admin/users/show'),
             array('/admin/users/batch'),

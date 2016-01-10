@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Film;
+use AppBundle\Entity\Page;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,13 +10,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Class FilmAdminController
+ * Class PageAdminController
  *
  * @category Controller
  * @package  AppBundle\Controller\Admin
  * @author   David Romaní <david@flux.cat>
  */
-class FilmAdminController extends Controller
+class PageAdminController extends Controller
 {
     /**
      * Show action
@@ -33,7 +33,7 @@ class FilmAdminController extends Controller
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
-        /** @var Film $object */
+        /** @var Page $object */
         $object = $this->admin->getObject($id);
 
         if (!$object) {
@@ -41,7 +41,7 @@ class FilmAdminController extends Controller
         }
 
         return $this->redirectToRoute(
-            'app_content',
+            'app_static_page',
             array(
                 'slug' => $object->getSlug(),
             )

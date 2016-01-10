@@ -23,13 +23,6 @@ class ContactMessageType extends AbstractType
     {
         $builder
             ->add(
-                'email',
-                'email',
-                array(
-                    'required' => true,
-                )
-            )
-            ->add(
                 'message',
                 'textarea',
                 array(
@@ -37,6 +30,13 @@ class ContactMessageType extends AbstractType
                     'attr'     => array(
                         'rows' => 6,
                     ),
+                )
+            )
+            ->add(
+                'email',
+                'email',
+                array(
+                    'required' => true,
                 )
             )
             ->add(
