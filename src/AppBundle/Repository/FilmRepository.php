@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * Class FilmRepository
  *
@@ -11,4 +14,25 @@ namespace AppBundle\Repository;
  */
 class FilmRepository extends AbstractBaseRepository
 {
+    /**
+     * @param $slug
+     *
+     * @return ArrayCollection
+     */
+    public function findEnabledSortedByCreatedDateDescOfCategorySlug($slug)
+    {
+        return $this
+            ->findEnabledSortedByCreatedDateDescOfCategorySlugQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findEnabledSortedByCreatedDateDescOfCategorySlugQB()
+    {
+        return $this
+            ->createBaseQuery();
+    }
 }

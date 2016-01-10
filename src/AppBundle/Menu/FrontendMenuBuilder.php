@@ -41,8 +41,8 @@ class FrontendMenuBuilder
     private $pages;
 
     /**
-     * @param FactoryInterface   $factory
-     * @param EntityManager $em
+     * @param FactoryInterface $factory
+     * @param EntityManager    $em
      */
     public function __construct(FactoryInterface $factory, EntityManager $em)
     {
@@ -76,16 +76,20 @@ class FrontendMenuBuilder
         $menu->addChild(
             'go home',
             array(
-                'route'   => 'homepage',
+                'route'   => 'app_homepage',
                 'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
         );
         /** @var Category $category */
         foreach ($this->categories as $category) {
             $menu->addChild(
-                $category->getTitle(),
+                $category->getSlug(),
                 array(
-                    'route'   => 'artwork',
+                    'label'            => $category->getTitle(),
+                    'route'            => 'app_category',
+                    'routeParameters' => array(
+                        'slug' => $category->getSlug(),
+                    ),
 //                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
                 )
             );
@@ -95,7 +99,7 @@ class FrontendMenuBuilder
             $menu->addChild(
                 $page->getTitle(),
                 array(
-                    'route'   => 'news',
+                    'route' => 'news',
 //                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
                 )
             );

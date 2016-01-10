@@ -112,7 +112,7 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return QueryBuilder
      */
-    private function createBaseQuery()
+    protected function createBaseQuery()
     {
         return $this->createQueryBuilder('entity');
     }
