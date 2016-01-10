@@ -1,37 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends ':Frontend:homepage.html.twig' %}
 
-{% block body %}
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>{{ category.title }}</h1>
-        </div>
-    </div>
-    <div class="row">
-        {% for item in items %}
-            {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-            <div class="{{ col }}">
-                <div class="thumbnail">
-                    {% if item.imageName %}
-                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('700x200') }}" alt="{{ item.title }} thumbnail">
-                    {% endif %}
-                    <div class="caption">
-                        <h3>{{ item.title }}</h3>
-                        <h4>{{ item.categories | join(', ') }}</h4>
-                        <h4>{{ item.year }}</h4>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block bottom %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                {{ form(form) }}
-            </div>
-        </div>
-    </div>
-    {{ parent() }}
+{% block body_head_title %}
+    <h1>{{ category.title }}</h1>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Film;
 use AppBundle\Entity\Page;
 use AppBundle\Form\Type\ContactMessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,6 +22,7 @@ class WebController extends Controller
 {
     const ROUTE_HOMEPAGE    = 'app_homepage';
     const ROUTE_CATEGORY    = 'app_category';
+    const ROUTE_CONTENT     = 'app_content';
     const ROUTE_STATIC_PAGE = 'app_static_page';
 
     /**
@@ -82,6 +84,39 @@ class WebController extends Controller
         }
 
         return $this->render('Frontend/category.html.twig', [ 'category' => $category, 'items' => $items, 'form' => $form->createView() ]);
+    }
+
+    /**
+     * @Route("/{slug}/", name="app_content")
+     *
+     * @param Request $request
+     * @param string  $slug
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function contentAction(Request $request, $slug)
+    {
+        /** @var Film $film */
+        $film = $this->getDoctrine()->getRepository('AppBundle:Film')->findOneBySlug($slug);
+        if (!$film || !$film->getEnabled()) {
+            throw $this->createNotFoundException('Unable to find Film entity.');
+        }
+
+        /** @var ContactMessage $contact */
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactMessageType::class, $contact);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // persist new contact message record
+            $contact->setDescription('');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            // add view flash message
+            $this->addFlash('notice', 'frontend.index.main.sent');
+        }
+
+        return $this->render('Frontend/content.html.twig', [ 'content' => $film, 'form' => $form->createView() ]);
     }
 
     /**

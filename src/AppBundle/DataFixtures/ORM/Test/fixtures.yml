@@ -42,6 +42,18 @@ AppBundle\Entity\Film:
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
+  film11:
+    title: Test Title
+    year: <numberBetween(1990, 2015)>
+    description: <paragraph()>
+    urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
+    bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1, @category2, @category3 ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
 
 ## Image Films
 AppBundle\Entity\FilmImage:
