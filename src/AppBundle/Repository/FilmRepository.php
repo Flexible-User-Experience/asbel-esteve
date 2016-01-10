@@ -22,17 +22,26 @@ class FilmRepository extends AbstractBaseRepository
     public function findEnabledSortedByCreatedDateDescOfCategorySlug($slug)
     {
         return $this
-            ->findEnabledSortedByCreatedDateDescOfCategorySlugQB()
+            ->findEnabledSortedByCreatedDateDescOfCategorySlugQB($slug)
             ->getQuery()
             ->getResult();
     }
 
     /**
+     * @param $slug
+     *
      * @return QueryBuilder
      */
-    public function findEnabledSortedByCreatedDateDescOfCategorySlugQB()
+    public function findEnabledSortedByCreatedDateDescOfCategorySlugQB($slug)
     {
         return $this
-            ->createBaseQuery();
+            ->createQueryBuilder('f')
+            ->select('f, c')
+            ->join('f.categories', 'c')
+            ->where('f.enabled = :enabled')
+            ->andWhere('c.slug = :slug')
+            ->setParameter('enabled', true)
+            ->setParameter('slug', $slug)
+            ->orderBy('f.createdAt', 'DESC');
     }
 }

@@ -35,8 +35,8 @@ class FrontendTest extends AbstractBaseTest
     {
         return array(
             array('/'),
-            array('/films'),
-            array('/artwork'),
+            array('/category/films/'),
+            array('/category/artwork/'),
             array('/news'),
         );
     }

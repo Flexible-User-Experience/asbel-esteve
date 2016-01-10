@@ -85,22 +85,6 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/films", name="films")
-     */
-    public function filmsAction()
-    {
-        return $this->render('Frontend/films.html.twig');
-    }
-
-    /**
-     * @Route("/artwork", name="artwork")
-     */
-    public function artworkAction()
-    {
-        return $this->render('Frontend/artwork.html.twig');
-    }
-
-    /**
      * @Route("/news", name="news")
      */
     public function newsAction()
