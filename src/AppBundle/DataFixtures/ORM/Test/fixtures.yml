@@ -44,6 +44,7 @@ AppBundle\Entity\Film:
     enabled: <boolean(70)>
   film11:
     title: Test Title
+    slug: test-title
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
     urlVimeo: <url()>

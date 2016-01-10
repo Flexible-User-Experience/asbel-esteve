@@ -48,7 +48,8 @@ class FrontendTest extends AbstractBaseTest
     public function testNotFoundUrls()
     {
         $client = static::makeClient();
-        $client->request('GET', '/not-found-url');
+        $client->request('GET', '/category/not-found-url/');
+        $client->request('GET', '/page/not-found-url/');
         $this->assertStatusCode(404, $client);
     }
 }
