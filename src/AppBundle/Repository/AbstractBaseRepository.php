@@ -18,32 +18,10 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return ArrayCollection
      */
-    public function findAllEnabled()
+    public function findAllSortedByTitle()
     {
-        return $this->createEnabledQuery()
-            ->orderBy('t.title', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function findAllEnabledSortedByTitle()
-    {
-        return $this->createEnabledQuery()
-            ->orderBy('t.title', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function findAllEnabledSortedByCreatedDateDesc()
-    {
-        return $this->createEnabledQuery()
-            ->orderBy('t.createdAt', 'DESC')
+        return $this
+            ->findAllEnabledQB()
             ->getQuery()
             ->getResult();
     }
@@ -51,10 +29,83 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return QueryBuilder
      */
+    public function findAllSortedByTitleQB()
+    {
+        return $this
+            ->createBaseQuery()
+            ->orderBy('entity.title', 'ASC');
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabled()
+    {
+        return $this
+            ->findAllEnabledQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledQB()
+    {
+        return $this
+            ->createEnabledQuery();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabledSortedByTitle()
+    {
+        return $this
+            ->findAllEnabledSortedByTitleQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledSortedByTitleQB()
+    {
+        return $this
+            ->createEnabledQuery()
+            ->orderBy('entity.title', 'ASC');
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabledSortedByCreatedDateDesc()
+    {
+        return $this
+            ->findAllEnabledSortedByCreatedDateDescQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledSortedByCreatedDateDescQB()
+    {
+        return $this
+            ->createEnabledQuery()
+            ->orderBy('entity.createdAt', 'DESC');
+    }
+
+    /**
+     * @return QueryBuilder
+     */
     private function createEnabledQuery()
     {
-        return $this->createBaseQuery()
-            ->where('t.enabled = :enabled')
+        return $this
+            ->createBaseQuery()
+            ->where('entity.enabled = :enabled')
             ->setParameter('enabled', true);
     }
 
@@ -63,6 +114,6 @@ abstract class AbstractBaseRepository extends EntityRepository
      */
     private function createBaseQuery()
     {
-        return $this->createQueryBuilder('t');
+        return $this->createQueryBuilder('entity');
     }
 }
