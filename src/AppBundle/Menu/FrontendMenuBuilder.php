@@ -3,6 +3,9 @@
 namespace AppBundle\Menu;
 
 use AppBundle\Controller\Frontend\WebController;
+use AppBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -22,11 +25,24 @@ class FrontendMenuBuilder
     private $factory;
 
     /**
-     * @param FactoryInterface $factory
+     * @var EntityManager
      */
-    public function __construct(FactoryInterface $factory)
+    private $em;
+
+    /**
+     * @var ArrayCollection all enabled sorted by title categories
+     */
+    private $categories;
+
+    /**
+     * @param FactoryInterface   $factory
+     * @param EntityManager $em
+     */
+    public function __construct(FactoryInterface $factory, EntityManager $em)
     {
         $this->factory = $factory;
+        $this->em = $em;
+        $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
     }
 
     /**
@@ -57,20 +73,17 @@ class FrontendMenuBuilder
                 'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
         );
-        $menu->addChild(
-            'films',
-            array(
-                'route'   => 'films',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
-            )
-        );
-        $menu->addChild(
-            'artwork',
-            array(
-                'route'   => 'artwork',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_ARTWORK,
-            )
-        );
+        /** @var Category $category */
+        foreach ($this->categories as $category) {
+            $menu->addChild(
+                $category->getTitle(),
+                array(
+                    'route'   => 'artwork',
+//                    'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
+                )
+            );
+        }
+
         $menu->addChild(
             'words, interviews, screenings and news',
             array(

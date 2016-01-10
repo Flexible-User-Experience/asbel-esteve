@@ -39,17 +39,17 @@ services:
 # Menus
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
-        arguments: [ '@knp_menu.factory' ]
+        arguments: [ "@knp_menu.factory", "@doctrine.orm.entity_manager" ]
     app.frontend_main_menu:
         class: Knp\Menu\MenuItem
-        factory: [ '@app.frontend_menu_builder', createMainMenu ]
-        arguments: [ '@request_stack' ]
+        factory: [ "@app.frontend_menu_builder", createMainMenu ]
+        arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: main }
     app.frontend_bottom_menu:
         class: Knp\Menu\MenuItem
-        factory: [ '@app.frontend_menu_builder', createBottomMenu ]
-        arguments: [ '@request_stack' ]
+        factory: [ "@app.frontend_menu_builder", createBottomMenu ]
+        arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: bottom }
 # Twig
