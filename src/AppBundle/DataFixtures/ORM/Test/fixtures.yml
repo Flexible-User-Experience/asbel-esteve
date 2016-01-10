@@ -54,7 +54,7 @@ AppBundle\Entity\Film:
     categories: [ @category1, @category2, @category3 ]
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
-    enabled: <boolean(70)>
+    enabled: true
 
 ## Image Films
 AppBundle\Entity\FilmImage:
