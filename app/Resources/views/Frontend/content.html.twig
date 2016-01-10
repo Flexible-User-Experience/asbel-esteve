@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="{% if content.images | length == 0 %}col-xs-12{% else %}col-xs-8{% endif %}">
+            {% if content.imageName %}
+                <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('700x200') }}" alt="{{ content.title }} thumbnail">
+            {% endif %}
+            <span>{{ content.urlVimeo }}</span>
+            <h2>{{ content.title }}</h2>
+            <h4>{{ content.categories | join(', ') }}</h4>
+            <h4>{{ content.year }}</h4>
+            <p>{{ content.description | raw }}</p>
+        </div>
+        {% if content.images | length > 0 %}
+            <div class="col-xs-4">
+                {% for image in content.images %}
+                    <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700x200') }}" alt="thumbnail {{ loop.index }}">
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

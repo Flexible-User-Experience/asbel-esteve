@@ -18,12 +18,42 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return ArrayCollection
      */
-    public function findAllEnabled()
+    public function findAllSortedByTitle()
     {
-        return $this->createEnabledQuery()
-            ->orderBy('t.title', 'ASC')
+        return $this
+            ->findAllEnabledQB()
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllSortedByTitleQB()
+    {
+        return $this
+            ->createBaseQuery()
+            ->orderBy('entity.title', 'ASC');
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function findAllEnabled()
+    {
+        return $this
+            ->findAllEnabledQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledQB()
+    {
+        return $this
+            ->createEnabledQuery();
     }
 
     /**
@@ -31,10 +61,20 @@ abstract class AbstractBaseRepository extends EntityRepository
      */
     public function findAllEnabledSortedByTitle()
     {
-        return $this->createEnabledQuery()
-            ->orderBy('t.title', 'ASC')
+        return $this
+            ->findAllEnabledSortedByTitleQB()
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledSortedByTitleQB()
+    {
+        return $this
+            ->createEnabledQuery()
+            ->orderBy('entity.title', 'ASC');
     }
 
     /**
@@ -42,8 +82,8 @@ abstract class AbstractBaseRepository extends EntityRepository
      */
     public function findAllEnabledSortedByCreatedDateDesc()
     {
-        return $this->createEnabledQuery()
-            ->orderBy('t.createdAt', 'DESC')
+        return $this
+            ->findAllEnabledSortedByCreatedDateDescQB()
             ->getQuery()
             ->getResult();
     }
@@ -51,18 +91,29 @@ abstract class AbstractBaseRepository extends EntityRepository
     /**
      * @return QueryBuilder
      */
+    public function findAllEnabledSortedByCreatedDateDescQB()
+    {
+        return $this
+            ->createEnabledQuery()
+            ->orderBy('entity.createdAt', 'DESC');
+    }
+
+    /**
+     * @return QueryBuilder
+     */
     private function createEnabledQuery()
     {
-        return $this->createBaseQuery()
-            ->where('t.enabled = :enabled')
+        return $this
+            ->createBaseQuery()
+            ->where('entity.enabled = :enabled')
             ->setParameter('enabled', true);
     }
 
     /**
      * @return QueryBuilder
      */
-    private function createBaseQuery()
+    protected function createBaseQuery()
     {
-        return $this->createQueryBuilder('t');
+        return $this->createQueryBuilder('entity');
     }
 }

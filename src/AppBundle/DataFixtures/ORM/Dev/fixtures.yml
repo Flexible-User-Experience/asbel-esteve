@@ -12,11 +12,21 @@ AppBundle\Entity\ContactMessage:
 
 # Categories
 AppBundle\Entity\Category:
-  category{1..10}:
-    title: <current()> <word()>
+  category1:
+    title: films
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
-    enabled: <boolean(70)>
+    enabled: true
+  category2:
+    title: artwork
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+  category3:
+    title: shorts
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: false
 
 ## Films
 AppBundle\Entity\Film:

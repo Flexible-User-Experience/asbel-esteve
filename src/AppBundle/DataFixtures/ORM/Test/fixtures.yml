@@ -12,11 +12,21 @@ AppBundle\Entity\ContactMessage:
 
 # Categories
 AppBundle\Entity\Category:
-  category{1..5}:
-    title: <current()> <word()>
+  category1:
+    title: films
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
-    enabled: <boolean(70)>
+    enabled: true
+  category2:
+    title: artwork
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+  category3:
+    title: shorts
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: false
 
 ## Films
 AppBundle\Entity\Film:
@@ -32,6 +42,19 @@ AppBundle\Entity\Film:
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
+  film11:
+    title: Test Title
+    slug: test-title
+    year: <numberBetween(1990, 2015)>
+    description: <paragraph()>
+    urlVimeo: <url()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
+    bootstrapColumns: <numberBetween(3, 12)>
+    categories: [ @category1, @category2, @category3 ]
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
 
 ## Image Films
 AppBundle\Entity\FilmImage:

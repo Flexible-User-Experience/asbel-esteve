@@ -79,7 +79,7 @@ class Category extends AbstractBase
      */
     public function addFilm(Film $film)
     {
-        $this->films[] = $film;
+        $this->films->add($film);
 
         return $this;
     }

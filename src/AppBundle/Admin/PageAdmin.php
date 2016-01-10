@@ -89,7 +89,7 @@ class PageAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'editable' => false,
+                    'editable' => true,
                 )
             )
             ->add(

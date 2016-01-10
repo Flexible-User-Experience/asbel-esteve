@@ -3,6 +3,10 @@
 namespace AppBundle\Menu;
 
 use AppBundle\Controller\Frontend\WebController;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Page;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -22,11 +26,30 @@ class FrontendMenuBuilder
     private $factory;
 
     /**
-     * @param FactoryInterface $factory
+     * @var EntityManager
      */
-    public function __construct(FactoryInterface $factory)
+    private $em;
+
+    /**
+     * @var ArrayCollection all categories enabled sorted by title
+     */
+    private $categories;
+
+    /**
+     * @var ArrayCollection all static pages sorted by title
+     */
+    private $pages;
+
+    /**
+     * @param FactoryInterface $factory
+     * @param EntityManager    $em
+     */
+    public function __construct(FactoryInterface $factory, EntityManager $em)
     {
         $this->factory = $factory;
+        $this->em = $em;
+        $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
+        $this->pages = $this->em->getRepository('AppBundle:Page')->findAllSortedByTitle();
     }
 
     /**
@@ -37,7 +60,7 @@ class FrontendMenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->createBottomMenu($requestStack);
-        $menu->removeChild('homepage');
+        $menu->removeChild($menu->getFirstChild()->getName());
 
         return $menu;
     }
@@ -53,31 +76,42 @@ class FrontendMenuBuilder
         $menu->addChild(
             'go home',
             array(
-                'route'   => 'homepage',
+                'route'   => WebController::ROUTE_HOMEPAGE,
                 'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
             )
         );
-        $menu->addChild(
-            'films',
-            array(
-                'route'   => 'films',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_FILMS,
-            )
-        );
-        $menu->addChild(
-            'artwork',
-            array(
-                'route'   => 'artwork',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_ARTWORK,
-            )
-        );
-        $menu->addChild(
-            'words, interviews, screenings and news',
-            array(
-                'route'   => 'news',
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_NEWS,
-            )
-        );
+        /** @var Category $category */
+        foreach ($this->categories as $category) {
+            $menu->addChild(
+                $category->getSlug(),
+                array(
+                    'label'           => $category->getTitle(),
+                    'route'           => WebController::ROUTE_CATEGORY,
+                    'routeParameters' => array(
+                        'slug' => $category->getSlug(),
+                    ),
+                    'current'         => $requestStack->getCurrentRequest()->get(
+                            '_route'
+                        ) == WebController::ROUTE_CATEGORY,
+                )
+            );
+        }
+        /** @var Page $page */
+        foreach ($this->pages as $page) {
+            $menu->addChild(
+                $page->getSlug(),
+                array(
+                    'label'           => $page->getTitle(),
+                    'route'           => WebController::ROUTE_STATIC_PAGE,
+                    'routeParameters' => array(
+                        'slug' => $page->getSlug(),
+                    ),
+                    'current'         => $requestStack->getCurrentRequest()->get(
+                            '_route'
+                        ) == WebController::ROUTE_STATIC_PAGE,
+                )
+            );
+        }
 
         return $menu;
     }

@@ -90,7 +90,7 @@ class FilmAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'query_builder' => function (CategoryRepository $repository) {
-                        return $repository->getAllSortedByTitleQB();
+                        return $repository->findAllSortedByTitleQB();
                     },
                 )
             )

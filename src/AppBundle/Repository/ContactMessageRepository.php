@@ -18,7 +18,8 @@ class ContactMessageRepository extends EntityRepository
      */
     public function getPendingMessagesAmount()
     {
-        $query = $this->createQueryBuilder('c')
+        $query = $this
+            ->createQueryBuilder('c')
             ->where('c.checked = :checked')
             ->setParameter('checked', false)
             ->getQuery();
