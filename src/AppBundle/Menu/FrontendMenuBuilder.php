@@ -83,10 +83,13 @@ class FrontendMenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'my-menu list-unstyled');
         if ($this->ac->isGranted('ROLE_CMS')) {
-            $menu->addChild('admin', array(
-                'label' => '[ go admin dashboard ]',
-                'route' => 'sonata_admin_dashboard',
-            ));
+            $menu->addChild(
+                'admin',
+                array(
+                    'label' => '[ go admin dashboard ]',
+                    'route' => 'sonata_admin_dashboard',
+                )
+            );
         }
         $menu->addChild(
             WebController::ROUTE_HOMEPAGE,
@@ -128,6 +131,35 @@ class FrontendMenuBuilder
                 )
             );
         }
+
+        return $menu;
+    }
+
+    /**
+     * @param RequestStack $requestStack
+     *
+     * @return ItemInterface
+     */
+    public function createSocialNetworksMenu(RequestStack $requestStack)
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'my-menu list-unstyled');
+        $menu
+            ->addChild(
+                'facebook',
+                array(
+                    'label' => 'facebook',
+                    'uri'   => 'https://www.facebook.com/asbelesteve',
+                )
+            );
+        $menu
+            ->addChild(
+                'vimeo',
+                array(
+                    'label' => 'vimeo',
+                    'uri'   => 'https://vimeo.com/asbelesteve',
+                )
+            );
 
         return $menu;
     }
