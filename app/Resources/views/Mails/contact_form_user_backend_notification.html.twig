@@ -1,11 +1,12 @@
 {% block body %}
     <h1>Hello again!</h1>
-    <p>{{ contact.description }}</p>
+    <p>{{ contact.description | raw }}</p>
     <br>
     <br>
-    <p><em>You have recived this notification in order to response your question from {{ contact.createdAt | date('d/m/Y H:i') }}:</em></p>
-    <br>
-    <p><em>"{{ contact.message }}"</em></p>
+    <p>
+        You have recived this notification in order to answer your question from {{ contact.createdAt | date('d/m/Y') }} at {{ contact.createdAt | date('H:i') }}:<br>
+        <em>"{{ contact.message | raw }}"</em>
+    </p>
     <br>
     <br>
     <p>Thanks for contact us.</p>
