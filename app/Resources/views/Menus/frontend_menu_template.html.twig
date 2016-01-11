@@ -1,0 +1,9 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block linkElement %}
+    {% if matcher.isCurrent(item) %}
+        <del><a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a></del>
+    {% else %}
+        <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>
+    {% endif %}
+{% endblock %}

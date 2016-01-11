@@ -1,8 +1,10 @@
+# Imports
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
+# Framework config
 framework:
     translator:      { fallbacks: [ "%locale%" ] }
     secret:          "%secret%"
@@ -93,6 +95,11 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar: standard
+
+# KNP Menu
+knp_menu:
+    twig:
+        template: "::Menus/frontend_menu_template.html.twig"
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:

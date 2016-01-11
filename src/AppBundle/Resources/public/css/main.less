@@ -26,8 +26,12 @@
   font-style: normal;
 }
 @font-family-sans-serif: "american", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@text-color: @grey;
+@text-color: @black;
 
+// Colors
+.c-grey { color: @grey; }
+
+// My customs
 .bordered {
   border: solid 1px @grey;
   min-height: 172px;
@@ -38,7 +42,7 @@
   li {
     &.current {
       a {
-        color: @grey;
+        //.c-grey();
       }
     }
     a {
