@@ -2,6 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Form\Type\ContactMessageType;
 use AppBundle\Tests\AbstractBaseTest;
 
 /**
@@ -51,5 +52,22 @@ class FrontendTest extends AbstractBaseTest
         $client->request('GET', '/category/not-found-url/');
         $client->request('GET', '/page/not-found-url/');
         $this->assertStatusCode(404, $client);
+    }
+
+    /**
+     * Test contact formquest is successful
+     */
+    public function testContactForm()
+    {
+        $client = static::makeClient();
+        $crawler = $client->request('GET', '/');
+        $form = $crawler->selectButton('OK')->form(array(
+            'contact_message[message]' => 'Test message',
+            'contact_message[email]' => 'test@test.com',
+        ));
+        $pendingMessagesAmount = $this->getContainer()->get('doctrine')->getRepository('AppBundle:ContactMessage')->getPendingMessagesAmount();
+        $client->submit($form);
+
+        $this->assertEquals($pendingMessagesAmount + 1, $this->getContainer()->get('doctrine')->getRepository('AppBundle:ContactMessage')->getPendingMessagesAmount());
     }
 }

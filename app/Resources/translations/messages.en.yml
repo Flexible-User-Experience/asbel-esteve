@@ -8,6 +8,9 @@ frontend:
       l3: personal website
   form:
     title: contact and newsletter
+    message: your text
+    email: enter email
+    ok: OK
     flash:
       user: Your question has been sent.
 backend:

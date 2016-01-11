@@ -111,26 +111,17 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->executeSubmittedForm($contact);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            // Send notifications
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contact);
+            $messenger->sendAdminNotification($contact);
+            // Build flash message
+            $this->addFlash('notice', 'frontend.form.flash.user');
         }
 
         return $this->render('Frontend/contact_form.html.twig', [ 'form' => $form->createView()]);
-    }
-
-    /**
-     * @param ContactMessage $contact
-     */
-    private function executeSubmittedForm(ContactMessage $contact)
-    {
-        // Persist new contact message form record
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($contact);
-        $em->flush();
-        // Send notifications
-        $messenger = $this->get('app.notification');
-        $messenger->sendUserNotification($contact);
-        $messenger->sendAdminNotification($contact);
-        // Build flash message
-        $this->addFlash('notice', 'frontend.form.flash.user');
     }
 }
