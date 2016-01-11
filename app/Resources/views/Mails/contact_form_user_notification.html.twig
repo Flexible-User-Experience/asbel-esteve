@@ -1,6 +1,12 @@
 {% block body %}
-    <h1>Thank you!</h1>
-    <p>Contact form message recived. We will answer you as soon as possible, keep in touch.</p>
+    <h1>Thanks for contact us!</h1>
+    <p>Your question
+        <br><br><em>"{{ contact.message | raw }}"</em><br><br>
+        has been recived. We will answer you as soon as possible.
+    </p>
     <br>
-    <p>See you soon!</p>
+    <br>
+    <br>
+    <br>
+    <p>Keep in touch.</p>
 {% endblock %}

@@ -69,4 +69,21 @@ class NotificationService
             ))
         );
     }
+
+    /**
+     * Send backend answer notification to web user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function senddUserBackendNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $contactMessage->getEmail(),
+            'www.asbelesteve.com contact form answer',
+            $this->twig->render(':Mails:contact_form_user_backend_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
 }

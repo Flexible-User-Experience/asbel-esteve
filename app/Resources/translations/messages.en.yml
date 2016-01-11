@@ -8,25 +8,30 @@ frontend:
       l3: personal website
   form:
     title: contact and newsletter
+    flash:
+      user: Your question has been sent.
 backend:
-    admin:
-        general: General
-        controls: Controls
-        content: Content
-        date: Date
-        image: Main Image
-        images: Secondary Images
-        vimeo: URL Vimeo
-        bootstrapcolumns: Homepage columns
-        bootstrapcolumnshelp: min. 3, max. 12
-        metakeywords: Meta Keywords
-        metakeywordshelp: comma separated values
-        metadescription: Meta Description
-        answer: Answer
-        answer_action: Answer
-        films_amount: Linked films
-        categories_amount: Linked categories
-        block:
-            title: Notifications
-            text: pending messages
-            notext: you have no pending messages
+  admin:
+    general: General
+    controls: Controls
+    content: Content
+    date: Date
+    image: Main Image
+    images: Secondary Images
+    vimeo: URL Vimeo
+    bootstrapcolumns: Homepage columns
+    bootstrapcolumnshelp: min. 3, max. 12
+    metakeywords: Meta Keywords
+    metakeywordshelp: comma separated values
+    metadescription: Meta Description
+    answer: Answer
+    answer_action: Answer
+    films_amount: Linked films
+    categories_amount: Linked categories
+    block:
+      title: Notifications
+      text: pending messages
+      notext: you have no pending messages
+  form:
+    flash:
+      admin: Your answer has been sent.

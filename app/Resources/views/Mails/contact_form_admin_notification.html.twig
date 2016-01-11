@@ -1,7 +1,7 @@
 {% block body %}
     <h1>New contact form message recived</h1>
-    <p>Check it in your list <a href="{{ path('admin_app_contactmessage_list') }}">here</a>, or answer directly <a
-                href="{{ path('admin_app_contactmessage_answer', { id: contact.id }) }}">here</a></p>
+    <p>Check it in your messages list <a href="{{ absolute_url('admin_app_contactmessage_list') }}">here</a>, or answer it directly <a
+                href="{{ absolute_url('admin_app_contactmessage_answer', { id: contact.id }) }}">here</a></p>
     <br>
     <p>Good luck!</p>
 {% endblock %}
