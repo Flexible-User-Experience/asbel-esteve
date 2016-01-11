@@ -21,25 +21,6 @@ class ContactMessageAnswerType extends ContactMessageType
     {
         $builder
             ->add(
-                'message',
-                'textarea',
-                array(
-                    'required'  => false,
-                    'read_only' => true,
-                    'attr'      => array(
-                        'rows' => 6,
-                    ),
-                )
-            )
-            ->add(
-                'email',
-                'email',
-                array(
-                    'required'  => false,
-                    'read_only' => true,
-                )
-            )
-            ->add(
                 'description',
                 'textarea',
                 array(
@@ -55,7 +36,7 @@ class ContactMessageAnswerType extends ContactMessageType
                 'submit',
                 array(
                     'attr'  => array(
-                        'class' => 'btn-violet',
+                        'class' => 'btn-primary',
                     ),
                 )
             );

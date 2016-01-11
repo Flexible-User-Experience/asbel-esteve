@@ -39,13 +39,7 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // persist new contact message record
-            $contact->setDescription('');
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            // add view flash message
-            $this->addFlash('notice', 'frontend.index.main.sent');
+            $this->executeSubmittedForm($contact);
         }
 
         return $this->render('Frontend/homepage.html.twig', [ 'items' => $items, 'form' => $form->createView() ]);
@@ -74,13 +68,7 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // persist new contact message record
-            $contact->setDescription('');
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            // add view flash message
-            $this->addFlash('notice', 'frontend.index.main.sent');
+            $this->executeSubmittedForm($contact);
         }
 
         return $this->render('Frontend/category.html.twig', [ 'category' => $category, 'items' => $items, 'form' => $form->createView() ]);
@@ -107,13 +95,7 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // persist new contact message record
-            $contact->setDescription('');
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            // add view flash message
-            $this->addFlash('notice', 'frontend.index.main.sent');
+            $this->executeSubmittedForm($contact);
         }
 
         return $this->render('Frontend/content.html.twig', [ 'content' => $film, 'form' => $form->createView() ]);
@@ -140,15 +122,26 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // persist new contact message record
-            $contact->setDescription('');
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            // add view flash message
-            $this->addFlash('notice', 'frontend.index.main.sent');
+            $this->executeSubmittedForm($contact);
         }
 
         return $this->render('Frontend/static_page.html.twig', [ 'page' => $page, 'form' => $form->createView()]);
+    }
+
+    /**
+     * @param ContactMessage $contact
+     */
+    private function executeSubmittedForm(ContactMessage $contact)
+    {
+        // Persist new contact message form record
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($contact);
+        $em->flush();
+        // Send notifications
+        $messenger = $this->get('app.notification');
+        $messenger->sendUserNotification($contact);
+        $messenger->sendAdminNotification($contact);
+        // Build flash message
+        $this->addFlash('notice', 'frontend.form.flash.user');
     }
 }

@@ -17,7 +17,7 @@ class ContactMessageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,9 +26,11 @@ class ContactMessageType extends AbstractType
                 'message',
                 'textarea',
                 array(
-                    'required' => false,
-                    'attr'     => array(
+                    'label' => false,
+                    'required' => true,
+                    'attr' => array(
                         'rows' => 6,
+                        'placeholder' => 'message',
                     ),
                 )
             )
@@ -36,14 +38,18 @@ class ContactMessageType extends AbstractType
                 'email',
                 'email',
                 array(
+                    'label' => false,
                     'required' => true,
+                    'attr' => array(
+                        'placeholder' => 'email',
+                    ),
                 )
             )
             ->add(
                 'send',
                 'submit',
                 array(
-                    'attr'  => array(
+                    'attr' => array(
                         'class' => 'btn-primary',
                     ),
                 )
