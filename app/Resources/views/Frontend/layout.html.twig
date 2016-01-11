@@ -50,15 +50,15 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4 col-xs-12 bordered my-padding">
+                        <div class="col-sm-4 col-xs-12 top-bordered my-padding">
                             {{ knp_menu_render('bottom') }}
                         </div>
-                        <div class="col-sm-5 col-xs-12 bordered my-padding">
+                        <div class="col-sm-5 col-xs-12 top-bordered my-padding">
                             {% block bottom_contact_form %}
                                 {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
                             {% endblock %}
                         </div>
-                        <div class="col-sm-3 col-xs-12 bordered my-padding">
+                        <div class="col-sm-3 col-xs-12 top-bordered my-padding">
                             {{ knp_menu_render('socialnetworks') }}
                         </div>
                     </div>

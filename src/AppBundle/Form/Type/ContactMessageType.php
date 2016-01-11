@@ -54,7 +54,7 @@ class ContactMessageType extends AbstractType
                 array(
                     'label' => 'frontend.form.ok',
                     'attr' => array(
-                        'class' => 'btn-primary',
+                        'class' => 'btn-default',
                     ),
                 )
             );

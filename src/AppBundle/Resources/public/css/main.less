@@ -41,6 +41,7 @@
 
 // Colors
 .c-grey { color: @grey; }
+.c-black { color: @black; }
 
 // Body
 body {
@@ -54,27 +55,34 @@ body {
 }
 
 .bordered {
-  border: solid 1px @grey;
-  min-height: 172px;
+  min-height: 131px;
+  border-right: solid 1px @grey;
+  &:last-child { border-right: none; }
+}
+
+.top-bordered {
+  .bordered();
+  border-top: solid 1px @grey;
 }
 
 .bottom-bordered {
+  .bordered();
   border-bottom: solid 1px @grey;
-  border-right: solid 1px @grey;
-  min-height: 131px;
-  border-collapse: collapse;
-  &:last-child { border-right: none; }
 }
 
 .my-menu {
   li {
-    //&.current {
-    //  a {
-        //.c-grey();
-      //}
-    //}
+    &.current {
+      a {
+        .c-grey();
+      }
+    }
     a {
       color: @black;
+      text-decoration: none;
+      &:hover {
+        color: @grey;
+      }
     }
   }
 }
