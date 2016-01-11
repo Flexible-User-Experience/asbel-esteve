@@ -5,3 +5,45 @@
 // Variables
 @white:   #FFFFFF;
 @black:   #222222;
+@grey:    #9FA1A1;
+@lgrey:   #F0F1F2;
+
+// Gaps
+@hgap: @gap * 2;
+@gap: 40px;
+@lgap: @gap / 2;
+
+// Fonts
+@fa-font-path: "/bundles/app/fonts";
+@font-face {
+  font-family: 'american';
+  src:url('@{fa-font-path}/AmericanTypewriter.eot');
+  src:url('@{fa-font-path}/AmericanTypewriter.eot?#iefix') format('embedded-opentype'),
+  url('@{fa-font-path}/AmericanTypewriter.ttf') format('truetype'),
+  url('@{fa-font-path}/AmericanTypewriter.woff') format('woff'),
+  url('@{fa-font-path}/AmericanTypewriter.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-family-sans-serif: "american", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@text-color: @grey;
+
+.bordered {
+  border: solid 1px @grey;
+  min-height: 100px;
+  border-collapse: collapse;
+}
+
+.my-menu {
+  margin: @gap @lgap;
+  li {
+    &.current {
+      a {
+        color: @grey;
+      }
+    }
+    a {
+      color: @black;
+    }
+  }
+}

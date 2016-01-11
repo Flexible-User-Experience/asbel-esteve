@@ -16,12 +16,12 @@
         {% block top %}
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-5 col-xs-12">
+                    <div class="col-sm-5 col-xs-12 bordered">
                         {{ knp_menu_render('main') }}
                     </div>
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-4 col-xs-12 bordered">
                     </div>
-                    <div class="col-sm-3 col-xs-12">
+                    <div class="col-sm-3 col-xs-12 bordered">
                         {{ 'frontend.top.right.l1' | trans }}<br>
                         {{ 'frontend.top.right.l2' | trans }}<br>
                         {{ 'frontend.top.right.l3' | trans }}
@@ -50,15 +50,15 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-sm-4 col-xs-12 bordered">
                             {{ knp_menu_render('bottom') }}
                         </div>
-                        <div class="col-sm-5 col-xs-12">
+                        <div class="col-sm-5 col-xs-12 bordered">
                             {% block bottom_contact_form %}
                                 {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
                             {% endblock %}
                         </div>
-                        <div class="col-sm-3 col-xs-12">
+                        <div class="col-sm-3 col-xs-12 bordered">
                             <ul class="list-unstyled">
                                 <li><a href="https://www.facebook.com/asbelesteve" target="_blank">facebook</a></li>
                                 <li><a href="https://vimeo.com/asbelesteve" target="_blank">vimeo</a></li>

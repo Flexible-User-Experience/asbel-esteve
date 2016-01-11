@@ -81,6 +81,7 @@ class FrontendMenuBuilder
     public function createBottomMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'my-menu list-unstyled');
         if ($this->ac->isGranted('ROLE_CMS')) {
             $menu->addChild('admin', array(
                 'label' => '[ go admin dashboard ]',
