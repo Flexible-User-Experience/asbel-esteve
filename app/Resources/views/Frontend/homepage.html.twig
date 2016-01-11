@@ -3,23 +3,21 @@
 {% block body %}
     <div class="row">
         <div class="col-xs-12">
-            {% block body_head_title %}
-                <h1>homepage</h1>
-            {% endblock %}
+            {% block body_head_title %}{% endblock %}
         </div>
     </div>
     <div class="row">
         {% for item in items %}
             {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-            <div class="{{ col }}">
-                <div class="thumbnail">
+            <div class="{{ col }} all-bordered my-padding">
+                <div class="">
                     {% if item.imageName %}
                         <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('700x200') }}" alt="{{ item.title }} thumbnail">
                     {% endif %}
                     <div class="caption">
-                        <h3><a href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
-                        <h4>{{ item.categories | join(', ') }}</h4>
-                        <h4>{{ item.year }}</h4>
+                        <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
+                        <h4 class="c-grey">{{ item.categories | join(', ') }}</h4>
+                        <h4 class="c-grey">{{ item.year }}</h4>
                     </div>
                 </div>
             </div>

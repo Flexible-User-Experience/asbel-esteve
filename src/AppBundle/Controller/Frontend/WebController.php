@@ -34,15 +34,8 @@ class WebController extends Controller
     public function homepageAction(Request $request)
     {
         $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDescWithJoin();
-        /** @var ContactMessage $contact */
-        $contact = new ContactMessage();
-        $form = $this->createForm(ContactMessageType::class, $contact);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->executeSubmittedForm($contact);
-        }
 
-        return $this->render('Frontend/homepage.html.twig', [ 'items' => $items, 'form' => $form->createView() ]);
+        return $this->render('Frontend/homepage.html.twig', [ 'items' => $items ]);
     }
 
     /**
@@ -63,15 +56,7 @@ class WebController extends Controller
 
         $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findEnabledSortedByCreatedDateDescOfCategorySlug($slug);
 
-        /** @var ContactMessage $contact */
-        $contact = new ContactMessage();
-        $form = $this->createForm(ContactMessageType::class, $contact);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->executeSubmittedForm($contact);
-        }
-
-        return $this->render('Frontend/category.html.twig', [ 'category' => $category, 'items' => $items, 'form' => $form->createView() ]);
+        return $this->render('Frontend/category.html.twig', [ 'category' => $category, 'items' => $items ]);
     }
 
     /**
@@ -90,15 +75,7 @@ class WebController extends Controller
             throw $this->createNotFoundException('Unable to find Film entity.');
         }
 
-        /** @var ContactMessage $contact */
-        $contact = new ContactMessage();
-        $form = $this->createForm(ContactMessageType::class, $contact);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->executeSubmittedForm($contact);
-        }
-
-        return $this->render('Frontend/content.html.twig', [ 'content' => $film, 'form' => $form->createView() ]);
+        return $this->render('Frontend/content.html.twig', [ 'content' => $film ]);
     }
 
     /**
@@ -117,31 +94,34 @@ class WebController extends Controller
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
+        return $this->render('Frontend/static_page.html.twig', [ 'page' => $page ]);
+    }
+
+    /**
+     * @Route("/contact-form/", name="app_contact_form")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function contactFormAction(Request $request)
+    {
         /** @var ContactMessage $contact */
         $contact = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->executeSubmittedForm($contact);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            // Send notifications
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contact);
+            $messenger->sendAdminNotification($contact);
+            // Build flash message
+            $this->addFlash('notice', 'frontend.form.flash.user');
         }
 
-        return $this->render('Frontend/static_page.html.twig', [ 'page' => $page, 'form' => $form->createView()]);
-    }
-
-    /**
-     * @param ContactMessage $contact
-     */
-    private function executeSubmittedForm(ContactMessage $contact)
-    {
-        // Persist new contact message form record
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($contact);
-        $em->flush();
-        // Send notifications
-        $messenger = $this->get('app.notification');
-        $messenger->sendUserNotification($contact);
-        $messenger->sendAdminNotification($contact);
-        // Build flash message
-        $this->addFlash('notice', 'frontend.form.flash.user');
+        return $this->render('Frontend/contact_form.html.twig', [ 'form' => $form->createView()]);
     }
 }

@@ -5,3 +5,97 @@
 // Variables
 @white:   #FFFFFF;
 @black:   #222222;
+@grey:    #9FA1A1;
+@lgrey:   #F0F1F2;
+
+// Gaps
+@big-gap: @gap * 2;
+@gap: 40px;
+@small-gap: @gap / 2;
+
+// Fonts
+@fa-font-path: "/bundles/app/fonts";
+@font-face {
+  font-family: 'american';
+  src:url('@{fa-font-path}/AmericanTypewriter.eot');
+  src:url('@{fa-font-path}/AmericanTypewriter.eot?#iefix') format('embedded-opentype'),
+  url('@{fa-font-path}/AmericanTypewriter.ttf') format('truetype'),
+  url('@{fa-font-path}/AmericanTypewriter.woff') format('woff'),
+  url('@{fa-font-path}/AmericanTypewriter.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'glyphs';
+  src:url('@{fa-font-path}/glyphicons-halflings-regular.eot');
+  src:url('@{fa-font-path}/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('@{fa-font-path}/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('@{fa-font-path}/glyphicons-halflings-regular.woff') format('woff'),
+  url('@{fa-font-path}/glyphicons-halflings-regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-family-sans-serif: "american", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@icon-font-name: "glyphs";
+@text-color: @black;
+
+// Colors
+.c-grey { color: @grey; }
+.c-black { color: @black; }
+
+// Body
+body {
+  min-height: 300px;
+  position: relative;
+}
+
+// My customs
+.my-body {
+  min-height: 300px;
+}
+
+.bordered {
+  min-height: 131px;
+  border-right: solid 1px @grey;
+  &:last-child { border-right: none; }
+}
+
+.top-bordered {
+  .bordered();
+  border-top: solid 1px @grey;
+}
+
+.bottom-bordered {
+  .bordered();
+  border-bottom: solid 1px @grey;
+}
+
+.all-bordered {
+  min-height: 200px;
+  border: solid 1px @grey;
+  display: table-cell;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.my-menu {
+  li {
+    &.current {
+      a {
+        .c-grey();
+      }
+    }
+    a {
+      color: @black;
+      text-decoration: none;
+      &:hover {
+        color: @grey;
+      }
+    }
+  }
+}
+
+.my-padding {
+  padding: @small-gap;
+}

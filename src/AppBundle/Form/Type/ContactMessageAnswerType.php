@@ -3,6 +3,8 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Class ContactMessageAnswerType
@@ -22,7 +24,7 @@ class ContactMessageAnswerType extends ContactMessageType
         $builder
             ->add(
                 'description',
-                'textarea',
+                TextareaType::class,
                 array(
                     'label'    => 'backend.admin.answer',
                     'required' => true,
@@ -33,7 +35,7 @@ class ContactMessageAnswerType extends ContactMessageType
             )
             ->add(
                 'send',
-                'submit',
+                SubmitType::class,
                 array(
                     'attr'  => array(
                         'class' => 'btn-primary',

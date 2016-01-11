@@ -5,6 +5,9 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Class ContactMessageType
@@ -24,33 +27,34 @@ class ContactMessageType extends AbstractType
         $builder
             ->add(
                 'message',
-                'textarea',
+                TextareaType::class,
                 array(
                     'label' => false,
                     'required' => true,
                     'attr' => array(
                         'rows' => 6,
-                        'placeholder' => 'message',
+                        'placeholder' => 'frontend.form.message',
                     ),
                 )
             )
             ->add(
                 'email',
-                'email',
+                EmailType::class,
                 array(
                     'label' => false,
                     'required' => true,
                     'attr' => array(
-                        'placeholder' => 'email',
+                        'placeholder' => 'frontend.form.email',
                     ),
                 )
             )
             ->add(
                 'send',
-                'submit',
+                SubmitType::class,
                 array(
+                    'label' => 'frontend.form.ok',
                     'attr' => array(
-                        'class' => 'btn-primary',
+                        'class' => 'btn-default',
                     ),
                 )
             );
@@ -59,7 +63,7 @@ class ContactMessageType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'contact_message';
     }

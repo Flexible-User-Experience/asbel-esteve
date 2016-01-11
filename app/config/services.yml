@@ -52,6 +52,12 @@ services:
         arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: bottom }
+    app.frontend_social_networks:
+        class: Knp\Menu\MenuItem
+        factory: [ "@app.frontend_menu_builder", createSocialNetworksMenu ]
+        arguments: [ "@request_stack" ]
+        tags:
+            - { name: knp_menu.menu, alias: socialnetworks }
 # Messaging
     app.courier:
         class: AppBundle\Service\CourierService

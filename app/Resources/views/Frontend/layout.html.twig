@@ -16,12 +16,12 @@
         {% block top %}
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-5 col-xs-12">
+                    <div class="col-sm-5 col-xs-12 bottom-bordered my-padding">
                         {{ knp_menu_render('main') }}
                     </div>
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-4 col-xs-12 bottom-bordered my-padding">
                     </div>
-                    <div class="col-sm-3 col-xs-12">
+                    <div class="col-sm-3 col-xs-12 bottom-bordered my-padding c-grey">
                         {{ 'frontend.top.right.l1' | trans }}<br>
                         {{ 'frontend.top.right.l2' | trans }}<br>
                         {{ 'frontend.top.right.l3' | trans }}
@@ -43,33 +43,23 @@
                 </div>
             </div>
         {% endif %}
-        <div class="container">
+        <div class="my-body container">
             {% block body %}{% endblock %}
         </div>
         {% block bottom %}
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-sm-4 col-xs-12 top-bordered my-padding">
                             {{ knp_menu_render('bottom') }}
                         </div>
-                        <div class="col-sm-5 col-xs-12">
+                        <div class="col-sm-5 col-xs-12 top-bordered my-padding">
                             {% block bottom_contact_form %}
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h5>{{ 'frontend.form.title' | trans }}</h5>
-                                            {{ form(form) }}
-                                        </div>
-                                    </div>
-                                </div>
+                                {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
                             {% endblock %}
                         </div>
-                        <div class="col-sm-3 col-xs-12">
-                            <ul class="list-unstyled">
-                                <li><a href="https://www.facebook.com/asbelesteve" target="_blank">facebook</a></li>
-                                <li><a href="https://vimeo.com/asbelesteve" target="_blank">vimeo</a></li>
-                            </ul>
+                        <div class="col-sm-3 col-xs-12 top-bordered my-padding">
+                            {{ knp_menu_render('socialnetworks') }}
                         </div>
                     </div>
                 </div>
