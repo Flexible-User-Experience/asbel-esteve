@@ -140,7 +140,7 @@ class WebController extends Controller
         // Send notifications
         $messenger = $this->get('app.notification');
         $messenger->sendUserNotification($contact);
-// TODO       $messenger->sendAdminNotification($contact);
+        $messenger->sendAdminNotification($contact);
         // Build flash message
         $this->addFlash('notice', 'frontend.form.flash.user');
     }

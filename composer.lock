@@ -2788,12 +2788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "c27d8bc2cb386dedfd33fd6e5f5569c8ce6b7101"
+                "reference": "03d3ee058cc94670aa3da8817c5ad29b315f6f45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/c27d8bc2cb386dedfd33fd6e5f5569c8ce6b7101",
-                "reference": "c27d8bc2cb386dedfd33fd6e5f5569c8ce6b7101",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/03d3ee058cc94670aa3da8817c5ad29b315f6f45",
+                "reference": "03d3ee058cc94670aa3da8817c5ad29b315f6f45",
                 "shasum": ""
             },
             "require": {
@@ -2866,7 +2866,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2016-01-10 13:44:15"
+            "time": "2016-01-11 07:44:28"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3426,12 +3426,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "f674b81e13b8864675a023081b13d844febdc9d7"
+                "reference": "8d8268f7ac4b13d06bbdd29f859aad90e463a0fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/f674b81e13b8864675a023081b13d844febdc9d7",
-                "reference": "f674b81e13b8864675a023081b13d844febdc9d7",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/8d8268f7ac4b13d06bbdd29f859aad90e463a0fa",
+                "reference": "8d8268f7ac4b13d06bbdd29f859aad90e463a0fa",
                 "shasum": ""
             },
             "require": {
@@ -3496,7 +3496,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2016-01-08 14:27:44"
+            "time": "2016-01-11 07:43:30"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
