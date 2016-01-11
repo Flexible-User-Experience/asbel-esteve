@@ -9,8 +9,8 @@
     <div class="row">
         {% for item in items %}
             {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-            <div class="{{ col }}">
-                <div class="thumbnail">
+            <div class="{{ col }} all-bordered my-padding">
+                <div class="">
                     {% if item.imageName %}
                         <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('700x200') }}" alt="{{ item.title }} thumbnail">
                     {% endif %}
