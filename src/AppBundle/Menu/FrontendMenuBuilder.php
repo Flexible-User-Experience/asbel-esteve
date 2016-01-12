@@ -81,7 +81,7 @@ class FrontendMenuBuilder
     public function createBottomMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'my-menu list-unstyled');
+        $menu->setChildrenAttribute('class', 'my-menu list-unstyled no-gap-bottom');
         if ($this->ac->isGranted('ROLE_CMS')) {
             $menu->addChild(
                 'admin',
@@ -149,7 +149,7 @@ class FrontendMenuBuilder
     public function createSocialNetworksMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'my-menu list-unstyled');
+        $menu->setChildrenAttribute('class', 'my-menu list-unstyled no-gap-bottom');
         $menu
             ->addChild(
                 'facebook',
