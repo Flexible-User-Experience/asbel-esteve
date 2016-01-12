@@ -32,7 +32,7 @@ class WebController extends Controller
      */
     public function homepageAction()
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDescWithJoin();
+        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByPublishDateDescWithJoin();
 
         return $this->render('Frontend/homepage.html.twig', ['items' => $items]);
     }
@@ -58,7 +58,7 @@ class WebController extends Controller
 
         $items = $this->getDoctrine()->getRepository(
             'AppBundle:Film'
-        )->findEnabledSortedByCreatedDateDescOfCategorySlug($slug);
+        )->findEnabledSortedByPublishDateDescOfCategorySlug($slug);
 
         return $this->render('Frontend/category.html.twig', ['category' => $category, 'items' => $items]);
     }
