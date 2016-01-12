@@ -3,8 +3,10 @@
 {% block body %}
     <div class="row">
         <div class="{% if content.images | length == 0 %}col-xs-12{% else %}col-xs-8{% endif %}">
-            {% if content.urlVimeo %}
-                <span><a target="_blank" href="{{ content.urlVimeo }}">{{ content.urlVimeo }}</a></span>
+            {% if content.vimeoId > 1 %}
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ content.vimeoId }}?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
             {% elseif content.imageName %}
                 <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ content.title }} thumbnail">
             {% endif %}
