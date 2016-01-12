@@ -43,20 +43,23 @@
 @link-color: @grey;
 @link-hover-color: @black;
 @link-hover-decoration: none;
+.c-grey { color: @grey; }
+.c-black { color: @black; }
+
+// Nodes
+body {
+  min-height: 300px;
+  position: relative;
+}
+
 a {
   &:visited {
     color: @black;
     text-decoration: line-through !important;
   }
 }
-.c-grey { color: @grey; }
-.c-black { color: @black; }
 
-// Body
-body {
-  min-height: 300px;
-  position: relative;
-}
+textarea { resize: vertical; }
 
 // My customs
 .my-body {
@@ -64,7 +67,6 @@ body {
 }
 
 .bordered {
-  min-height: 121px;
   border-right: solid 1px @grey;
   &:last-child { border-right: none; }
 }
@@ -106,6 +108,26 @@ body {
 }
 
 .my-padding { padding: @small-gap; }
+.contact-form-padding { padding: @small-gap 7%; }
 .gap-bottom { margin-bottom: @small-gap; }
 .no-gap-top { margin-top: 0; }
 .no-gap-bottom { margin-bottom: 0; }
+
+// Equal columns height hack
+// http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+
+.col-top    { vertical-align: top; }
+.col-middle { vertical-align: middle; }
+.col-bottom { vertical-align: bottom; }
