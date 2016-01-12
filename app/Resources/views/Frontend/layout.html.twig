@@ -14,14 +14,14 @@
     </head>
     <body>
         {% block top %}
-            <div class="container">
+            <div class="container-fluid bottom-bordered">
                 <div class="row">
-                    <div class="col-sm-5 col-xs-12 bottom-bordered my-padding">
+                    <div class="col-sm-5 bordered my-padding">
                         {{ knp_menu_render('main') }}
                     </div>
-                    <div class="col-sm-4 col-xs-12 bottom-bordered my-padding">
+                    <div class="col-sm-4 bordered my-padding">
                     </div>
-                    <div class="col-sm-3 col-xs-12 bottom-bordered my-padding c-grey">
+                    <div class="col-sm-3 bordered my-padding c-grey">
                         {{ 'frontend.top.right.l1' | trans }}<br>
                         {{ 'frontend.top.right.l2' | trans }}<br>
                         {{ 'frontend.top.right.l3' | trans }}
@@ -30,7 +30,7 @@
             </div>
         {% endblock %}
         {% if app.session.flashbag.get('notice') | length > 0 %}
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
                         {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -43,22 +43,22 @@
                 </div>
             </div>
         {% endif %}
-        <div class="my-body container">
+        <div class="my-body {% block body_class %}container-fluid{% endblock %}">
             {% block body %}{% endblock %}
         </div>
         {% block bottom %}
             <footer>
-                <div class="container">
+                <div class="container-fluid top-bordered">
                     <div class="row">
-                        <div class="col-sm-4 col-xs-12 top-bordered my-padding">
+                        <div class="col-sm-4 bordered my-padding">
                             {{ knp_menu_render('bottom') }}
                         </div>
-                        <div class="col-sm-5 col-xs-12 top-bordered my-padding">
+                        <div class="col-sm-5 bordered my-padding">
                             {% block bottom_contact_form %}
                                 {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
                             {% endblock %}
                         </div>
-                        <div class="col-sm-3 col-xs-12 top-bordered my-padding">
+                        <div class="col-sm-3 bordered my-padding">
                             {{ knp_menu_render('socialnetworks') }}
                         </div>
                     </div>

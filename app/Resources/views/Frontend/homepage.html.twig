@@ -1,11 +1,7 @@
 {% extends ':Frontend:layout.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="my-padding col-xs-12">
-            {% block body_head_title %}{% endblock %}
-        </div>
-    </div>
+    {% block body_head_title %}{% endblock %}
     <div class="row">
         {% for item in items %}
             {% set col = 'col-xs-' ~ item.bootstrapColumns %}
