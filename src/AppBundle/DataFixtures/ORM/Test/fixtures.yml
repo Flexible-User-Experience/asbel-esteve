@@ -31,6 +31,7 @@ AppBundle\Entity\Category:
 ## Films
 AppBundle\Entity\Film:
   film{1..10}:
+    publishedAt: <dateTimeBetween('-2 months', '+2 months')>
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
@@ -43,6 +44,7 @@ AppBundle\Entity\Film:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
   film11:
+    publishedAt: <dateTimeBetween('-2 months', '+2 months')>
     title: Test Title
     slug: test-title
     year: <numberBetween(1990, 2015)>

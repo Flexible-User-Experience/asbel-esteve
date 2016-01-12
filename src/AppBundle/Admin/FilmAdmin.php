@@ -21,8 +21,8 @@ class FilmAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Content';
     protected $baseRoutePattern = 'web/content';
     protected $datagridValues = array(
-        '_sort_by'    => 'title',
-        '_sort_order' => 'asc',
+        '_sort_by'    => 'publishedAt',
+        '_sort_order' => 'desc',
     );
 
     /**
@@ -69,6 +69,13 @@ class FilmAdmin extends AbstractBaseAdmin
                     'label'    => 'backend.admin.image',
                     'help'     => $this->getImageHelperFormMapperWithThumbnail(),
                     'required' => false,
+                )
+            )
+            ->add(
+                'publishedAt',
+                'sonata_type_date_picker',
+                array(
+                    'label' => 'backend.admin.published_date',
                 )
             )
             ->add(
@@ -178,8 +185,14 @@ class FilmAdmin extends AbstractBaseAdmin
             ->add(
                 'categories',
                 null,
+                array()
+            )
+            ->add(
+                'publishedAt',
+                'doctrine_orm_date',
                 array(
-                    'label' => 'backend.admin.categories',
+                    'label'      => 'backend.admin.published_date',
+                    'field_type' => 'sonata_type_date_picker',
                 )
             )
             ->add(
@@ -190,9 +203,7 @@ class FilmAdmin extends AbstractBaseAdmin
             ->add(
                 'description',
                 null,
-                array(
-                    'label' => 'backend.admin.description',
-                )
+                array()
             )
             ->add(
                 'urlVimeo',
@@ -242,6 +253,15 @@ class FilmAdmin extends AbstractBaseAdmin
                 array(
                     'label'    => 'backend.admin.image',
                     'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                )
+            )
+            ->add(
+                'publishedAt',
+                'date',
+                array(
+                    'label'    => 'backend.admin.published_date',
+                    'format'   => 'd/m/Y',
+                    'editable' => true,
                 )
             )
             ->add(

@@ -15,6 +15,9 @@ frontend:
       user: Your question has been sent.
 backend:
   admin:
+    published_date: Publish date
+    categories: Categories
+    description: Description
     general: General
     controls: Controls
     content: Content

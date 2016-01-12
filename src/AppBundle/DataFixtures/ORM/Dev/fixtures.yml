@@ -31,6 +31,7 @@ AppBundle\Entity\Category:
 ## Films
 AppBundle\Entity\Film:
   film{1..10}:
+    publishedAt: <dateTimeBetween('-2 months', '+2 months')>
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
@@ -38,11 +39,12 @@ AppBundle\Entity\Film:
     metaKeywords: <word()>
     metaDescription: <sentence()>
     bootstrapColumns: <numberBetween(3, 12)>
-    categories: [ @category1, @category2, @category3 ]
+    categories: [ @category1, @category2 ]
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
   film{11..25}:
+    publishedAt: <dateTimeBetween('-2 months', '+2 months')>
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
@@ -55,6 +57,7 @@ AppBundle\Entity\Film:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
   film{26..59}:
+    publishedAt: <dateTimeBetween('-2 months', '+2 months')>
     title: <sentence()>
     year: <numberBetween(1990, 2015)>
     description: <paragraph()>
