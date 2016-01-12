@@ -75,7 +75,8 @@ class FilmAdmin extends AbstractBaseAdmin
                 'publishedAt',
                 'sonata_type_date_picker',
                 array(
-                    'label' => 'backend.admin.published_date',
+                    'label'  => 'backend.admin.published_date',
+                    'format' => 'd/M/y',
                 )
             )
             ->add(
@@ -193,6 +194,7 @@ class FilmAdmin extends AbstractBaseAdmin
                 array(
                     'label'      => 'backend.admin.published_date',
                     'field_type' => 'sonata_type_date_picker',
+                    'format'     => 'd-m-Y',
                 )
             )
             ->add(
