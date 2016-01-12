@@ -2,26 +2,22 @@
 
 {% block title %}Error 404 · {{ parent() }}{% endblock %}
 
-{% block body_class %}container{% endblock %}
+{#{% block body_class %}container{% endblock %}#}
 
 {% block body %}
     <div class="row">
         <div class="col-xs-12 c-grey">
-            <p>vvsvssf  we f ewfewfewfew ge r</p>
+            <p class="no-gap-bottom">{{ randomErrorText() }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <h1 class="no-gap-top"><i class="fa fa-exclamation-triangle"></i> Error 404 · Page not found</h1>
-            <p>
-                The requested page couldn't be located. Checkout for any URL
-                misspelling or <a href="{{ path('app_homepage') }}">return to the homepage</a>.
-            </p>
+            <h1 class="no-gap-top text-center"><i class="fa fa-exclamation-triangle"></i> Error 404 · Page not found</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 c-grey">
-            <p>vvsvssf  we f ewfewfewfew ge r</p>
+            <p class="no-gap-bottom">{{ randomErrorText() }}</p>
         </div>
     </div>
 {% endblock %}
