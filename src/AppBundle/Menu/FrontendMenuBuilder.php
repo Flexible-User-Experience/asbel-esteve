@@ -104,9 +104,7 @@ class FrontendMenuBuilder
             if ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CATEGORY) {
                 $isCurrent = $category->getSlug() == $requestStack->getCurrentRequest()->get('slug');
             } elseif ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CONTENT) {
-                $content = $this->em->getRepository('AppBundle:Film')->findOneBy(array(
-                    'slug' =>  $requestStack->getCurrentRequest()->get('slug')
-                ));
+                $content = $this->em->getRepository('AppBundle:Film')->findOneBySlugWithJoin($requestStack->getCurrentRequest()->get('slug'));
                 /** @var Category $itCat */
                 foreach ($content->getCategories() as $itCat) {
                     if ($itCat->getSlug() == $category->getSlug()) {
