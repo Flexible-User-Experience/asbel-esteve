@@ -94,12 +94,26 @@ class FrontendMenuBuilder
         $menu->addChild(
             WebController::ROUTE_HOMEPAGE,
             array(
-                'label'   => 'go home',
-                'route'   => WebController::ROUTE_HOMEPAGE
+                'label' => 'go home',
+                'route' => WebController::ROUTE_HOMEPAGE
             )
         );
         /** @var Category $category */
         foreach ($this->categories as $category) {
+            $isCurrent = false;
+            if ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CATEGORY) {
+                $isCurrent = $category->getSlug() == $requestStack->getCurrentRequest()->get('slug');
+            } elseif ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CONTENT) {
+                $content = $this->em->getRepository('AppBundle:Film')->findOneBy(array(
+                    'slug' =>  $requestStack->getCurrentRequest()->get('slug')
+                ));
+                /** @var Category $itCat */
+                foreach ($content->getCategories() as $itCat) {
+                    if ($itCat->getSlug() == $category->getSlug()) {
+                        $isCurrent = true;
+                    }
+                }
+            }
             $menu->addChild(
                 $category->getSlug(),
                 array(
@@ -107,7 +121,8 @@ class FrontendMenuBuilder
                     'route'           => WebController::ROUTE_CATEGORY,
                     'routeParameters' => array(
                         'slug' => $category->getSlug(),
-                    )
+                    ),
+                    'current' => $isCurrent,
                 )
             );
         }

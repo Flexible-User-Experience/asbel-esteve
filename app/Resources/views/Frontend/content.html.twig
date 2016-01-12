@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="row">
-        <div class="{% if content.images | length == 0 %}col-xs-12{% else %}col-xs-8{% endif %}">
+        <div class="my-padding {% if content.images | length == 0 %}col-sm-12{% else %}col-sm-8 bordered{% endif %}">
             {% if content.vimeoId > 1 %}
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ content.vimeoId }}?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -16,9 +16,13 @@
             <p>{{ content.description | raw }}</p>
         </div>
         {% if content.images | length > 0 %}
-            <div class="col-xs-4">
-                {% for image in content.images %}
-                    <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700x200') }}" alt="thumbnail {{ loop.index }}">
+            <div class="my-padding col-sm-4">
+                {% for image in content.images if image.imageName %}
+                    <div class="row gap-bottom">
+                        <div class="col-xs-12">
+                            <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700x200') }}" alt="thumbnail {{ loop.index }}">
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         {% endif %}
