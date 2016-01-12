@@ -95,8 +95,7 @@ class FrontendMenuBuilder
             WebController::ROUTE_HOMEPAGE,
             array(
                 'label'   => 'go home',
-                'route'   => WebController::ROUTE_HOMEPAGE,
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
+                'route'   => WebController::ROUTE_HOMEPAGE
             )
         );
         /** @var Category $category */
@@ -108,10 +107,7 @@ class FrontendMenuBuilder
                     'route'           => WebController::ROUTE_CATEGORY,
                     'routeParameters' => array(
                         'slug' => $category->getSlug(),
-                    ),
-                    'current'         => $requestStack->getCurrentRequest()->get(
-                            '_route'
-                        ) == WebController::ROUTE_CATEGORY,
+                    )
                 )
             );
         }
@@ -124,10 +120,7 @@ class FrontendMenuBuilder
                     'route'           => WebController::ROUTE_STATIC_PAGE,
                     'routeParameters' => array(
                         'slug' => $page->getSlug(),
-                    ),
-                    'current'         => $requestStack->getCurrentRequest()->get(
-                            '_route'
-                        ) == WebController::ROUTE_STATIC_PAGE,
+                    )
                 )
             );
         }
