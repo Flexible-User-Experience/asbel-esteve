@@ -1,5 +1,7 @@
 {% extends ':Frontend:homepage.html.twig' %}
 
+{% block title %}{{ category.title }} · {{ parent() }}{% endblock %}
+
 {% block body_head_title %}
     <div class="row">
         <div class="my-padding col-xs-12">

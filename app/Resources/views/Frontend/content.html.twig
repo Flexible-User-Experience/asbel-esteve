@@ -1,5 +1,7 @@
 {% extends ':Frontend:layout.html.twig' %}
 
+{% block title %}{{ content.title }} · {{ parent() }}{% endblock %}
+
 {% block body_class %}container{% endblock %}
 
 {% block body %}

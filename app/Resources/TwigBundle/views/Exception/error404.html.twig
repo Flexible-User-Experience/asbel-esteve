@@ -1,0 +1,17 @@
+{% extends ':Frontend:layout.html.twig' %}
+
+{% block title %}Error 404 · {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Page not found</h1>
+
+    {# example security usage, see below #}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+    </p>
+{% endblock %}
