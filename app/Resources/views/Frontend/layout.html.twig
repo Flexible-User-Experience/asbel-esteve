@@ -57,7 +57,7 @@
                             <div class="col-sm-4 bordered my-padding col-height">
                                 {{ knp_menu_render('bottom') }}
                             </div>
-                            <div class="col-sm-5 bordered my-padding col-height">
+                            <div class="col-sm-5 bordered contact-form-padding col-height">
                                 {% block bottom_contact_form %}
                                     {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
                                 {% endblock %}

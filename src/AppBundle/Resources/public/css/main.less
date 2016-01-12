@@ -43,20 +43,23 @@
 @link-color: @grey;
 @link-hover-color: @black;
 @link-hover-decoration: none;
+.c-grey { color: @grey; }
+.c-black { color: @black; }
+
+// Nodes
+body {
+  min-height: 300px;
+  position: relative;
+}
+
 a {
   &:visited {
     color: @black;
     text-decoration: line-through !important;
   }
 }
-.c-grey { color: @grey; }
-.c-black { color: @black; }
 
-// Body
-body {
-  min-height: 300px;
-  position: relative;
-}
+textarea { resize: vertical; }
 
 // My customs
 .my-body {
@@ -105,6 +108,7 @@ body {
 }
 
 .my-padding { padding: @small-gap; }
+.contact-form-padding { padding: @small-gap 7%; }
 .gap-bottom { margin-bottom: @small-gap; }
 .no-gap-top { margin-top: 0; }
 .no-gap-bottom { margin-bottom: 0; }
