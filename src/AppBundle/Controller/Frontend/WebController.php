@@ -32,7 +32,7 @@ class WebController extends Controller
      */
     public function homepageAction()
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDescWithJoin();
+        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByPublishDateDescWithJoin();
 
         return $this->render('Frontend/homepage.html.twig', ['items' => $items]);
     }
@@ -58,7 +58,7 @@ class WebController extends Controller
 
         $items = $this->getDoctrine()->getRepository(
             'AppBundle:Film'
-        )->findEnabledSortedByCreatedDateDescOfCategorySlug($slug);
+        )->findEnabledSortedByPublishDateDescOfCategorySlug($slug);
 
         return $this->render('Frontend/category.html.twig', ['category' => $category, 'items' => $items]);
     }
@@ -128,6 +128,9 @@ class WebController extends Controller
             $messenger->sendAdminNotification($contact);
             // Build flash message
             $this->addFlash('notice', 'frontend.form.flash.user');
+            // Reset form
+            $contact = new ContactMessage();
+            $form = $this->createForm(ContactMessageType::class, $contact);
         }
 
         return $this->render('Frontend/contact_form.html.twig', ['form' => $form->createView()]);

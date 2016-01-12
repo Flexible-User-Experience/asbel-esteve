@@ -40,6 +40,15 @@
 @text-color: @black;
 
 // Colors
+@link-color: @grey;
+@link-hover-color: @black;
+@link-hover-decoration: none;
+a {
+  &:visited {
+    color: @black;
+    text-decoration: line-through !important;
+  }
+}
 .c-grey { color: @grey; }
 .c-black { color: @black; }
 
@@ -82,13 +91,13 @@ body {
 .my-menu {
   li {
     &.current {
-      a {
+      a, a:visited {
         .c-grey();
       }
     }
-    a {
+    a, a:visited {
       color: @black;
-      text-decoration: none;
+      //text-decoration: none;
       &:hover {
         color: @grey;
       }

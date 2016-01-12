@@ -48,6 +48,13 @@ class Film extends AbstractBase
     private $imageFile;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $publishedAt;
+
+    /**
      * @var integer
      *
      * @ORM\Column(type="integer")
@@ -101,6 +108,30 @@ class Film extends AbstractBase
     {
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
+    }
+
+    /**
+     * Set PublishedAt
+     *
+     * @param \DateTime $publishedAt
+     *
+     * @return Film
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get PublishedAt
+     *
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
     }
 
     /**

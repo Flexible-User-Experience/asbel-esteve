@@ -93,4 +93,55 @@ class FilmRepository extends AbstractBaseRepository
             ->andWhere('c.slug = :slug')
             ->setParameter('slug', $slug);
     }
+
+    /**
+     * @return array
+     */
+    public function findAllEnabledSortedByPublishDateDescWithJoin()
+    {
+        return $this
+            ->findAllEnabledSortedByPublishDateDescWithJoinQB()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllEnabledSortedByPublishDateDescWithJoinQB()
+    {
+        return $this
+            ->createQueryBuilder('f')
+            ->select('f, c')
+            ->join('f.categories', 'c')
+            ->where('f.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('f.publishedAt', 'DESC');
+    }
+
+    /**
+     * @param $slug
+     *
+     * @return ArrayCollection
+     */
+    public function findEnabledSortedByPublishDateDescOfCategorySlug($slug)
+    {
+        return $this
+            ->findEnabledSortedByPublishDateDescOfCategorySlugQB($slug)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param $slug
+     *
+     * @return QueryBuilder
+     */
+    public function findEnabledSortedByPublishDateDescOfCategorySlugQB($slug)
+    {
+        return $this
+            ->findAllEnabledSortedByPublishDateDescWithJoinQB()
+            ->andWhere('c.slug = :slug')
+            ->setParameter('slug', $slug);
+    }
 }
