@@ -11,8 +11,8 @@
                 <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ content.title }} thumbnail">
             {% endif %}
             <h2>{{ content.title }}</h2>
-            <h4>{{ content.categories | join(', ') }}</h4>
-            <h4>{{ content.year }}</h4>
+            <h4 class="c-grey">{{ content.categories | join(', ') }}</h4>
+            <h4 class="c-grey">{{ content.year }}</h4>
             <p>{{ content.description | raw }}</p>
         </div>
         {% if content.images | length > 0 %}
@@ -20,7 +20,7 @@
                 {% for image in content.images if image.imageName %}
                     <div class="row gap-bottom">
                         <div class="col-xs-12">
-                            <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700x200') }}" alt="thumbnail {{ loop.index }}">
+                            <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700xY') }}" alt="thumbnail {{ loop.index }}">
                         </div>
                     </div>
                 {% endfor %}
