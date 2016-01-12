@@ -43,7 +43,7 @@
                 </div>
             </div>
         {% endif %}
-        <div class="my-body container-fluid">
+        <div class="my-body {% block body_class %}container-fluid{% endblock %}">
             {% block body %}{% endblock %}
         </div>
         {% block bottom %}
