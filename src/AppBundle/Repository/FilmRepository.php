@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Film;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\QueryBuilder;
 
@@ -14,6 +15,37 @@ use Doctrine\ORM\QueryBuilder;
  */
 class FilmRepository extends AbstractBaseRepository
 {
+    /**
+     * @param $slug
+     *
+     * @return Film
+     */
+    public function findOneBySlugWithJoin($slug)
+    {
+        return $this
+            ->findOneBySlugWithJoinQB($slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param $slug
+     *
+     * @return QueryBuilder
+     */
+    public function findOneBySlugWithJoinQB($slug)
+    {
+        return $this
+            ->createQueryBuilder('f')
+            ->select('f, c')
+            ->join('f.categories', 'c')
+            ->where('f.slug = :slug')
+            ->setParameter('slug', $slug);
+    }
+
+    /**
+     * @return array
+     */
     public function findAllEnabledSortedByCreatedDateDescWithJoin()
     {
         return $this
@@ -22,6 +54,9 @@ class FilmRepository extends AbstractBaseRepository
             ->getResult();
     }
 
+    /**
+     * @return QueryBuilder
+     */
     public function findAllEnabledSortedByCreatedDateDescWithJoinQB()
     {
         return $this

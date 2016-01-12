@@ -152,6 +152,22 @@ class Film extends AbstractBase
     }
 
     /**
+     * Get urlVimeo
+     *
+     * @return int
+     */
+    public function getVimeoId()
+    {
+        $result = null;
+        if ($this->urlVimeo) {
+            $arr = explode('/', $this->getUrlVimeo());
+            $result = intval(array_pop($arr));
+        }
+
+        return $result;
+    }
+
+    /**
      * Set BootstrapColumns
      *
      * @param int $bootstrapColumns

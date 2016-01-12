@@ -94,13 +94,24 @@ class FrontendMenuBuilder
         $menu->addChild(
             WebController::ROUTE_HOMEPAGE,
             array(
-                'label'   => 'go home',
-                'route'   => WebController::ROUTE_HOMEPAGE,
-                'current' => $requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_HOMEPAGE,
+                'label' => 'go home',
+                'route' => WebController::ROUTE_HOMEPAGE
             )
         );
         /** @var Category $category */
         foreach ($this->categories as $category) {
+            $isCurrent = false;
+            if ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CATEGORY) {
+                $isCurrent = $category->getSlug() == $requestStack->getCurrentRequest()->get('slug');
+            } elseif ($requestStack->getCurrentRequest()->get('_route') == WebController::ROUTE_CONTENT) {
+                $content = $this->em->getRepository('AppBundle:Film')->findOneBySlugWithJoin($requestStack->getCurrentRequest()->get('slug'));
+                /** @var Category $itCat */
+                foreach ($content->getCategories() as $itCat) {
+                    if ($itCat->getSlug() == $category->getSlug()) {
+                        $isCurrent = true;
+                    }
+                }
+            }
             $menu->addChild(
                 $category->getSlug(),
                 array(
@@ -109,9 +120,7 @@ class FrontendMenuBuilder
                     'routeParameters' => array(
                         'slug' => $category->getSlug(),
                     ),
-                    'current'         => $requestStack->getCurrentRequest()->get(
-                            '_route'
-                        ) == WebController::ROUTE_CATEGORY,
+                    'current' => $isCurrent,
                 )
             );
         }
@@ -124,10 +133,7 @@ class FrontendMenuBuilder
                     'route'           => WebController::ROUTE_STATIC_PAGE,
                     'routeParameters' => array(
                         'slug' => $page->getSlug(),
-                    ),
-                    'current'         => $requestStack->getCurrentRequest()->get(
-                            '_route'
-                        ) == WebController::ROUTE_STATIC_PAGE,
+                    )
                 )
             );
         }
@@ -158,6 +164,14 @@ class FrontendMenuBuilder
                 array(
                     'label' => 'vimeo',
                     'uri'   => 'https://vimeo.com/asbelesteve',
+                )
+            );
+        $menu
+            ->addChild(
+                'IMDb',
+                array(
+                    'label' => 'IMDb',
+                    'uri'   => 'http://www.imdb.com/name/nm5088382/',
                 )
             );
 

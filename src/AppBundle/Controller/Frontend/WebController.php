@@ -20,81 +20,89 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class WebController extends Controller
 {
-    const ROUTE_HOMEPAGE    = 'app_homepage';
-    const ROUTE_CATEGORY    = 'app_category';
-    const ROUTE_CONTENT     = 'app_content';
+    const ROUTE_HOMEPAGE = 'app_homepage';
+    const ROUTE_CATEGORY = 'app_category';
+    const ROUTE_CONTENT = 'app_content';
     const ROUTE_STATIC_PAGE = 'app_static_page';
 
     /**
      * @Route("/", name="app_homepage")
-     * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function homepageAction(Request $request)
+    public function homepageAction()
     {
         $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findAllEnabledSortedByCreatedDateDescWithJoin();
 
-        return $this->render('Frontend/homepage.html.twig', [ 'items' => $items ]);
+        return $this->render('Frontend/homepage.html.twig', ['items' => $items]);
     }
 
     /**
      * @Route("/category/{slug}/", name="app_category")
      *
-     * @param Request $request
-     * @param string  $slug
+     * @param string $slug
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function categoryAction(Request $request, $slug)
+    public function categoryAction($slug)
     {
         /** @var Category $category */
-        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBySlug($slug);
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(
+            array(
+                'slug' => $slug,
+            )
+        );
         if (!$category || !$category->getEnabled()) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
-        $items = $this->getDoctrine()->getRepository('AppBundle:Film')->findEnabledSortedByCreatedDateDescOfCategorySlug($slug);
+        $items = $this->getDoctrine()->getRepository(
+            'AppBundle:Film'
+        )->findEnabledSortedByCreatedDateDescOfCategorySlug($slug);
 
-        return $this->render('Frontend/category.html.twig', [ 'category' => $category, 'items' => $items ]);
+        return $this->render('Frontend/category.html.twig', ['category' => $category, 'items' => $items]);
     }
 
     /**
      * @Route("/{slug}/", name="app_content")
      *
-     * @param Request $request
-     * @param string  $slug
+     * @param string $slug
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function contentAction(Request $request, $slug)
+    public function contentAction($slug)
     {
         /** @var Film $film */
-        $film = $this->getDoctrine()->getRepository('AppBundle:Film')->findOneBySlug($slug);
+        $film = $this->getDoctrine()->getRepository('AppBundle:Film')->findOneBy(
+            array(
+                'slug' => $slug,
+            )
+        );
         if (!$film || !$film->getEnabled()) {
             throw $this->createNotFoundException('Unable to find Film entity.');
         }
 
-        return $this->render('Frontend/content.html.twig', [ 'content' => $film ]);
+        return $this->render('Frontend/content.html.twig', ['content' => $film]);
     }
 
     /**
      * @Route("/page/{slug}/", name="app_static_page")
      *
-     * @param Request $request
-     * @param         $slug
+     * @param string $slug
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function staticPageAction(Request $request, $slug)
+    public function staticPageAction($slug)
     {
         /** @var Page $page */
-        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBySlug($slug);
+        $page = $this->getDoctrine()->getRepository('AppBundle:Page')->findOneBy(array(
+            'slug' => $slug,
+        ));
         if (!$page) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        return $this->render('Frontend/static_page.html.twig', [ 'page' => $page ]);
+        return $this->render('Frontend/static_page.html.twig', ['page' => $page]);
     }
 
     /**
@@ -122,6 +130,6 @@ class WebController extends Controller
             $this->addFlash('notice', 'frontend.form.flash.user');
         }
 
-        return $this->render('Frontend/contact_form.html.twig', [ 'form' => $form->createView()]);
+        return $this->render('Frontend/contact_form.html.twig', ['form' => $form->createView()]);
     }
 }

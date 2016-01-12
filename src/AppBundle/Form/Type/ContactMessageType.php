@@ -32,7 +32,7 @@ class ContactMessageType extends AbstractType
                     'label' => false,
                     'required' => true,
                     'attr' => array(
-                        'rows' => 6,
+                        'rows' => 3,
                         'placeholder' => 'frontend.form.message',
                     ),
                 )
