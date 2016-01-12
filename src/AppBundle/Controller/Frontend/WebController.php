@@ -128,6 +128,9 @@ class WebController extends Controller
             $messenger->sendAdminNotification($contact);
             // Build flash message
             $this->addFlash('notice', 'frontend.form.flash.user');
+            // Reset form
+            $contact = new ContactMessage();
+            $form = $this->createForm(ContactMessageType::class, $contact);
         }
 
         return $this->render('Frontend/contact_form.html.twig', ['form' => $form->createView()]);
