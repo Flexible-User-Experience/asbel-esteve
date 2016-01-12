@@ -32,20 +32,6 @@
                 </div>
             </div>
         {% endblock %}
-        {% if app.session.flashbag.get('notice') | length > 0 %}
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12">
-                        {% for flashMessage in app.session.flashbag.get('notice') %}
-                            <div class="alert alert-success" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                {{ flashMessage | trans }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
         <div class="my-body {% block body_class %}container-fluid{% endblock %}">
             {% block body %}{% endblock %}
         </div>

@@ -2,19 +2,28 @@
 
 {% block body %}
     {% block body_head_title %}{% endblock %}
-    <div class="row">
-        {% for item in items %}
-            {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-            <div class="{{ col }} all-bordered my-padding">
-                <div class="ad">
-                    {% if item.imageName %}
-                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('Xx250') }}" alt="{{ item.title }} thumbnail">
-                    {% endif %}
-                    <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
-                    <h5 class="c-grey">{{ item.categories | join(', ') }}</h5>
-                    <h5 class="c-grey">{{ item.year }}</h5>
+    {% set colsCounter = 0 %}
+    {% for item in items %}
+        {% if colsCounter == 0 %}
+        <div class="row">
+            <div class="row-height">
+        {% endif %}
+                {% set col = 'col-xs-' ~ item.bootstrapColumns %}
+                <div class="{{ col }} col-height bottom-bordered my-padding">
+                    <div class="ad">
+                        {% if item.imageName %}
+                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('Xx250') }}" alt="{{ item.title }} thumbnail">
+                        {% endif %}
+                        <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
+                        <h5 class="c-grey">{{ item.categories | join(', ') }}</h5>
+                        <h5 class="c-grey no-gap-bottom">{{ item.year }}</h5>
+                    </div>
                 </div>
+        {% set colsCounter = colsCounter + item.bootstrapColumns %}
+        {% if colsCounter >= 12 %}
+            {% set colsCounter = 0 %}
             </div>
-        {% endfor %}
-    </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
