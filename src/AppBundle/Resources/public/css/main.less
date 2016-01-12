@@ -64,7 +64,6 @@ body {
 }
 
 .bordered {
-  min-height: 121px;
   border-right: solid 1px @grey;
   &:last-child { border-right: none; }
 }
@@ -109,3 +108,22 @@ body {
 .gap-bottom { margin-bottom: @small-gap; }
 .no-gap-top { margin-top: 0; }
 .no-gap-bottom { margin-bottom: 0; }
+
+// Equal columns height hack
+// http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+
+.col-top    { vertical-align: top; }
+.col-middle { vertical-align: middle; }
+.col-bottom { vertical-align: bottom; }

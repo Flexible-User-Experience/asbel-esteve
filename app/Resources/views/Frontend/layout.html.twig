@@ -16,15 +16,18 @@
         {% block top %}
             <div class="container-fluid bottom-bordered">
                 <div class="row">
-                    <div class="col-sm-5 bordered my-padding">
-                        {{ knp_menu_render('main') }}
-                    </div>
-                    <div class="col-sm-4 bordered my-padding">
-                    </div>
-                    <div class="col-sm-3 bordered my-padding c-grey">
-                        {{ 'frontend.top.right.l1' | trans }}<br>
-                        {{ 'frontend.top.right.l2' | trans }}<br>
-                        {{ 'frontend.top.right.l3' | trans }}
+                    <div class="row-height">
+                        <div class="col-sm-5 bordered my-padding col-height">
+                            {{ knp_menu_render('main') }}
+                        </div>
+                        <div class="col-sm-4 bordered my-padding col-height">
+                            <br>
+                        </div>
+                        <div class="col-sm-3 bordered my-padding c-grey col-height">
+                            {{ 'frontend.top.right.l1' | trans }}<br>
+                            {{ 'frontend.top.right.l2' | trans }}<br>
+                            {{ 'frontend.top.right.l3' | trans }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,16 +53,18 @@
             <footer>
                 <div class="container-fluid top-bordered">
                     <div class="row">
-                        <div class="col-sm-4 bordered my-padding">
-                            {{ knp_menu_render('bottom') }}
-                        </div>
-                        <div class="col-sm-5 bordered my-padding">
-                            {% block bottom_contact_form %}
-                                {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
-                            {% endblock %}
-                        </div>
-                        <div class="col-sm-3 bordered my-padding">
-                            {{ knp_menu_render('socialnetworks') }}
+                        <div class="row-height">
+                            <div class="col-sm-4 bordered my-padding col-height">
+                                {{ knp_menu_render('bottom') }}
+                            </div>
+                            <div class="col-sm-5 bordered my-padding col-height">
+                                {% block bottom_contact_form %}
+                                    {{ render(controller('AppBundle:Frontend/Web:contactForm', {request: app.request})) }}
+                                {% endblock %}
+                            </div>
+                            <div class="col-sm-3 bordered my-padding col-height">
+                                {{ knp_menu_render('socialnetworks') }}
+                            </div>
                         </div>
                     </div>
                 </div>
