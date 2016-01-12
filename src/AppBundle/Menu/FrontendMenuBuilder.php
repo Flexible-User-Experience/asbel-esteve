@@ -160,6 +160,14 @@ class FrontendMenuBuilder
                     'uri'   => 'https://vimeo.com/asbelesteve',
                 )
             );
+        $menu
+            ->addChild(
+                'IMDb',
+                array(
+                    'label' => 'IMDb',
+                    'uri'   => 'http://www.imdb.com/name/nm5088382/',
+                )
+            );
 
         return $menu;
     }
