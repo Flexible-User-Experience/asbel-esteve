@@ -10,15 +10,13 @@
         {% for item in items %}
             {% set col = 'col-xs-' ~ item.bootstrapColumns %}
             <div class="{{ col }} all-bordered my-padding">
-                <div class="">
+                <div class="ad">
                     {% if item.imageName %}
-                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('700x200') }}" alt="{{ item.title }} thumbnail">
+                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('Xx250') }}" alt="{{ item.title }} thumbnail">
                     {% endif %}
-                    <div class="caption">
-                        <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
-                        <h4 class="c-grey">{{ item.categories | join(', ') }}</h4>
-                        <h4 class="c-grey">{{ item.year }}</h4>
-                    </div>
+                    <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
+                    <h5 class="c-grey">{{ item.categories | join(', ') }}</h5>
+                    <h5 class="c-grey">{{ item.year }}</h5>
                 </div>
             </div>
         {% endfor %}
