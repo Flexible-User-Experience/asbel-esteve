@@ -68,7 +68,7 @@ class FrontendMenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->createBottomMenu($requestStack);
-        $menu->removeChild(WebController::ROUTE_HOMEPAGE);
+//        $menu->removeChild(WebController::ROUTE_HOMEPAGE);
 
         return $menu;
     }
@@ -94,7 +94,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             WebController::ROUTE_HOMEPAGE,
             array(
-                'label' => 'go home',
+                'label' => 'homepage',
                 'route' => WebController::ROUTE_HOMEPAGE
             )
         );
