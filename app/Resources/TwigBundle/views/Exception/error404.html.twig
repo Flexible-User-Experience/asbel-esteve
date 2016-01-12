@@ -2,16 +2,12 @@
 
 {% block title %}Error 404 · {{ parent() }}{% endblock %}
 
+{% block body_class %}container{% endblock %}
+
 {% block body %}
-    <h1>Page not found</h1>
-
-    {# example security usage, see below #}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {# ... #}
-    {% endif %}
-
+    <h1><i class="fa fa-exclamation-triangle"></i> Error 404 · Page not found</h1>
     <p>
         The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+        misspelling or <a href="{{ path('app_homepage') }}">return to the homepage</a>.
     </p>
 {% endblock %}
