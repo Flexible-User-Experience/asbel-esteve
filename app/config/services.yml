@@ -68,7 +68,7 @@ services:
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
-        arguments: [ "@router", "@doctrine.orm.entity_manager" ]
+        arguments: [ "@request_stack", "@app.frontend_menu_builder" ]
         tags: [ { name: "presta.sitemap.listener" } ]
 # Twig
     twig.extension.text:
