@@ -10,10 +10,21 @@
         {% endif %}
                 {% set col = 'col-xs-' ~ item.bootstrapColumns %}
                 <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
-                    <div class="ad">
-                        {% if item.imageName %}
-                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('1200x500') }}" alt="{{ item.title }} thumbnail">
-                        {% endif %}
+                    <a href="{{ path('app_content', { slug: item.slug}) }}">
+                        <div class="ad carousel slide">
+                            <div class="my carousel-inner">
+                                <div class="item active">
+                                    {% if item.imageName %}
+                                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('1200x500') }}" alt="{{ item.title }} thumbnail">
+                                    {% endif %}
+                                    <div class="my carousel-caption">
+                                        {{ item.title }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div>
                         <h3 class="title"><a href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
                         <h5>{{ item.categories | join(', ') }}</h5>
                         <h5 class="no-gap-bottom">{{ item.year }}</h5>
