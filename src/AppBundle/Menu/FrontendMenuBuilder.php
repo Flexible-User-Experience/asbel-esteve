@@ -170,7 +170,7 @@ class FrontendMenuBuilder
             ->addChild(
                 'IMDb',
                 array(
-                    'label' => 'IMDb',
+                    'label' => 'imdb',
                     'uri'   => 'http://www.imdb.com/name/nm5088382/',
                 )
             );

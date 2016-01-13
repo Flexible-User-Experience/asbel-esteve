@@ -25,7 +25,9 @@
                     {% for image in content.images if image.imageName %}
                         <div class="row gap-bottom">
                             <div class="col-xs-12">
-                                <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700xY') }}" alt="thumbnail {{ loop.index }}">
+                                <a class="lightbox" href="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('1200xY') }}">
+                                    <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700xY') }}" alt="thumbnail {{ loop.index }}">
+                                </a>
                             </div>
                         </div>
                     {% endfor %}
