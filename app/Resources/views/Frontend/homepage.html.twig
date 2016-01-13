@@ -9,7 +9,7 @@
             <div class="row-height">
         {% endif %}
                 {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-                <div class="{{ col }} col-height bottom-bordered my-padding">
+                <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
                     <div class="ad">
                         {% if item.imageName %}
                             <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('Xx250') }}" alt="{{ item.title }} thumbnail">
