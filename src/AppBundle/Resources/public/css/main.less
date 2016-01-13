@@ -33,7 +33,7 @@
 // Colors
 @link-color: @grey;
 @link-hover-color: @black;
-@link-hover-decoration: none;
+//@link-hover-decoration: none;
 .c-grey { color: @grey; }
 .c-black { color: @black; }
 
@@ -71,12 +71,29 @@ textarea { resize: vertical; }
       }
     }
     a, a:visited {
-      color: @black;
+      .c-black();
       font-weight: bold;
       &:hover {
-        color: @grey;
+        .c-grey();
+        text-decoration: line-through;
       }
     }
+  }
+}
+
+.ad {
+  .title {
+    a {
+      .c-black();
+      &:hover {
+        .c-grey();
+        text-decoration: line-through;
+      }
+    }
+  }
+  h5 {
+    .c-grey();
+    line-height: 0.75;
   }
 }
 
