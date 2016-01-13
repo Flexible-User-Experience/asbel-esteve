@@ -174,6 +174,18 @@ class FrontendMenuBuilder
                     'uri'   => 'http://www.imdb.com/name/nm5088382/',
                 )
             );
+        $menu
+            ->addChild(
+                'rss',
+                array(
+                    'label' => 'rss',
+                    'route' => 'PrestaSitemapBundle_section',
+                    'routeParameters' => array(
+                        'name' => 'default',
+                        '_format' => 'xml',
+                    ),
+                )
+            );
 
         return $menu;
     }
