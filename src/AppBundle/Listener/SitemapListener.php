@@ -2,12 +2,11 @@
 
 namespace AppBundle\Listener;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Film;
-use AppBundle\Menu\FrontendMenuBuilder;
+use AppBundle\Entity\Page;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
-use Knp\Menu\MenuItem;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Presta\SitemapBundle\Service\SitemapListenerInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -29,35 +28,29 @@ class SitemapListener implements SitemapListenerInterface
     /** @var EntityManager */
     private $em;
 
-    /** @var RequestStack */
-    private $rs;
+    /** @var ArrayCollection */
+    private $categories;
 
-    /** @var FrontendMenuBuilder */
-    private $fmb;
-
-    /** @var string */
-    private $baseRoute;
-
-    /** @var ArrayCollection  */
+    /** @var ArrayCollection */
     private $contentPages;
+
+    /** @var ArrayCollection */
+    private $staticPages;
 
     /**
      * SitemapListener constructor
      *
-     * @param RouterInterface     $router
-     * @param EntityManager       $em
-     * @param RequestStack        $rs
-     * @param FrontendMenuBuilder $fmb
+     * @param RouterInterface $router
+     * @param EntityManager   $em
      */
-    public function __construct(RouterInterface $router, EntityManager $em, RequestStack $rs, FrontendMenuBuilder $fmb)
+    public function __construct(RouterInterface $router, EntityManager $em)
     {
         $this->router = $router;
         $this->em = $em;
-        $this->rs = $rs;
-        $this->fmb = $fmb;
-        $this->contentPages = $this->em->getRepository('AppBundle:Film')->findAllEnabledSortedByPublishDateDescWithJoin();
-//        $this->baseRoute = $this->rs->getCurrentRequest()->getSchemeAndHttpHost();
-        $this->baseRoute = 'http://www.asbelesteve.com'; // TODO decouple this hardcoded route
+        $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
+        $this->contentPages = $this->em->getRepository('AppBundle:Film')->findAllEnabledSortedByPublishDateDescWithJoin(
+        );
+        $this->staticPages = $this->em->getRepository('AppBundle:Page')->findAllSortedByTitle();
     }
 
     /**
@@ -67,14 +60,31 @@ class SitemapListener implements SitemapListenerInterface
     {
         $section = $event->getSection();
         if (is_null($section) || $section == 'default') {
-            $menu = $this->fmb->createMainMenu($this->rs);
-            /** @var MenuItem $child */
-            foreach ($menu->getChildren() as $child) {
+            $event
+                ->getGenerator()
+                ->addUrl(
+                    new UrlConcrete(
+                        $this->router->generate('app_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL),
+                        new \DateTime(),
+                        UrlConcrete::CHANGEFREQ_HOURLY,
+                        1
+                    ),
+                    'default'
+                );
+            /** @var Category $category */
+            foreach ($this->categories as $category) {
+                $url = $this->router->generate(
+                    'app_category',
+                    array(
+                        'slug' => $category->getSlug(),
+                    ),
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                );
                 $event
                     ->getGenerator()
                     ->addUrl(
                         new UrlConcrete(
-                            $this->baseRoute . $child->getUri(),
+                            $url,
                             new \DateTime(),
                             UrlConcrete::CHANGEFREQ_HOURLY,
                             1
@@ -84,9 +94,34 @@ class SitemapListener implements SitemapListenerInterface
             }
             /** @var Film $contentPage */
             foreach ($this->contentPages as $contentPage) {
-                $url = $this->router->generate('app_content', array(
-                    'slug' => $contentPage->getSlug(),
-                ), UrlGeneratorInterface::ABSOLUTE_URL);
+                $url = $this->router->generate(
+                    'app_content',
+                    array(
+                        'slug' => $contentPage->getSlug(),
+                    ),
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                );
+                $event
+                    ->getGenerator()
+                    ->addUrl(
+                        new UrlConcrete(
+                            $url,
+                            new \DateTime(),
+                            UrlConcrete::CHANGEFREQ_HOURLY,
+                            1
+                        ),
+                        'default'
+                    );
+            }
+            /** @var Page $staticPage */
+            foreach ($this->staticPages as $staticPage) {
+                $url = $this->router->generate(
+                    'app_static_page',
+                    array(
+                        'slug' => $staticPage->getSlug(),
+                    ),
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                );
                 $event
                     ->getGenerator()
                     ->addUrl(
