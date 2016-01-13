@@ -2,12 +2,12 @@
     var BootstrapLightBox = function($element, options)
     {
         this.init($element, options)
-    }
+    };
 
     BootstrapLightBox.DEFAULTS = {
         gallery: true,
         caption: true
-    }
+    };
 
     BootstrapLightBox.prototype.getOptions = function ($element, options)
     {
@@ -17,7 +17,7 @@
             options.fontSet = this.getFontSet();
         }
         return options
-    }
+    };
 
     BootstrapLightBox.prototype.init = function($input, options)
     {
@@ -36,8 +36,8 @@
                     '<i class="fa fa-times fa-stack-1x fa-inverse" data-dismiss="modal" aria-hidden="true"></i>'+
                     '</span>'+
                     '</div>'
-                var backwardButton = '<i class="fa fa-chevron-left"></i>';
-                var forwardButton = '<i class="fa fa-chevron-right"></i>';
+                var backwardButton = '<i class="fa fa-angle-left"></i>';
+                var forwardButton = '<i class="fa fa-angle-right"></i>';
             } else {
                 var closeButton = '<div id="bootstrap-media-lightbox-close">'+
                     '<i class="glyphicon glyphicon-remove-circle" data-dismiss="modal" aria-hidden="true"></i>'+
@@ -69,7 +69,7 @@
                 $('#bootstrap-media-lightbox').modal('show');
             });
         });
-    }
+    };
 
     BootstrapLightBox.prototype.updatePictureInLightbox = function($a, $input, index)
     {
@@ -121,7 +121,7 @@
             $('#bootstrap-media-lightbox-iframe').attr("src", "");
         });
 
-    }
+    };
 
     BootstrapLightBox.prototype.addImage = function(target)
     {
@@ -150,7 +150,7 @@
             t.setMargins($contentContainer);
         };
         preloader.src = target;
-    }
+    };
 
     BootstrapLightBox.prototype.addIframe = function(target)
     {
@@ -170,7 +170,7 @@
         var content = '<iframe id="bootstrap-media-lightbox-iframe" style="background-color: white" width="'+this.contentWidth+'" height="'+this.contentHeight+'" src="'+target+'" frameborder="0" allowfullscreen></iframe>';
         this.setMargins($contentContainer);
         $contentContainer.html(content);
-    }
+    };
 
 
     BootstrapLightBox.prototype.addYoutubeVideo = function(target)
@@ -194,7 +194,7 @@
         $contentContainer.html(content);
 
         this.setMargins($contentContainer);
-    }
+    };
 
     BootstrapLightBox.prototype.addVimeoVideo = function(target)
     {
@@ -217,7 +217,7 @@
         $contentContainer.html(content);
 
         this.setMargins($contentContainer);
-    }
+    };
 
     BootstrapLightBox.prototype.addCaption = function($a)
     {
@@ -232,7 +232,7 @@
             this.caption = false;
             $('#bootstrap-media-lightbox-caption-container').hide();
         }
-    }
+    };
 
     BootstrapLightBox.prototype.getFontSet = function()
     {
@@ -241,8 +241,8 @@
             return "fa"
         }
 
-        return "glyphicon";
-    }
+        return "fa";
+    };
 
     BootstrapLightBox.prototype.validateSize = function(target)
     {
@@ -261,7 +261,7 @@
             this.contentHeight = windowHeight - offsetHeight;
             this.contentWidth = this.contentWidth * this.contentHeight / oldHeight;
         }
-    }
+    };
 
     BootstrapLightBox.prototype.setMargins = function($element)
     {

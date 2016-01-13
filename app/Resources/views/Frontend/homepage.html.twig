@@ -12,7 +12,7 @@
                 <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
                     <div class="ad">
                         {% if item.imageName %}
-                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('700x400') }}" alt="{{ item.title }} thumbnail">
+                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('1200x500') }}" alt="{{ item.title }} thumbnail">
                         {% endif %}
                         <h3 class="title"><a href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
                         <h5>{{ item.categories | join(', ') }}</h5>
