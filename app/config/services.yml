@@ -65,6 +65,11 @@ services:
     app.notification:
         class: AppBundle\Service\NotificationService
         arguments: [ "@app.courier", "@twig", "%mailer_destination%" ]
+# Sitemap
+    app.sitemap:
+        class: AppBundle\Listener\SitemapListener
+        arguments: [ "@request_stack", "@app.frontend_menu_builder" ]
+        tags: [ { name: "presta.sitemap.listener" } ]
 # Twig
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
