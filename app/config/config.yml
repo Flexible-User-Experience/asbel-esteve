@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v0.0.28"
+        admin_tag_version:        "v0.0.29"
 
 # Assetic Configuration
 assetic:
@@ -96,11 +96,6 @@ ivory_ck_editor:
         my_config:
             toolbar: standard
 
-# KNP Menu
-knp_menu:
-    twig:
-        template: "::Menus/frontend_menu_template.html.twig"
-
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
     default_locale:       "%locale%"
@@ -124,10 +119,18 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [ 1200, null ], mode: outbound }
+        1200x500:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 1200, 500 ], mode: outbound }
         700x200:
             quality: 80
             filters:
                 thumbnail: { size: [ 700, 200 ], mode: outbound }
+        700x400:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 700, 400 ], mode: inbound }
         700xY:
             quality: 80
             filters:

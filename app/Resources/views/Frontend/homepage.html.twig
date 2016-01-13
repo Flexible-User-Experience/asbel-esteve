@@ -12,17 +12,17 @@
                 <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
                     <div class="ad">
                         {% if item.imageName %}
-                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('Xx250') }}" alt="{{ item.title }} thumbnail">
+                            <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('1200x500') }}" alt="{{ item.title }} thumbnail">
                         {% endif %}
-                        <h3><a class="c-black" href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
-                        <h5 class="c-grey">{{ item.categories | join(', ') }}</h5>
-                        <h5 class="c-grey no-gap-bottom">{{ item.year }}</h5>
+                        <h3 class="title"><a href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
+                        <h5>{{ item.categories | join(', ') }}</h5>
+                        <h5 class="no-gap-bottom">{{ item.year }}</h5>
                     </div>
                 </div>
         {% set colsCounter = colsCounter + item.bootstrapColumns %}
         {% if colsCounter >= 12 %}
             {% set colsCounter = 0 %}
-            </div>
+                </div>
             </div>
         {% endif %}
     {% endfor %}

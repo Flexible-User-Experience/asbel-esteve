@@ -4,10 +4,10 @@
 @import "bootstrap-media-lightbox.less";
 
 // Variables
-@white:   #FFFFFF;
-@black:   #222222;
-@grey:    #9FA1A1;
-@lgrey:   #F0F1F2;
+@white: #FFFFFF;
+@black: #222222;
+@grey: #9FA1A1;
+@lgrey: #F0F1F2;
 
 // Gaps
 @big-gap: @gap * 2;
@@ -19,23 +19,28 @@
 @fa-font-path: "/bundles/app/fonts";
 @font-face {
   font-family: 'american';
-  src:url('@{fa-font-path}/AmericanTypewriter.eot');
-  src:url('@{fa-font-path}/AmericanTypewriter.eot?#iefix') format('embedded-opentype'),
+  src: url('@{fa-font-path}/AmericanTypewriter.eot');
+  src: url('@{fa-font-path}/AmericanTypewriter.eot?#iefix') format('embedded-opentype'),
   url('@{fa-font-path}/AmericanTypewriter.ttf') format('truetype'),
   url('@{fa-font-path}/AmericanTypewriter.woff') format('woff'),
   url('@{fa-font-path}/AmericanTypewriter.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-family-sans-serif: "american", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @text-color: @black;
 
 // Colors
 @link-color: @grey;
 @link-hover-color: @black;
-@link-hover-decoration: none;
-.c-grey { color: @grey; }
-.c-black { color: @black; }
+.c-grey {
+  color: @grey;
+}
+
+.c-black {
+  color: @black;
+}
 
 // Nodes
 body {
@@ -43,7 +48,24 @@ body {
   position: relative;
 }
 
-textarea { resize: vertical; }
+textarea {
+  resize: vertical;
+}
+
+a, a:-webkit-any-link, a:-moz-any-link {
+  .c-grey();
+  text-decoration: none;
+  &:visited, &:hover {
+    text-decoration: line-through;
+  }
+  &:visited {
+    .c-black();
+  }
+}
+
+a:-webkit-any-link:visited, a:-moz-any-link:visited {
+  text-decoration: line-through;
+}
 
 // My customs
 .my-body {
@@ -52,7 +74,9 @@ textarea { resize: vertical; }
 
 .right-bordered {
   border-right: solid 1px @grey;
-  &:last-child { border-right: none; }
+  &:last-child {
+    border-right: none;
+  }
 }
 
 .top-bordered {
@@ -68,23 +92,55 @@ textarea { resize: vertical; }
     &.current {
       a, a:visited {
         .c-grey();
+        text-decoration: line-through;
       }
     }
     a, a:visited {
-      color: @black;
+      .c-black();
       font-weight: bold;
       &:hover {
-        color: @grey;
+        .c-grey();
+        text-decoration: line-through;
       }
     }
   }
 }
 
-.my-padding { padding: @small-gap; }
-.contact-form-padding { padding: @small-gap 7%; }
-.gap-bottom { margin-bottom: @small-gap; }
-.no-gap-top { margin-top: 0; }
-.no-gap-bottom { margin-bottom: 0; }
+.ad {
+  .title {
+    a {
+      .c-black();
+      &:hover {
+        .c-grey();
+        text-decoration: line-through;
+      }
+    }
+  }
+  h5 {
+    .c-grey();
+    line-height: 0.75;
+  }
+}
+
+.my-padding {
+  padding: @small-gap;
+}
+
+.contact-form-padding {
+  padding: @small-gap 7%;
+}
+
+.gap-bottom {
+  margin-bottom: @small-gap;
+}
+
+.no-gap-top {
+  margin-top: 0;
+}
+
+.no-gap-bottom {
+  margin-bottom: 0;
+}
 
 // Equal columns height hack
 // http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height
@@ -101,6 +157,15 @@ textarea { resize: vertical; }
   height: 100%;
 }
 
-.col-top    { vertical-align: top; }
-.col-middle { vertical-align: middle; }
-.col-bottom { vertical-align: bottom; }
+.col-top {
+  vertical-align: top;
+}
+
+.col-middle {
+  vertical-align: middle;
+}
+
+.col-bottom {
+  vertical-align: bottom;
+}
+
