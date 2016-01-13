@@ -49,7 +49,7 @@ body {
 }
 
 textarea {
-  resize: vertical;
+  .resizable(vertical);
 }
 
 a, a:-webkit-any-link, a:-moz-any-link {
@@ -140,6 +140,28 @@ a:-webkit-any-link:visited, a:-moz-any-link:visited {
 
 .no-gap-bottom {
   margin-bottom: 0;
+}
+
+.my.carousel-inner {
+  .opacity(1);
+  .transition(.3s);
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  &:hover {
+    .opacity(0.35);
+    .my.carousel-caption {
+      display: inline-block;
+    }
+  }
+}
+
+.my.carousel-caption {
+  display: none;
+  top: 50%;
+  text-shadow: none;
+  font-size: @font-size-h1;
+  padding: 0;
 }
 
 // Equal columns height hack
