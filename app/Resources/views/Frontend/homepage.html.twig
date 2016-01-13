@@ -11,7 +11,7 @@
                 {% set col = 'col-xs-' ~ item.bootstrapColumns %}
                 <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
                     <a href="{{ path('app_content', { slug: item.slug}) }}">
-                        <div class="ad carousel slide">
+                        <div class="carousel slide">
                             <div class="my carousel-inner">
                                 <div class="item active">
                                     {% if item.imageName %}
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </a>
-                    <div>
+                    <div class="ad">
                         <h3 class="title"><a href="{{ path('app_content', { slug: item.slug}) }}">{{ item.title }}</a></h3>
                         <h5>{{ item.categories | join(', ') }}</h5>
                         <h5 class="no-gap-bottom">{{ item.year }}</h5>
