@@ -20,9 +20,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class WebController extends Controller
 {
-    const ROUTE_HOMEPAGE = 'app_homepage';
-    const ROUTE_CATEGORY = 'app_category';
-    const ROUTE_CONTENT = 'app_content';
+    const ROUTE_HOMEPAGE    = 'app_homepage';
+    const ROUTE_CATEGORY    = 'app_category';
+    const ROUTE_CONTENT     = 'app_content';
     const ROUTE_STATIC_PAGE = 'app_static_page';
 
     /**
