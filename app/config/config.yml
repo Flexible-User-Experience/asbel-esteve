@@ -96,11 +96,6 @@ ivory_ck_editor:
         my_config:
             toolbar: standard
 
-# KNP Menu
-knp_menu:
-    twig:
-        template: "::Menus/frontend_menu_template.html.twig"
-
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
     default_locale:       "%locale%"
