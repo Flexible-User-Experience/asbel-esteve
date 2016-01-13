@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7373088a8355d259fce678a98bc46461",
-    "content-hash": "79aa84289adbef00942c0fdb94a55eeb",
+    "hash": "2d9279fa7461ebc2c848acb347a0cddd",
+    "content-hash": "7d8ab1c0c7ef45266010c21ba0275165",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -46,6 +46,22 @@
                 "transliterator"
             ],
             "time": "2015-09-28 16:26:35"
+        },
+        {
+            "name": "bower-asset/bootstrap-lightbox",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jbutz/bootstrap-lightbox.git",
+                "reference": "8660943c064cb15ced7903156901bc09d6ad73cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jbutz/bootstrap-lightbox/zipball/8660943c064cb15ced7903156901bc09d6ad73cd",
+                "reference": "8660943c064cb15ced7903156901bc09d6ad73cd",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "cocur/slugify",
@@ -2853,7 +2869,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/03d3ee058cc94670aa3da8817c5ad29b315f6f45",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/9d1813ec5f4efae050da2f986ad23e44e1a41657",
                 "reference": "03d3ee058cc94670aa3da8817c5ad29b315f6f45",
                 "shasum": ""
             },

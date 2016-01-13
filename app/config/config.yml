@@ -52,11 +52,11 @@ assetic:
         mycss:
             inputs:
                 - "@AppBundle/Resources/public/css/main.less"
-#                - "@AppBundle/Resources/public/css/icomoon.less"
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
                 - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
+                - "@AppBundle/Resources/public/js/bootstrap-media-lightbox.js"
 
 # Doctrine Configurations
 doctrine:
