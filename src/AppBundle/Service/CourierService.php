@@ -2,6 +2,8 @@
 
 namespace AppBundle\Service;
 
+use \Swift_Message;
+
 /**
  * Class CourierService
  *
@@ -34,7 +36,8 @@ class CourierService
      */
     public function sendEmail($from, $to, $subject, $body)
     {
-        $message = \Swift_Message::newInstance()
+        $message = new \Swift_Message();
+        $message
             ->setSubject($subject)
             ->setFrom($from)
             ->setTo($to)
