@@ -2239,16 +2239,16 @@
         },
         {
             "name": "liip/imagine-bundle",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388"
+                "reference": "22d625e92337c1c25338922dc08706182be9b02f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/19eda155dd4dd71fa1428efcdebecbb9142b0388",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/22d625e92337c1c25338922dc08706182be9b02f",
+                "reference": "22d625e92337c1c25338922dc08706182be9b02f",
                 "shasum": ""
             },
             "require": {
@@ -2278,6 +2278,7 @@
             "suggest": {
                 "amazonwebservices/aws-sdk-for-php": "Add it if you'd like to use aws v1 resolver",
                 "aws/aws-sdk-php": "Add it if you'd like to use aws v2 or v3 resolver",
+                "league/flysystem": "If you'd want to use Flysystem binary loader",
                 "monolog/monolog": "If you'd want to write logs",
                 "twig/twig": "If you'd want to use some handy twig filters, version 1.12 or greater required"
             },
@@ -2308,7 +2309,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2015-12-29 09:47:49"
+            "time": "2016-01-14 07:16:25"
         },
         {
             "name": "monolog/monolog",
