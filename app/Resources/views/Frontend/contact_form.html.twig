@@ -1,2 +1,13 @@
+{% if flash is not null %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <i class="fa fa-paper-plane-o"></i> {{ flash | trans }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 <h4 class="no-gap-top">{{ 'frontend.form.title' | trans }}</h4>
 {{ form(form) }}

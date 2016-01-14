@@ -114,6 +114,7 @@ class WebController extends Controller
      */
     public function contactFormAction(Request $request)
     {
+        $flash = null;
         /** @var ContactMessage $contact */
         $contact = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contact);
@@ -130,9 +131,9 @@ class WebController extends Controller
             $contact = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contact);
             // Build flash message
-            $this->addFlash('notice', 'frontend.form.flash.user');
+            $flash = 'frontend.form.flash.user';
         }
 
-        return $this->render('Frontend/contact_form.html.twig', ['form' => $form->createView()]);
+        return $this->render('Frontend/contact_form.html.twig', ['form' => $form->createView(), 'flash' => $flash]);
     }
 }
