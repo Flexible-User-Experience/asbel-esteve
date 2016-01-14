@@ -74,6 +74,14 @@
             {% javascripts '@myjs' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    var node = jQuery(".has-error");
+                    if (node.length > 0) {
+                        jQuery('html,body').animate({scrollTop: node.offset().top - 100}, "slow");
+                    }
+                });
+            </script>
         {% endblock %}
         {% block google_analytics %}
             {% if google_analytics_enabled %}
