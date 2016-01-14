@@ -6,17 +6,17 @@
 // Variables
 @white: #FFFFFF;
 @black: #222222;
-@grey: #9FA1A1;
+@grey:  #9FA1A1;
 @lgrey: #F0F1F2;
 
 // Gaps
-@big-gap: @gap * 2;
 @gap: 40px;
+@big-gap: @gap * 2;
 @small-gap: @gap / 2;
 
 // Fonts
 @icon-font-path: "/bundles/app/fonts/";
-@fa-font-path: "/bundles/app/fonts";
+@fa-font-path:   "/bundles/app/fonts";
 @font-face {
   font-family: 'american';
   src: url('@{fa-font-path}/AmericanTypewriter.eot');
@@ -27,13 +27,13 @@
   font-weight: normal;
   font-style: normal;
 }
-
 @font-family-sans-serif: "american", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@text-color: @black;
 
 // Colors
+@text-color: @black;
 @link-color: @grey;
 @link-hover-color: @black;
+
 .c-grey {
   color: @grey;
 }
@@ -106,22 +106,6 @@ a:-webkit-any-link:visited, a:-moz-any-link:visited {
   }
 }
 
-.ad {
-  .title {
-    a {
-      .c-black();
-      &:hover {
-        .c-grey();
-        text-decoration: line-through;
-      }
-    }
-  }
-  h5 {
-    .c-grey();
-    line-height: 0.75;
-  }
-}
-
 .my-padding {
   padding: @small-gap;
 }
@@ -142,26 +126,42 @@ a:-webkit-any-link:visited, a:-moz-any-link:visited {
   margin-bottom: 0;
 }
 
-.my.carousel-inner {
-  .opacity(1);
-  .transition(.3s);
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+.ad-box {
+  display: inline-block;
+  text-decoration: none;
   &:hover {
-    .opacity(0.35);
-    .my.carousel-caption {
-      display: inline-block;
+    text-decoration: none;
+    .my.carousel-inner {
+      .opacity(0.35);
+      .my.carousel-caption {
+        display: inline-block;
+      }
     }
   }
-}
-
-.my.carousel-caption {
-  display: none;
-  top: 50%;
-  text-shadow: none;
-  font-size: @font-size-h1;
-  padding: 0;
+  .my.carousel-inner {
+    .opacity(1);
+    .transition(.3s);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .my.carousel-caption {
+    display: none;
+    top: 50%;
+    text-shadow: none;
+    font-size: @font-size-h1;
+    padding: 0;
+  }
+  .ad {
+    .title {
+      .c-black();
+      text-decoration: none;
+    }
+    h5 {
+      .c-grey();
+      line-height: 0.75;
+    }
+  }
 }
 
 // Equal columns height hack
