@@ -32,6 +32,20 @@
                 </div>
             </div>
         {% endblock %}
+        {% if app.session.flashbag.has('notice') %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 my-padding">
+                        {% for flash_message in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="fa fa-paper-plane-o"></i> {{ flash_message | trans }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         <div class="my-body {% block body_class %}container-fluid{% endblock %}">
             {% block body %}{% endblock %}
         </div>
@@ -60,6 +74,14 @@
             {% javascripts '@myjs' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    var node = jQuery(".has-error");
+                    if (node.length > 0) {
+                        jQuery('html,body').animate({scrollTop: node.offset().top - 100}, "slow");
+                    }
+                });
+            </script>
         {% endblock %}
         {% block google_analytics %}
             {% if google_analytics_enabled %}
