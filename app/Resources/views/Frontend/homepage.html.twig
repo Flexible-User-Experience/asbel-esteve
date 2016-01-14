@@ -9,9 +9,8 @@
             <div class="row-height">
         {% endif %}
                 {% set col = 'col-xs-' ~ item.bootstrapColumns %}
-                <div class="{{ col }} col-height right-bordered my-padding{% if not loop.last %} bottom-bordered{% endif %}">
-                    <a class="ad-box" href="{{ path('app_content', { slug: item.slug}) }}">
-
+                <div class="ad-col {{ col }} col-height right-bordered {% if not loop.last %} bottom-bordered{% endif %}">
+                    <a class="ad-box my-padding" href="{{ path('app_content', { slug: item.slug}) }}">
                         <div class="carousel slide">
                             <div class="my carousel-inner">
                                 <div class="item active">
