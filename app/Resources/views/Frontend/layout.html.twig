@@ -39,7 +39,7 @@
                         {% for flash_message in app.session.flashbag.get('notice') %}
                             <div class="alert alert-success" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <i class="fa fa-paper-plane-o"></i> {{ flash_message | trans }}
+                                {{ flash_message | trans }}
                             </div>
                         {% endfor %}
                     </div>
@@ -76,9 +76,13 @@
             {% endjavascripts %}
             <script type="text/javascript">
                 jQuery(document).ready(function() {
-                    var node = jQuery(".has-error");
-                    if (node.length > 0) {
-                        jQuery('html,body').animate({scrollTop: node.offset().top - 100}, "slow");
+                    var errorNode = jQuery(".has-error");
+                    var envelopeNode = jQuery(".fa-paper-plane-o");
+                    if (errorNode.length > 0) {
+                        jQuery('html,body').animate({scrollTop: errorNode.offset().top - 100}, "slow");
+                    }
+                    if (envelopeNode.length > 0) {
+                        jQuery('html,body').animate({scrollTop: envelopeNode.offset().top - 100}, "slow");
                     }
                 });
             </script>
