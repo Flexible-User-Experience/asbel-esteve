@@ -72,6 +72,13 @@ class FilmAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'isPortraitImage',
+                null,
+                array(
+                    'help' => 'use it when you need to fill less than 4 homepage columns',
+                )
+            )
+            ->add(
                 'publishedAt',
                 'sonata_type_date_picker',
                 array(
