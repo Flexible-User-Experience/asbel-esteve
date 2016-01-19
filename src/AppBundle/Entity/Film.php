@@ -111,15 +111,15 @@ class Film extends AbstractBase
     }
 
     /**
-     * Set PublishedAt
+     * Set IsPortraitImage
      *
-     * @param \DateTime $publishedAt
+     * @param boolean $isPortraitImage
      *
      * @return Film
      */
-    public function setPublishedAt($publishedAt)
+    public function setIsPortraitImage($isPortraitImage)
     {
-        $this->publishedAt = $publishedAt;
+        $this->isPortraitImage = $isPortraitImage;
 
         return $this;
     }

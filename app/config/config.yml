@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v1.0.01"
+        admin_tag_version:        "v1.0.02"
 
 # Assetic Configuration
 assetic:
@@ -117,6 +117,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [ 2000, 550 ], mode: outbound }
+        2100xY:
+            quality: 75
+            filters:
+                thumbnail: { size: [ 2100, null ], mode: outbound }
         1200xY:
             quality: 75
             filters:
@@ -145,6 +149,10 @@ liip_imagine:
             quality: 80
             filters:
                 thumbnail: { size: [ null, 250 ], mode: outbound }
+        Xx550:
+            quality: 80
+            filters:
+                thumbnail: { size: [ null, 550 ], mode: outbound }
         256xY:
             quality: 80
             filters:

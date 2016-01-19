@@ -1,5 +1,7 @@
 {% extends ':Frontend:layout.html.twig' %}
 
+{% block body_class %}container{% endblock %}
+
 {% block body %}
     {% block body_head_title %}{% endblock %}
     {% set colsCounter = 0 %}
@@ -15,7 +17,7 @@
                             <div class="my carousel-inner">
                                 <div class="item active">
                                     {% if item.imageName %}
-                                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('2000x550') }}" alt="{{ item.title }} thumbnail">
+                                        <img class="img-responsive" src="{{ vich_uploader_asset(item, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ item.title }} thumbnail">
                                     {% endif %}
                                     <div class="my carousel-caption">
                                         {{ item.title }}
@@ -25,7 +27,7 @@
                         </div>
                         <div class="ad">
                             <h3 class="title">{{ item.title }}</h3>
-                            <h5>{{ item.categories | join(', ') }}</h5>
+                            {% block category_title %}<h5>{{ item.categories | join(', ') }}</h5>{% endblock %}
                             <h5 class="no-gap-bottom">{{ item.year }}</h5>
                         </div>
                     </a>
