@@ -1,5 +1,25 @@
 {% extends ':Frontend:layout.html.twig' %}
 
+{% block meta_keywords %}
+    {% spaceless %}
+        {% if page.metaKeywords is not null %}
+            {{ page.metaKeywords }}
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block meta_description %}
+    {% spaceless %}
+        {% if page.metaDescription is not null %}
+            {{ page.metaDescription }}
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
 {% block title %}{{ page.title }} · {{ parent() }}{% endblock %}
 
 {% block body_class %}container{% endblock %}

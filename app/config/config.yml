@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v0.0.34"
+        admin_tag_version:        "v0.0.35"
 
 # Assetic Configuration
 assetic:
@@ -243,6 +243,14 @@ sonata_doctrine_orm_admin:
     templates:
         form:
             - "::Admin/Forms/custom_checkbox_form_template_hack.html.twig"
+
+sonata_seo:
+    encoding: UTF-8
+    page:
+        default:  sonata.seo.page.default
+        head:
+            'xmlns':    "http://www.w3.org/1999/xhtml"
+            'xmlns:og': "http://opengraphprotocol.org/schema/"
 
 sonata_user:
     security_acl: true
