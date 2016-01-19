@@ -2850,12 +2850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "9d1813ec5f4efae050da2f986ad23e44e1a41657"
+                "reference": "82c66a0a72aca72618bbdb9f34ea0e2a3acb3d13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/9d1813ec5f4efae050da2f986ad23e44e1a41657",
-                "reference": "9d1813ec5f4efae050da2f986ad23e44e1a41657",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/82c66a0a72aca72618bbdb9f34ea0e2a3acb3d13",
+                "reference": "82c66a0a72aca72618bbdb9f34ea0e2a3acb3d13",
                 "shasum": ""
             },
             "require": {
@@ -2928,7 +2928,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2016-01-13 11:21:29"
+            "time": "2016-01-18 14:42:17"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3488,12 +3488,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "8d8268f7ac4b13d06bbdd29f859aad90e463a0fa"
+                "reference": "82c2a1d99d93a575fc6919ef762e85ea89502973"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/8d8268f7ac4b13d06bbdd29f859aad90e463a0fa",
-                "reference": "8d8268f7ac4b13d06bbdd29f859aad90e463a0fa",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/82c2a1d99d93a575fc6919ef762e85ea89502973",
+                "reference": "82c2a1d99d93a575fc6919ef762e85ea89502973",
                 "shasum": ""
             },
             "require": {
@@ -3558,7 +3558,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2016-01-11 07:43:30"
+            "time": "2016-01-18 08:03:48"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -4261,16 +4261,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.3.10",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "de5a2ddcaf91d2e44c19161e0fe8ed88022ceb51"
+                "reference": "5e1a90f28213231ceee19c953bbebc5b5b95c690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/de5a2ddcaf91d2e44c19161e0fe8ed88022ceb51",
-                "reference": "de5a2ddcaf91d2e44c19161e0fe8ed88022ceb51",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/5e1a90f28213231ceee19c953bbebc5b5b95c690",
+                "reference": "5e1a90f28213231ceee19c953bbebc5b5b95c690",
                 "shasum": ""
             },
             "require": {
@@ -4314,7 +4314,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2016-01-14 10:25:38"
+            "time": "2016-01-15 16:41:20"
         },
         {
             "name": "symfony/symfony",
