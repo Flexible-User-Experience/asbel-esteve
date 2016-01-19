@@ -27,7 +27,7 @@
 {% block body %}
     <div class="row">
         <div class="row-height">
-            <div class="my-padding col-height {% if content.images | length == 0 %}col-sm-12{% else %}col-sm-8 right-bordered{% endif %}">
+            <div class="my-padding col-xs-12 {% if content.images | length == 0 %}col-sm-8{% else %}right-bordered col-height{% endif %}">
                 {% if content.vimeoId > 1 %}
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ content.vimeoId }}?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
