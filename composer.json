@@ -35,6 +35,7 @@
         "sonata-project/admin-bundle": "2.4.x-dev",
         "sonata-project/datagrid-bundle": "2.2.x-dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.4.x-dev",
+        "sonata-project/seo-bundle": "2.0.x-dev",
         "sonata-project/user-bundle": "2.3.x-dev",
         "stof/doctrine-extensions-bundle": "^1.2",
         "symfony/assetic-bundle": "^2.7",
