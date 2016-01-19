@@ -48,6 +48,13 @@ class Film extends AbstractBase
     private $imageFile;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPortraitImage = false;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -108,6 +115,30 @@ class Film extends AbstractBase
     {
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
+    }
+
+    /**
+     * Set IsPortraitImage
+     *
+     * @param boolean $isPortraitImage
+     *
+     * @return Film
+     */
+    public function setIsPortraitImage($isPortraitImage)
+    {
+        $this->isPortraitImage = $isPortraitImage;
+
+        return $this;
+    }
+
+    /**
+     * Get IsPortraitImage
+     *
+     * @return boolean
+     */
+    public function getIsPortraitImage()
+    {
+        return $this->isPortraitImage;
     }
 
     /**
