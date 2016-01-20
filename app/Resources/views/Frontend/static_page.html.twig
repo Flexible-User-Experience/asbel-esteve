@@ -20,7 +20,7 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block title %}{{ page.title }} · {{ parent() }}{% endblock %}
+{% block title %}{{ page.title | capitalize }} · {{ parent() }}{% endblock %}
 
 {% block body_class %}container{% endblock %}
 
