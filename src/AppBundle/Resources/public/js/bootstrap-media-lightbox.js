@@ -1,4 +1,13 @@
 (function($) {
+
+    $(window).bind('keydown', function(e){
+        if (e.keyCode == 37) {
+            console.log('left');
+        } else if (e.keyCode == 39) {
+            console.log('right');
+        }
+    });
+
     var BootstrapLightBox = function($element, options)
     {
         this.init($element, options)
@@ -271,7 +280,7 @@
         
         $element.css({"margin-top": (windowHeight - offsetHeight - this.contentHeight)/2});
         $element.css({"margin-left": (windowWidth - this.contentWidth)/2});
-    }
+    };
 
     $.fn.lightbox = function(options)
     {
