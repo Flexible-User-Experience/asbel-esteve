@@ -91,7 +91,7 @@
 
         // add content to the lightbox
         var target = $a.attr('href');
-        var supportedImageFormats = [ "png", "jpg", "jpeg", "bmp" ]
+        var supportedImageFormats = [ "png", "jpg", "jpeg", "bmp" ];
         var extension =  target.split('.').pop().toLowerCase();
         if ($a.data('target') !== undefined) {
 
@@ -108,7 +108,7 @@
 
         this.addCaption($a);
 
-        $( "#bootstrap-media-lightbox-forward").unbind( "click" );
+        $("#bootstrap-media-lightbox-forward").unbind( "click" );
         $('#bootstrap-media-lightbox-forward').click(function() {
             t.updatePictureInLightbox($input.eq(index+1), $input, index+1)
         });
