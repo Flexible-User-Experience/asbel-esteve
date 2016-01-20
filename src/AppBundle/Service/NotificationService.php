@@ -46,7 +46,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $contactMessage->getEmail(),
             $this->amd,
-            'www.asbelesteve.com contact form recieved',
+            'www.asbelesteve.com contact form received',
             $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
@@ -63,7 +63,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
-            'www.asbelesteve.com question recieved',
+            'www.asbelesteve.com question received',
             $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
