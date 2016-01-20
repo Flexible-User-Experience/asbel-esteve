@@ -40,3 +40,10 @@
         {% endif %}
     {% endfor %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@lightjs' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
