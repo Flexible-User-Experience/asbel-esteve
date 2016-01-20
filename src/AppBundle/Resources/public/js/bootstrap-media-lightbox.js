@@ -1,13 +1,5 @@
 (function($) {
 
-    $(window).bind('keydown', function(e){
-        if (e.keyCode == 37) {
-            console.log('left');
-        } else if (e.keyCode == 39) {
-            console.log('right');
-        }
-    });
-
     var BootstrapLightBox = function($element, options)
     {
         this.init($element, options)
@@ -20,11 +12,12 @@
 
     BootstrapLightBox.prototype.getOptions = function ($element, options)
     {
-        options = $.extend({}, BootstrapLightBox.DEFAULTS, $element.data(), options)
+        options = $.extend({}, BootstrapLightBox.DEFAULTS, $element.data(), options);
 
         if (options.fontSet === undefined) {
             options.fontSet = this.getFontSet();
         }
+
         return options
     };
 
@@ -44,7 +37,7 @@
                     '<i class="fa fa-square fa-stack-2x"></i>'+
                     '<i class="fa fa-times fa-stack-1x fa-inverse" data-dismiss="modal" aria-hidden="true"></i>'+
                     '</span>'+
-                    '</div>'
+                    '</div>';
                 var backwardButton = '<i class="fa fa-angle-left"></i>';
                 var forwardButton = '<i class="fa fa-angle-right"></i>';
             } else {

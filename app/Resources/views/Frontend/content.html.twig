@@ -25,34 +25,32 @@
 {% block body_class %}container{% endblock %}
 
 {% block body %}
-    {#<div class="row">#}
-        <div class="row-sm-height">
-            <div class="my-padding col-sm-top col-sm-height col-xs-12 {% if content.images | length == 0 %}{% else %}col-sm-8 right-bordered{% endif %}">
-                {% if content.vimeoId > 1 %}
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ content.vimeoId }}?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>
-                {% elseif content.imageName %}
-                    <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ content.title }} thumbnail">
-                {% endif %}
-                <h2>{{ content.title }}</h2>
-                <h4 class="c-grey">{{ content.categories | join(', ') }}</h4>
-                <h4 class="c-grey">{{ content.year }}</h4>
-                <p>{{ content.description | raw }}</p>
-            </div>
-            {% if content.images | length > 0 %}
-                <div class="my-padding col-sm-top col-sm-height col-sm-4">
-                    <div class="row">
-                        {% for image in content.images if image.imageName %}
-                            <div class="col-sm-12 col-xs-6 gap-bottom">
-                                <a class="lightbox" href="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('1200xY') }}">
-                                    <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700xY') }}" alt="thumbnail {{ loop.index }}">
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
+    <div class="row-sm-height">
+        <div class="my-padding col-sm-top col-sm-height col-xs-12 {% if content.images | length == 0 %}{% else %}col-sm-8 right-bordered{% endif %}">
+            {% if content.vimeoId > 1 %}
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ content.vimeoId }}?title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
+            {% elseif content.imageName %}
+                <img class="img-responsive" src="{{ vich_uploader_asset(content, 'imageFile') | imagine_filter('1200xY') }}" alt="{{ content.title }} thumbnail">
             {% endif %}
+            <h2>{{ content.title }}</h2>
+            <h4 class="c-grey">{{ content.categories | join(', ') }}</h4>
+            <h4 class="c-grey">{{ content.year }}</h4>
+            <p>{{ content.description | raw }}</p>
         </div>
-    {#</div>#}
+        {% if content.images | length > 0 %}
+            <div class="my-padding col-sm-top col-sm-height col-sm-4">
+                <div class="row">
+                    {% for image in content.images if image.imageName %}
+                        <div class="col-sm-12 col-xs-6 gap-bottom">
+                            <a class="lightbox" href="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('1200xY') }}">
+                                <img class="img-responsive" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('700xY') }}" alt="thumbnail {{ loop.index }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
