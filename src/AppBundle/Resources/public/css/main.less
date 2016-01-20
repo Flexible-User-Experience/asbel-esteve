@@ -79,6 +79,15 @@ a:-webkit-any-link:visited, a:-moz-any-link:visited {
   }
 }
 
+.right-bottom-bordered {
+  border-right: solid 1px @grey;
+  border-bottom: solid 1px @grey;
+  &:last-child {
+    border-right: none;
+    border-bottom: none;
+  }
+}
+
 .top-bordered {
   border-top: solid 1px @grey;
 }
