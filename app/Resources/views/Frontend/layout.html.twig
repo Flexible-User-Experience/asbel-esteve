@@ -13,6 +13,7 @@
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
             {% endstylesheets %}
         {% endblock %}
+        {% block extra_stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -90,6 +91,7 @@
                 });
             </script>
         {% endblock %}
+        {% block extra_javascripts %}{% endblock %}
         {% block google_analytics %}
             {% if google_analytics_enabled %}
                 <script type="text/javascript">
