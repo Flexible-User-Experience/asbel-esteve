@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v1.0.06"
+        admin_tag_version:        "v1.0.07"
 
 # Assetic Configuration
 assetic:
@@ -57,6 +57,7 @@ assetic:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
                 - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
                 - "@AppBundle/Resources/public/js/bootstrap-media-lightbox.js"
+#                - "@AppBundle/Resources/public/js/imagelightbox.js"
 
 # Doctrine Configurations
 doctrine:
