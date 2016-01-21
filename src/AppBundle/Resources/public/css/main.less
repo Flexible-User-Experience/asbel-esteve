@@ -166,7 +166,19 @@ a.lightbox {
 }
 
 .contact-form-padding {
-  padding: @small-gap 7%;
+  padding: @small-gap 3%;
+  @media(min-width: @screen-xs) {
+    padding: @small-gap 3%;
+  }
+  @media(min-width: @screen-sm) {
+    padding: @small-gap 5%;
+  }
+  @media(min-width: @screen-md) {
+    padding: @small-gap 7%;
+  }
+  @media(min-width: @screen-lg) {
+    padding: @small-gap 10%;
+  }
 }
 
 .gap-bottom {
