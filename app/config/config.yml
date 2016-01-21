@@ -56,8 +56,6 @@ assetic:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
                 - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
-#                - "@AppBundle/Resources/public/js/bootstrap-media-lightbox.js"
-#                - "@AppBundle/Resources/public/js/imagelightbox.js"
 
 # Doctrine Configurations
 doctrine:
