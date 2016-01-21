@@ -83,12 +83,18 @@ a.lightbox {
   }
 }
 
-.right-bottom-bordered {
-  border-right: solid 1px @grey;
-  border-bottom: solid 1px @grey;
-  &:last-child {
-    border-right: none;
-    border-bottom: none;
+.my-body {
+  .row-bordered {
+    border-right: solid 1px @grey;
+    border-bottom: solid 1px @grey;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  .row:last-child {
+    .row-bordered {
+      border-bottom: none;
+    }
   }
 }
 
