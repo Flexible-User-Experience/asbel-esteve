@@ -22,6 +22,8 @@
 
 {% block title %}{{ content.title }} · {{ parent() }}{% endblock %}
 
+{% block extra_stylesheets %}<link rel="stylesheet" href="{{ asset('bundles/app/css/baguetteBox.css') }}">{% endblock %}
+
 {% block body_class %}container{% endblock %}
 
 {% block body %}
@@ -41,7 +43,7 @@
         </div>
         {% if content.images | length > 0 %}
             <div class="my-padding col-sm-top col-sm-height col-sm-4">
-                <div class="row">
+                <div class="row baguette-box">
                     {% for image in content.images if image.imageName %}
                         <div class="col-sm-12 col-xs-6 gap-bottom">
                             <a class="lightbox" href="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('1200xY') }}">
@@ -55,11 +57,17 @@
     </div>
 {% endblock %}
 
-{#{% block javascripts %}#}
-    {#{{ parent() }}#}
-    {#<script type="text/javascript">#}
-        {#jQuery(document).ready(function($) {#}
-            {#$('.lightbox').imageLightbox();#}
-        {#});#}
-    {#</script>#}
-{#{% endblock %}#}
+{% block extra_javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/baguetteBox.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            baguetteBox.run('.baguette-box', {
+                captions: false,       // true|false|callback(element) - Display image captions
+                buttons: true,        // 'auto'|true|false - Display buttons
+                async: false,         // true|false - Load files asynchronously
+                preload: 2,           // [number] - How many files should be preloaded from current image
+                animation: 'fadeIn'   // 'slideIn'|'fadeIn'|false - Animation type
+            });
+        });
+    </script>
+{% endblock %}
