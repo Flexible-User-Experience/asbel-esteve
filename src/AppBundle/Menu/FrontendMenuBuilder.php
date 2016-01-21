@@ -150,6 +150,7 @@ class FrontendMenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'my-menu list-unstyled no-gap-bottom');
+        $menu->setChildrenAttribute('style', 'overflow:hidden');
         $menu
             ->addChild(
                 'facebook',
