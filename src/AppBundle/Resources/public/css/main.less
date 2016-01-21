@@ -71,6 +71,18 @@ a.lightbox {
   cursor: zoom-in;
 }
 
+// Contact form
+#contact_message_message, #contact_message_email {
+  border: none;
+  border-bottom: solid 1px @grey;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#contact_message_send {
+  border-radius: 0;
+}
+
 // My customs
 .my-body {
   min-height: 300px;
@@ -83,12 +95,18 @@ a.lightbox {
   }
 }
 
-.right-bottom-bordered {
-  border-right: solid 1px @grey;
-  border-bottom: solid 1px @grey;
-  &:last-child {
-    border-right: none;
-    border-bottom: none;
+.my-body {
+  .row-bordered {
+    border-right: solid 1px @grey;
+    border-bottom: solid 1px @grey;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  .row:last-child {
+    .row-bordered {
+      border-bottom: none;
+    }
   }
 }
 
