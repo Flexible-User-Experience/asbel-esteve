@@ -94,6 +94,31 @@ a.lightbox {
   }
 }
 
+.xs-right-bordered {
+  border-right: none;
+  @media(min-width: @screen-xs) {
+    border-right: none;
+  }
+  @media(min-width: @screen-sm) {
+    border-right: solid 1px @grey;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  @media(min-width: @screen-md) {
+    border-right: solid 1px @grey;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  @media(min-width: @screen-lg) {
+    border-right: solid 1px @grey;
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
 .my-body {
   .row-bordered {
     border-right: solid 1px @grey;
