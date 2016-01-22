@@ -245,6 +245,42 @@ a.lightbox {
       h5 {
         .c-grey();
         line-height: 0.75;
+        font-size: @font-size-h6;
+      }
+      h3 {
+        font-size: @font-size-h5;
+      }
+      @media(min-width: @screen-xs) {
+        h3 {
+          font-size: @font-size-h5;
+        }
+        h5 {
+          font-size: @font-size-h6;
+        }
+      }
+      @media(min-width: @screen-sm) {
+        h3 {
+          font-size: @font-size-h5;
+        }
+        h5 {
+          font-size: @font-size-h6;
+        }
+      }
+      @media(min-width: @screen-md) {
+        h3 {
+          font-size: @font-size-h4;
+        }
+        h5 {
+          font-size: @font-size-h6;
+        }
+      }
+      @media(min-width: @screen-lg) {
+        h3 {
+          font-size: @font-size-h3;
+        }
+        h5 {
+          font-size: @font-size-h5;
+        }
       }
     }
   }
