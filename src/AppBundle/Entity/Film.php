@@ -111,6 +111,20 @@ class Film extends AbstractBase
     }
 
     /**
+     * Set PublishedAt
+     *
+     * @param \DateTime $date
+     *
+     * @return Film
+     */
+    public function setPublishedAt(\DateTime $date)
+    {
+        $this->publishedAt = $date;
+
+        return $this;
+    }
+
+    /**
      * Get PublishedAt
      *
      * @return \DateTime
