@@ -111,20 +111,6 @@ class Film extends AbstractBase
     }
 
     /**
-     * Set IsPortraitImage
-     *
-     * @param boolean $isPortraitImage
-     *
-     * @return Film
-     */
-    public function setIsPortraitImage($isPortraitImage)
-    {
-        $this->isPortraitImage = $isPortraitImage;
-
-        return $this;
-    }
-
-    /**
      * Get PublishedAt
      *
      * @return \DateTime
@@ -256,7 +242,7 @@ class Film extends AbstractBase
     public function addCategory(Category $category)
     {
         $category->addFilm($this);
-        $this->categories[] = $category;
+        $this->categories->add($category);
 
         return $this;
     }
@@ -305,7 +291,7 @@ class Film extends AbstractBase
     public function addImage(FilmImage $image)
     {
         $image->setFilm($this);
-        $this->images[] = $image;
+        $this->images->add($image);
 
         return $this;
     }
