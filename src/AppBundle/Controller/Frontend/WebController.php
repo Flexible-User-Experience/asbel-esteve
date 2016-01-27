@@ -120,17 +120,18 @@ class WebController extends Controller
         $form = $this->createForm(ContactMessageType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // persist entity
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-            // Send notifications
+            // send notifications
             $messenger = $this->get('app.notification');
             $messenger->sendUserNotification($contact);
             $messenger->sendAdminNotification($contact);
-            // Reset form
+            // reset form
             $contact = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contact);
-            // Build flash message
+            // build flash message
             $flash = 'frontend.form.flash.user';
         }
 
