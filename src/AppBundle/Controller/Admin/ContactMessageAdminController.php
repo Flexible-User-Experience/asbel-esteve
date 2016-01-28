@@ -92,15 +92,15 @@ class ContactMessageAdminController extends Controller
         $form = $this->createForm(ContactMessageAnswerType::class, $object);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // Persist new contact message form record
+            // persist new contact message form record
             $object->setAnswered(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($object);
             $em->flush();
-            // Send notifications
+            // send notifications
             $messenger = $this->get('app.notification');
             $messenger->senddUserBackendNotification($object);
-            // Build flash message
+            // build flash message
             $this->addFlash('success', 'Your answer has been sent.');
 
             return $this->redirectToRoute('admin_app_contactmessage_list');
