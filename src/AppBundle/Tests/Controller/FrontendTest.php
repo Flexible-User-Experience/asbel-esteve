@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\Form\Type\ContactMessageType;
 use AppBundle\Tests\AbstractBaseTest;
 
 /**
