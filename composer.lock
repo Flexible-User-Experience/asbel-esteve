@@ -4,9 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c9a6f9ab5a76e18e33673bac3134408",
-    "content-hash": "1b137173e88f7f2744caab461e0f2f99",
+    "hash": "954fefe81f4d99f94dcb0168b01a4acf",
+    "content-hash": "9f7a2c9cd1ba7653fd0b0ff224f497df",
     "packages": [
+        {
+            "name": "astina/social-links-bundle",
+            "version": "2.2.0",
+            "target-dir": "Astina/Bundle/SocialLinksBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/astina/AstinaSocialLinksBundle.git",
+                "reference": "b0e0746cc450c61ff61f9b2ce5bb05efc6fe5192"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/astina/AstinaSocialLinksBundle/zipball/b0e0746cc450c61ff61f9b2ce5bb05efc6fe5192",
+                "reference": "b0e0746cc450c61ff61f9b2ce5bb05efc6fe5192",
+                "shasum": ""
+            },
+            "require": {
+                "sensio/framework-extra-bundle": ">=2.3",
+                "social-links/social-links": "^1.8",
+                "symfony/symfony": "~2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Astina\\Bundle\\SocialLinksBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Astina AG",
+                    "email": "admin@astina.ch"
+                }
+            ],
+            "description": "Symfony bundle that is using SocialLinks to generate share links for social networks.",
+            "homepage": "http://astina.ch",
+            "keywords": [
+                "astina",
+                "links",
+                "share",
+                "social"
+            ],
+            "time": "2016-04-01 11:11:52"
+        },
         {
             "name": "behat/transliterator",
             "version": "v1.1.0",
@@ -2939,6 +2988,55 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2015-11-07 08:07:40"
+        },
+        {
+            "name": "social-links/social-links",
+            "version": "v1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarotero/social-links.git",
+                "reference": "f8a5374cad4894278194eaca419f51bee7b3146f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarotero/social-links/zipball/f8a5374cad4894278194eaca419f51bee7b3146f",
+                "reference": "f8a5374cad4894278194eaca419f51bee7b3146f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialLinks\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP library to generate share buttons",
+            "homepage": "https://github.com/oscarotero/social-links",
+            "keywords": [
+                "buttons",
+                "facebook",
+                "links",
+                "opengraph",
+                "share",
+                "social",
+                "twitter",
+                "twittercards"
+            ],
+            "time": "2016-04-21 23:14:35"
         },
         {
             "name": "sonata-project/admin-bundle",

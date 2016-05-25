@@ -40,6 +40,11 @@
             <h4 class="c-grey">{{ content.categories | join(', ') }}</h4>
             <h4 class="c-grey">{{ content.year }}</h4>
             <p>{{ content.description | raw }}</p>
+            <div style="margin: 40px 0">
+                {{ social_link('facebook', null, {'text': content.title, attributes: {'style': 'display:inline-block;float:left;margin-right:20px', 'target': '_self'} }, 'share on facebook') }}
+                {{ social_link('twitter', null, {'text': content.title, attributes: {'style': 'display:inline-block;float:left;margin-right:20px', 'target': '_self'} }, 'share on twitter') }}
+            </div>
+
         </div>
         {% if content.images | length > 0 %}
             <div class="my-padding col-sm-top col-sm-height col-sm-4">
