@@ -95,7 +95,8 @@ ivory_ck_editor:
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
-    default_locale:       "%locale%"
+    default_locale:        "%locale%"
+    translation_fallback:  true
     orm:
         default:
             softdeleteable: true
