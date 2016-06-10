@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "Asbel Esteve"
-        admin_tag_version:        "v1.0.16"
+        admin_tag_version:        "v1.0.17"
 
 # Assetic Configuration
 assetic:
@@ -95,7 +95,8 @@ ivory_ck_editor:
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
-    default_locale:       "%locale%"
+    default_locale:        "%locale%"
+    translation_fallback:  true
     orm:
         default:
             softdeleteable: true
