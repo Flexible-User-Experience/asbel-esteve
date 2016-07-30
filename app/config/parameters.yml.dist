@@ -24,3 +24,4 @@ parameters:
     private_admin_test_pass: ~
     private_editor_test_user: ~
     private_editor_test_pass: ~
+
