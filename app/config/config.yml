@@ -3,8 +3,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: sonata.yml }
 
-# Framework config
+# Framework
 framework:
     translator:      { fallbacks: [ "%locale%" ] }
     secret:          "%secret%"
@@ -24,7 +25,7 @@ framework:
     fragments:       ~
     http_method_override: true
 
-# Twig Configuration
+# Twig
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
@@ -37,7 +38,7 @@ twig:
         main_brand_title:         "Asbel Esteve"
         admin_tag_version:        "v1.0.17"
 
-# Assetic Configuration
+# Assetic
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
@@ -57,7 +58,7 @@ assetic:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
                 - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
 
-# Doctrine Configurations
+# Doctrine
 doctrine:
     dbal:
         driver:   "%database_driver%"
@@ -78,7 +79,7 @@ doctrine_migrations:
     dir_name: "%kernel.root_dir%/../src/AppBundle/DoctrineMigrations"
     namespace: AppBundle\DoctrineMigrations
 
-# Swiftmailer Configuration
+# Swiftmailer
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
@@ -95,8 +96,8 @@ ivory_ck_editor:
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
-    default_locale:        "%locale%"
-    translation_fallback:  true
+    default_locale:       "%locale%"
+    translation_fallback: true
     orm:
         default:
             softdeleteable: true
@@ -189,81 +190,3 @@ fos_user:
         group_manager: sonata.user.orm.group_manager
     service:
         user_manager: sonata.user.orm.user_manager
-
-# Sonata configs
-sonata_admin:
-    title: "Asbel Esteve"
-    title_logo: "/bundles/app/images/backend-favicon.png"
-    options:
-        html5_validate: true
-        confirm_exit:   true
-        use_select2:    true
-        pager_links:    10
-    persist_filters: true
-    security:
-        handler: sonata.admin.security.handler.role
-    templates:
-        layout: "::Admin/layout.html.twig"
-        show:   "::Admin/show.html.twig"
-    dashboard:
-        groups:
-            Web:
-                icon: "<i class='fa fa-chrome'></i>"
-            Admin:
-                icon: "<i class='fa fa-cog'></i>"
-        blocks:
-            -
-                position: top
-                type: sonata.block.service.text
-                class: col-md-12
-                settings:
-                    content: >
-                        <h1 style="margin-top:0">Content Management System</h1>
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Web ]
-            -
-                position: top
-                type: admin.block.messages
-                class: col-md-6
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Admin ]
-            -
-                position: bottom
-                type: sonata.block.service.text
-                class: col-md-12
-                settings:
-                    content: >
-                        <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fa fa-info-circle"></i> Technical support at <a href="mailto:suport@flux.cat?subject=Asbel Esteve CMS help" style="color:#000">suport@flux.cat</a></p></div>
-
-sonata_block:
-    default_contexts: [ cms ]
-    blocks:
-        sonata.user.block.menu:         ~
-        sonata.block.service.text:      ~
-        sonata.admin.block.admin_list:  ~
-        admin.block.messages:           ~
-
-sonata_doctrine_orm_admin:
-    templates:
-        form:
-            - "::Admin/Forms/custom_checkbox_form_template_hack.html.twig"
-
-sonata_seo:
-    encoding: UTF-8
-    page:
-        default:  sonata.seo.page.default
-        head:
-            'xmlns':    "http://www.w3.org/1999/xhtml"
-            'xmlns:og': "http://opengraphprotocol.org/schema/"
-
-sonata_user:
-    security_acl: true
-    manager_type: orm
