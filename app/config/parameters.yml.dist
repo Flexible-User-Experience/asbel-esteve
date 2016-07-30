@@ -1,12 +1,11 @@
 parameters:
     locale:            en
-    database_driver:   pdo_sqlite
+    database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     symfony
     database_user:     root
     database_password: ~
-    database_path:     "%kernel.root_dir%/database/devel.db3"
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_user:       ~
@@ -24,4 +23,3 @@ parameters:
     private_admin_test_pass: ~
     private_editor_test_user: ~
     private_editor_test_pass: ~
-
