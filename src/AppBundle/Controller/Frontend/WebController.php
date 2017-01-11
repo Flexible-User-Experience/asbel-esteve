@@ -38,7 +38,7 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/category/{slug}/", name="app_category")
+     * @Route("/category/{slug}", name="app_category")
      *
      * @param string $slug
      *
@@ -64,7 +64,7 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/{slug}/", name="app_content")
+     * @Route("/{slug}", name="app_content")
      *
      * @param string $slug
      *
@@ -86,7 +86,7 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/page/{slug}/", name="app_static_page")
+     * @Route("/page/{slug}", name="app_static_page")
      *
      * @param string $slug
      *
@@ -106,7 +106,7 @@ class WebController extends Controller
     }
 
     /**
-     * @Route("/contact-form/", name="app_contact_form")
+     * @Route("/contact-form", name="app_contact_form")
      *
      * @param Request $request
      *
