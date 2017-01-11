@@ -35,10 +35,10 @@ class FrontendTest extends AbstractBaseTest
     {
         return array(
             array('/'),
-            array('/category/films/'),
-            array('/category/artwork/'),
-            array('/test-title/'),
-            array('/page/words-interviews-screeings-and-news/'),
+            array('/category/films'),
+            array('/category/artwork'),
+            array('/test-title'),
+            array('/page/words-interviews-screeings-and-news'),
             array('/rss/sitemap.default.xml'),
         );
     }
@@ -49,9 +49,37 @@ class FrontendTest extends AbstractBaseTest
     public function testNotFoundUrls()
     {
         $client = static::makeClient();
-        $client->request('GET', '/category/not-found-url/');
-        $client->request('GET', '/page/not-found-url/');
+        $client->request('GET', '/category/not-found-url');
+        $client->request('GET', '/page/not-found-url');
         $this->assertStatusCode(404, $client);
+    }
+
+    /**
+     * Test HTTP request is redirected
+     *
+     * @dataProvider provideRedirectedUrls
+     *
+     * @param string $url
+     */
+    public function testFrontendPagesAreRedirected($url)
+    {
+        $client = $this->createClient();           // anonymous user
+        $client->request('GET', $url);
+
+        $this->assertStatusCode(301, $client);
+    }
+
+    /**
+     * Urls provider.
+     *
+     * @return array
+     */
+    public function provideRedirectedUrls()
+    {
+        return array(
+            array('/category/films/'),
+            array('/category/not-found-url/'),
+        );
     }
 
     /**
