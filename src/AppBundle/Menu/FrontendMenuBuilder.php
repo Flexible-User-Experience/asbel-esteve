@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
@@ -37,6 +38,11 @@ class FrontendMenuBuilder
     private $ac;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $ts;
+
+    /**
      * @var ArrayCollection all categories enabled sorted by title
      */
     private $categories;
@@ -47,15 +53,17 @@ class FrontendMenuBuilder
     private $pages;
 
     /**
-     * @param FactoryInterface     $factory
-     * @param EntityManager        $em
-     * @param AuthorizationChecker $ac
+     * @param FactoryInterface      $factory
+     * @param EntityManager         $em
+     * @param AuthorizationChecker  $ac
+     * @param TokenStorageInterface $ts
      */
-    public function __construct(FactoryInterface $factory, EntityManager $em, AuthorizationChecker $ac)
+    public function __construct(FactoryInterface $factory, EntityManager $em, AuthorizationChecker $ac, TokenStorageInterface $ts)
     {
         $this->factory = $factory;
         $this->em = $em;
         $this->ac = $ac;
+        $this->ts = $ts;
         $this->categories = $this->em->getRepository('AppBundle:Category')->findAllEnabledSortedByTitle();
         $this->pages = $this->em->getRepository('AppBundle:Page')->findAllSortedByTitle();
     }
@@ -68,7 +76,6 @@ class FrontendMenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->createBottomMenu($requestStack);
-//        $menu->removeChild(WebController::ROUTE_HOMEPAGE);
 
         return $menu;
     }
@@ -82,7 +89,7 @@ class FrontendMenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'my-menu list-unstyled no-gap-bottom');
-        if ($this->ac->isGranted('ROLE_CMS')) {
+        if ($this->ts->getToken() && $this->ac->isGranted('ROLE_CMS')) {
             $menu->addChild(
                 'admin',
                 array(
@@ -142,11 +149,9 @@ class FrontendMenuBuilder
     }
 
     /**
-     * @param RequestStack $requestStack
-     *
      * @return ItemInterface
      */
-    public function createSocialNetworksMenu(RequestStack $requestStack)
+    public function createSocialNetworksMenu()
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'my-menu list-unstyled no-gap-bottom');
