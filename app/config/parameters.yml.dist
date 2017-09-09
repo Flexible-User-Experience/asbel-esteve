@@ -24,3 +24,5 @@ parameters:
     private_admin_test_pass: admin
     private_editor_test_user: user
     private_editor_test_pass: user
+    recaptcha_site_key: "xxxxxxxxxxxxx"
+    recaptcha_secret:   "xxxxxxxxxxxxx"
