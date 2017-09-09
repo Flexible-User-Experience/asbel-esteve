@@ -33,7 +33,6 @@ class ContactMessageAdmin extends AbstractBaseAdmin
         $collection
             ->remove('create')
             ->remove('edit')
-            ->remove('delete')
             ->remove('batch')
             ->add('answer', $this->getRouterIdParameter() . '/answer');
     }
@@ -165,7 +164,8 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                         'show' => array(),
                         'answer' => array(
                             'template' => '::Admin/Cells/list__action_answer.html.twig'
-                        )
+                        ),
+                        'delete' => array(),
                     ),
                 )
             );
